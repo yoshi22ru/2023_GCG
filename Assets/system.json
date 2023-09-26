@@ -1,0 +1,12 @@
+{
+    "Assets":{
+        "Scene": "Scenes",
+        "Players": {
+            "GameObject":"Objects",
+            "Scripts":{
+                "CharactorController":"controllCharactor"
+            }
+        }
+
+    }
+}
