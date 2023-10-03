@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CharacterState : MonoBehaviour
 {
-    public enum Character
+    public enum Character_State
     {
         None,
         Idle,
+        Run,
         Attack,
         Damage,
         Dead,
