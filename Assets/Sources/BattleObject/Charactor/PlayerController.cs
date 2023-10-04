@@ -19,9 +19,8 @@ public class PlayerController : MonoBehaviour
             .Subscribe(_ => Move());
     }
 
-    void Move()
+    public void Move()
     {
-
         var x = Input.GetAxis("Vertical") * moveSpeed;
         var z = -Input.GetAxis("Horizontal") * moveSpeed;
 
