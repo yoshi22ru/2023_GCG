@@ -59,7 +59,7 @@ public class BattleObject : MonoBehaviour
         Blue,
     }
     public enum ObjectType {
-        PlayerCharactor,
+        PlayerCharacter,
         NPC,
         DamagingObject,
     }
