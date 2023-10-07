@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using Photon.Pun;
 using Photon.Realtime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PhotonUtility : MonoBehaviourPunCallbacks
@@ -11,7 +12,6 @@ public class PhotonUtility : MonoBehaviourPunCallbacks
     #region DefaultSettings
 
     [SerializeField] static int maxPlayer = 4;
-    [SerializeField] static bool isVisible = true;
     [SerializeField] static bool isOpen = true;
     #endregion
 
@@ -36,21 +36,21 @@ public class PhotonUtility : MonoBehaviourPunCallbacks
 
     private static void JoinLoby() {
         if (PhotonNetwork.IsConnected) {
-            PhotonNetwork.JoinLobby();
+            if (PhotonNetwork.JoinLobby()) {
+                Debug.Log("Join Loby");
+            } else {
+                Debug.Log("Join Loby Failed");
+            }
         }
-        Debug.Log("Join Loby");
     }
 
-    public static void CreateAndJoinRoom(string roomName) {
+    public static void CreateAndJoinRoom(string roomName, bool isVisible) {
         RoomOptions roomOptions = new RoomOptions {
             MaxPlayers = (byte)maxPlayer,
             IsVisible = isVisible,
             IsOpen = isOpen,
             CleanupCacheOnLeave = true
         };
-
-        //  make customproperty
-        // ExitGames.Client.Photon.Hashtable roomCustomProperties = new ExitGames.Client.Photon.Hashtable();
 
         if (PhotonNetwork.InLobby) {
             PhotonNetwork.CreateRoom(roomName, roomOptions);
@@ -80,8 +80,14 @@ public class PhotonUtility : MonoBehaviourPunCallbacks
 
     #region OriginalCallBackFunction
     
+    /// <summary>
+    /// Initialize Custom Paramater
+    /// </summary>
     public virtual void InitializeRoom() {}
 
+    /// <summary>
+    /// Write process after Joined Room
+    /// </summary>
     public virtual void AfterJoinedRoom() {}
 
     #endregion
