@@ -12,7 +12,6 @@ public class main : Utility.PhotonUtility
         Utility.PhotonUtility.Connect("v1.0");
 
         Utility.PhotonUtility.CreateAndJoinRoom("string1", true);
-        Utility.PhotonUtility.CreateAndJoinRoom("string1", false);
     }
 
     #region Variables

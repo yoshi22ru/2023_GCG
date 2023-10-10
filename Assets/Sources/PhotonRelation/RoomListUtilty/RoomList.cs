@@ -6,6 +6,7 @@ using UnityEngine;
 public class RoomList : IEnumerable<RoomInfo>
 {
     private Dictionary<string, RoomInfo> dictionaly = new Dictionary<string, RoomInfo>();
+    private (string, RoomInfo, GameObject) buttons;
 
     public void Update(List<RoomInfo> changedRoomList) {
         foreach (var info in changedRoomList) {

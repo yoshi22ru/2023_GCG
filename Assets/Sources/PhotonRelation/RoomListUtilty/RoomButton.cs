@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class RoomButton : MonoBehaviour
 {
-    const int maxPlayer = 4;
+    private int maxPlayer = 4;  int GetMaxPlayer() { return maxPlayer; }
     [SerializeField] private Text label = default;
     MatchMakingView matchMakingView;
     Button button;
