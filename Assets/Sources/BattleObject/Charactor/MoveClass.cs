@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using static Character;
 
-public class PlayerController : MonoBehaviour
+public class MoveClass : MonoBehaviour
 {
     public float moveSpeed; // 現在のスピード
 
-    private void Start()
+
+    void Start()
     {
         // UniRX 移動処理を実施
         this.UpdateAsObservable()
@@ -30,7 +32,5 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(x * Time.deltaTime, 0, z * Time.deltaTime);
             transform.localRotation = Quaternion.LookRotation(direction);
         }
-
     }
-
 }
