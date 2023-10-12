@@ -14,10 +14,10 @@ public class BattleObject : MonoBehaviour
     GameManager manager;
     #endregion
     
-    void OnHitMyTeamObject(BattleObject gameObject) {
+    public virtual void OnHitMyTeamObject(BattleObject gameObject) {
 
     }
-    void OnHitEnemyTeamObject(BattleObject gameObject) {
+    public virtual void OnHitEnemyTeamObject(BattleObject gameObject) {
 
     }
     #region accessor
