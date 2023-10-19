@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStatus : MonoBehaviour
+public class CharacterStatus : Character
 {
     [SerializeField]
     private float currentHP = 100f; // 現在のHP
@@ -84,10 +84,15 @@ public class CharacterStatus : MonoBehaviour
         if (skill1CooldownTimer <= 0f)
         {
             // スキルを発動
-            // ここで実際のスキル1の処理を記述
+            Skill1();
+            SetState(Character.Character_State.Skill1);
 
             // クールダウンタイマーを設定
             skill1CooldownTimer = skill1Cooldown;
+        }
+        else
+        {
+            Debug.Log((skill1CooldownTimer).ToString("F2") + "秒後にスキル1使用可能");
         }
     }
 
@@ -97,10 +102,16 @@ public class CharacterStatus : MonoBehaviour
         if (skill2CooldownTimer <= 0f)
         {
             // スキルを発動
-            // ここで実際のスキル2の処理を記述
+            Skill2();
+            SetState(Character.Character_State.Skill2);
 
             // クールダウンタイマーを設定
             skill2CooldownTimer = skill2Cooldown;
+        }
+        else
+        {
+
+            Debug.Log((skill2CooldownTimer).ToString("F2") + "秒後にスキル2使用可能");
         }
     }
 
@@ -110,10 +121,15 @@ public class CharacterStatus : MonoBehaviour
         if (specialCooldownTimer <= 0f)
         {
             // Specialを発動
-            // ここで実際のSpecialの処理を記述
+            Special();
+            SetState(Character.Character_State.Special);
 
             // クールダウンタイマーを設定
             specialCooldownTimer = specialCooldown;
+        }
+        else
+        {
+            Debug.Log((specialCooldownTimer).ToString("F2") + "秒後にスペシャルスキル使用可能");
         }
     }
 

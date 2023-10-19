@@ -72,40 +72,39 @@ public class Character : BattleObject
         }
     }
 
-    // 各状態に対応する動作を実行するメソッド
-    private void Idle()
-    {
-        // Idle状態の動作を実行
-    }
-
-    private void Run()
-    {
-        // Run状態の動作を実行
-    }
-
-    private void Damage()
+    protected virtual void Damage(int damage)
     {
         // Damage状態の動作を実行
+        Debug.Log(damage + "ダメージ喰らった");
     }
 
-    private void Dead()
+    protected virtual void Heal(int heal)
+    {
+        Debug.Log(heal + "回復");
+    }
+
+    protected virtual void Dead()
     {
         // Dead状態の動作を実行
+        Debug.Log("死亡");
     }
 
-    private void Skill1()
+    protected virtual void Skill1()
     {
         // Skill1状態の動作を実行
+        Debug.Log("スキル1発動");
     }
 
-    private void Skill2()
+    protected virtual void Skill2()
     {
         // Skill2状態の動作を実行
+        Debug.Log("スキル2発動");
     }
 
-    private void Special()
+    protected virtual void Special()
     {
         // Special状態の動作を実行
+        Debug.Log("スペシャルスキル発動");
     }
 }
 

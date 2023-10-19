@@ -30,21 +30,16 @@ public class CharacterController : Character
         {
             // Eキーを押した場合、Skill1を発動
             characterStatus.UseSkill1();
-            SetState(Character.Character_State.Skill1);
-            
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             // Qキーを押した場合、Skill2を発動
-            characterStatus.UseSkill2();
-            SetState(Character.Character_State.Skill2);
-            
+            characterStatus.UseSkill2();            
         }
-        else if (Input.GetKeyDown(KeyCode.R))
+        else if (Input.GetKeyDown(KeyCode.X))
         {
             // Rキーを押した場合、Specialを発動
             characterStatus.UseSpecial();
-            SetState(Character.Character_State.Special);
         }
         else
         {
