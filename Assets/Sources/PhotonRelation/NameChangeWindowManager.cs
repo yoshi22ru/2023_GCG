@@ -12,23 +12,23 @@ public class NameChangeWindowManager : Utility.PhotonUtility
 
     void Send_New_Name() {
         var new_name = input_name_field.text;
-        SetMyName(new_name);
+        JoinSelectRoom(new_name);
     }
 
     void Cancel_Set_Name() {
         input_name_field.text = "";
+        this.gameObject.SetActive(false);
     }
 
     #endregion
-
-    void StartConnection() {
-        Utility.PhotonUtility.Connect("v1.0");
-    }
 
     private void Start() {
         ok_button.onClick.AddListener(Send_New_Name);
         cancel_button.onClick.AddListener(Cancel_Set_Name);
     }
 
-
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        // TODO!
+    }
 }
