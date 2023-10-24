@@ -13,7 +13,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     #endregion
 
-    
+    private void Start() {
+        current_state = BattleState.BeforeStart;
+        
+    }
 
     enum BattleState {
         BeforeStart,
