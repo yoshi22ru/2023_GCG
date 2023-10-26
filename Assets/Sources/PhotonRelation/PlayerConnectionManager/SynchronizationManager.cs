@@ -12,9 +12,15 @@ public class SynchronizationManager : MonoBehaviourPunCallbacks
     const string H_Item = "item";
     #endregion
 
+    #region PlayerVeriables
+    private struct SynchroVeriables {
+        Character character;
+        Transform transform;
+    }
+    List<SynchroVeriables> synchroVeriables = new List<SynchroVeriables>();
+    #endregion
 
-    enum CurrentScene {
-        SelectCharactor,
-        BattleScene,
+    private void Start() {
+        
     }
 }

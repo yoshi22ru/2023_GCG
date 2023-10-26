@@ -7,7 +7,7 @@ using UnityEngine;
 public class BattleObject : MonoBehaviour
 {
     #region variables
-
+    bool isSynchronized;
     Team team;
     ObjectType objectType;
     int HP;
@@ -45,15 +45,18 @@ public class BattleObject : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) {
         if (other.gameObject.CompareTag("BattleObject")) {
-            BattleObject battleObject = other.gameObject.GetComponent<BattleObject>();
-
-            if (this.team == battleObject.team) {
-                OnHitMyTeamObject(battleObject);
+            if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject)) {
+                if (this.team == battleObject.team) {
+                    OnHitMyTeamObject(battleObject);
+                } else {
+                    OnHitEnemyTeamObject(battleObject);
+                }
             } else {
-                OnHitEnemyTeamObject(battleObject);
+                Debug.Log("There is no Component of Battle Object");
             }
         }
     }
+
     public enum Team {
         Red,
         Blue,
