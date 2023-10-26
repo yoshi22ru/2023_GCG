@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 public class CharacterStatus : Character
@@ -13,17 +14,12 @@ public class CharacterStatus : Character
     [SerializeField]
     private float moveSpeed = 5f; // キャラクターの移動速度
     [SerializeField]
-    private float skill1Cooldown = 5f; // Skill1のクールダウン時間
+    private float Skill1CoolDown = 5f;
     [SerializeField]
-    private float skill2Cooldown = 8f; // Skill2のクールダウン時間
+    private float Skill2CoolDown = 8f;
     [SerializeField]
-    private float specialCooldown = 10f; // Specialのクールダウン時間
-    [SerializeField]
-    private float skill1Damage = 20f; // Skill1のダメージ量
-    [SerializeField]
-    private float skill2Damage = 30f; // Skill2のダメージ量
-    [SerializeField]
-    private float specialDamage = 50f; // Specialのダメージ量
+    private float SpecialCoolDown = 10f;
+
 
     private bool isDamageTaken = false; // ダメージを受けたかどうか
     private bool isDead = false; // 死亡判定
@@ -31,6 +27,8 @@ public class CharacterStatus : Character
     private float skill1CooldownTimer = 0f; // Skill1のクールダウンタイマー
     private float skill2CooldownTimer = 0f; // Skill2のクールダウンタイマー
     private float specialCooldownTimer = 0f; // Specialのクールダウンタイマー
+
+    SkillManager skillManager = new SkillManager();
 
     public float CurrentHP
     {
@@ -88,7 +86,7 @@ public class CharacterStatus : Character
             SetState(Character.Character_State.Skill1);
 
             // クールダウンタイマーを設定
-            skill1CooldownTimer = skill1Cooldown;
+            skill1CooldownTimer = Skill1CoolDown;
         }
         else
         {
@@ -106,7 +104,7 @@ public class CharacterStatus : Character
             SetState(Character.Character_State.Skill2);
 
             // クールダウンタイマーを設定
-            skill2CooldownTimer = skill2Cooldown;
+            skill2CooldownTimer = Skill2CoolDown;
         }
         else
         {
@@ -125,7 +123,7 @@ public class CharacterStatus : Character
             SetState(Character.Character_State.Special);
 
             // クールダウンタイマーを設定
-            specialCooldownTimer = specialCooldown;
+            specialCooldownTimer = SpecialCoolDown;
         }
         else
         {
@@ -143,3 +141,4 @@ public class CharacterStatus : Character
         }
     }
 }
+

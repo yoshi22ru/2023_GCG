@@ -1,11 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class Character : BattleObject
-{ 
+{
     public Animator animator;  // キャラクターのアニメーターコンポーネント
+    private Character_State currentState; // 現在の状態
+    [SerializeField] GameObject skill1;
+    [SerializeField] GameObject skill2;
+    [SerializeField] GameObject special;
+    [SerializeField] Transform shotPoint;
+    [SerializeField] Transform centerPoint;
 
     // キャラクターの状態を定義
     public enum Character_State
@@ -19,8 +27,6 @@ public class Character : BattleObject
         Skill2,
         Special,
     }
-
-    private Character_State currentState; // 現在の状態
 
     private void Start()
     {
@@ -93,18 +99,22 @@ public class Character : BattleObject
     {
         // Skill1状態の動作を実行
         Debug.Log("スキル1発動");
+        Instantiate(skill1, shotPoint.position, transform.rotation);
     }
 
     protected virtual void Skill2()
     {
         // Skill2状態の動作を実行
         Debug.Log("スキル2発動");
+        Instantiate(skill2, centerPoint.position, transform.rotation);
     }
 
     protected virtual void Special()
     {
         // Special状態の動作を実行
         Debug.Log("スペシャルスキル発動");
+        Instantiate(special, shotPoint.position, transform.rotation);
     }
 }
+
 

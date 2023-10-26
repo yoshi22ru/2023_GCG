@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class CharacterController : Character
 {
     private CharacterStatus characterStatus; // キャラクターのステータス
@@ -34,7 +35,7 @@ public class CharacterController : Character
         else if (Input.GetKeyDown(KeyCode.Q))
         {
             // Qキーを押した場合、Skill2を発動
-            characterStatus.UseSkill2();            
+            characterStatus.UseSkill2();
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {

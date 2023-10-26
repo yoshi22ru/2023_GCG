@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
-using static Character;
 
 public class MoveClass : MonoBehaviour
 {
