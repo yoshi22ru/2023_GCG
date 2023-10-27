@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5704d629212dedb44b6ba759f9a33054, type: 3}
-  m_Name: CharaDataBase
+  m_Script: {fileID: 11500000, guid: ca88727919601584d9f1e10feb1507db, type: 3}
+  m_Name: CharactorData
   m_EditorClassIdentifier: 
-  charadata:
-  - {fileID: 0}
+  chara_name: 
+  chara_image: {fileID: 0}
+  max_hp: 0
+  charactor_prefab: {fileID: 0}

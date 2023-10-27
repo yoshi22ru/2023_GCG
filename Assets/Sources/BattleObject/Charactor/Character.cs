@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class Character : BattleObject
-{ 
-    public Animator animator;  // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒAƒjƒ[ƒ^[ƒRƒ“ƒ|[ƒlƒ“ƒg
+public class Character : BattleObject, IPunObservable
+{
+    public byte actor_num;
+    public Animator animator;  // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Rï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½g
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚Ìó‘Ô‚ğ’è‹`
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½Ô‚ï¿½ï¿½`
     public enum Character_State
     {
         None,
@@ -20,23 +23,23 @@ public class Character : BattleObject
         Special,
     }
 
-    private Character_State currentState; // Œ»İ‚Ìó‘Ô
+    private Character_State currentState; // ï¿½ï¿½ï¿½İ‚Ìï¿½ï¿½
 
     private void Start()
     {
-        // ƒAƒjƒ[ƒ^[ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Rï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½gï¿½ï¿½ï¿½æ“¾
         animator = GetComponent<Animator>();
-        // Å‰‚Ìó‘Ô‚ğİ’è
+        // ï¿½Åï¿½ï¿½Ìï¿½Ô‚ï¿½İ’ï¿½
         SetState(Character_State.Idle);
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚Ìó‘Ô‚ğİ’è‚µAƒgƒŠƒK[‚ğ”­“®‚·‚éƒƒ\ƒbƒh
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½Ô‚ï¿½İ’è‚µï¿½Aï¿½gï¿½ï¿½ï¿½Kï¿½[ï¿½ğ”­“ï¿½ï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
     public void SetState(Character_State newState)
     {
-        // Œ»İ‚Ìó‘Ô‚ğİ’è
+        // ï¿½ï¿½ï¿½İ‚Ìï¿½Ô‚ï¿½İ’ï¿½
         currentState = newState;
 
-        // ƒAƒjƒ[ƒ^[‚ÌƒgƒŠƒK[‚ğƒŠƒZƒbƒg
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Ìƒgï¿½ï¿½ï¿½Kï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g
         animator.ResetTrigger("Idle");
         animator.ResetTrigger("Run");
         animator.ResetTrigger("Damage");
@@ -45,7 +48,7 @@ public class Character : BattleObject
         animator.ResetTrigger("Skill2");
         animator.ResetTrigger("Special");
 
-        // V‚µ‚¢ó‘Ô‚É‰‚¶‚ÄƒgƒŠƒK[‚ğİ’è
+        // ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚É‰ï¿½ï¿½ï¿½ï¿½Äƒgï¿½ï¿½ï¿½Kï¿½[ï¿½ï¿½İ’ï¿½
         switch (newState)
         {
             case Character_State.Idle:
@@ -74,37 +77,54 @@ public class Character : BattleObject
 
     protected virtual void Damage(int damage)
     {
-        // Damageó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log(damage + "ƒ_ƒ[ƒW‹ò‚ç‚Á‚½");
+        // Damageï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log(damage + "ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
     protected virtual void Heal(int heal)
     {
-        Debug.Log(heal + "‰ñ•œ");
+        Debug.Log(heal + "ï¿½ï¿½");
     }
 
     protected virtual void Dead()
     {
-        // Deadó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log("€–S");
+        // Deadï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log("ï¿½ï¿½ï¿½S");
     }
 
     protected virtual void Skill1()
     {
-        // Skill1ó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log("ƒXƒLƒ‹1”­“®");
+        // Skill1ï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log("ï¿½Xï¿½Lï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½");
     }
 
     protected virtual void Skill2()
     {
-        // Skill2ó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log("ƒXƒLƒ‹2”­“®");
+        // Skill2ï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log("ï¿½Xï¿½Lï¿½ï¿½2ï¿½ï¿½ï¿½ï¿½");
     }
 
     protected virtual void Special()
     {
-        // Specialó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log("ƒXƒyƒVƒƒƒ‹ƒXƒLƒ‹”­“®");
+        // Specialï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log("ï¿½Xï¿½yï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+    }
+
+    void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info) {
+        if (stream.IsWriting) {
+            // send
+            PhotonNetwork.LocalPlayer.SetTransform(this.transform);
+            PhotonNetwork.LocalPlayer.SetHp(getHP());
+        } else {
+            // receive
+            Vector3 position;
+            Quaternion rotation;
+            long trans = PhotonNetwork.LocalPlayer.GetTransform();
+            (position, rotation) = Protcol.TransformDeserialize(trans);
+            this.transform.position = position;
+            this.transform.rotation = rotation;
+            SetHP(PhotonNetwork.LocalPlayer.GetHp());
+        }
     }
 }
 
