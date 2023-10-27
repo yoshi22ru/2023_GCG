@@ -25,7 +25,6 @@ public class MoveClass : MonoBehaviour
     {
         var x = Input.GetAxis("Vertical") * moveSpeed;
         var z = -Input.GetAxis("Horizontal") * moveSpeed;
-
         if (x != 0 || z != 0)
         {
             var direction = new Vector3(x, 0, z);
