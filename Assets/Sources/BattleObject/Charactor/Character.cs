@@ -9,11 +9,13 @@ public class Character : BattleObject
 {
     public Animator animator;  // キャラクターのアニメーターコンポーネント
     private Character_State currentState; // 現在の状態
+    private Transform characterPoint;
     [SerializeField] GameObject skill1;
     [SerializeField] GameObject skill2;
     [SerializeField] GameObject special;
-    [SerializeField] Transform shotPoint;
-    [SerializeField] Transform centerPoint;
+    [SerializeField] Transform skill1Point;
+    [SerializeField] Transform skill2Point;
+    [SerializeField] Transform specialPoint;
 
     // キャラクターの状態を定義
     public enum Character_State
@@ -34,6 +36,11 @@ public class Character : BattleObject
         animator = GetComponent<Animator>();
         // 最初の状態を設定
         SetState(Character_State.Idle);
+    }
+
+    private void FixedUpdate()
+    {
+        characterPoint = this.transform;
     }
 
     // キャラクターの状態を設定し、トリガーを発動するメソッド
@@ -99,21 +106,21 @@ public class Character : BattleObject
     {
         // Skill1状態の動作を実行
         Debug.Log("スキル1発動");
-        Instantiate(skill1, shotPoint.position, transform.rotation);
+        Instantiate(skill1, skill1Point.position, transform.rotation);
     }
 
     protected virtual void Skill2()
     {
         // Skill2状態の動作を実行
         Debug.Log("スキル2発動");
-        Instantiate(skill2, centerPoint.position, transform.rotation);
+        Instantiate(skill2, skill2Point.position, transform.rotation);
     }
 
     protected virtual void Special()
     {
         // Special状態の動作を実行
         Debug.Log("スペシャルスキル発動");
-        Instantiate(special, shotPoint.position, transform.rotation);
+        Instantiate(special, specialPoint.position, transform.rotation, characterPoint);
     }
 }
 

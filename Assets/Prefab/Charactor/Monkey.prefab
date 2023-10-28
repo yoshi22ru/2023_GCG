@@ -125,7 +125,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687008258721637556}
-  m_LocalRotation: {x: 0.16245985, y: 0.688191, z: -0.16245984, w: 0.688191}
+  m_LocalRotation: {x: 0.16245984, y: 0.68819094, z: -0.16245985, w: 0.68819106}
   m_LocalPosition: {x: -5, y: 2.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -329,6 +329,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6616447995639807484}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2697312948493413782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2802454001994928188}
+  m_Layer: 0
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2802454001994928188
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697312948493413782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8157232997635229388}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3482768093349884391
 GameObject:
@@ -625,6 +656,8 @@ Transform:
   - {fileID: 2169594225768257638}
   - {fileID: 2408846870307374586}
   - {fileID: 5021234613842215584}
+  - {fileID: 3142464058362167353}
+  - {fileID: 2802454001994928188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -699,8 +732,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.5, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &8796671057223987832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -754,6 +787,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7255492931425103828}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 7053385775836331393, guid: 5805e8d85f3cd834eb86312aac62abd0, type: 3}
+  skill1Point: {fileID: 3142464058362167353}
+  skill2Point: {fileID: 3142464058362167353}
+  specialPoint: {fileID: 2802454001994928188}
 --- !u!114 &8579601642791507883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,6 +806,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7255492931425103828}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 7053385775836331393, guid: 5805e8d85f3cd834eb86312aac62abd0, type: 3}
+  skill1Point: {fileID: 3142464058362167353}
+  skill2Point: {fileID: 3142464058362167353}
+  specialPoint: {fileID: 2802454001994928188}
 --- !u!114 &675785895791297770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,17 +824,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737e6a23d4d1dbd47a102631dc72feb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 7255492931425103828}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 7053385775836331393, guid: 5805e8d85f3cd834eb86312aac62abd0, type: 3}
+  skill1Point: {fileID: 3142464058362167353}
+  skill2Point: {fileID: 3142464058362167353}
+  specialPoint: {fileID: 2802454001994928188}
   currentHP: 100
   minHP: 0
   maxHP: 100
   moveSpeed: 5
-  skill1Cooldown: 5
-  skill2Cooldown: 8
-  specialCooldown: 10
-  skill1Damage: 20
-  skill2Damage: 30
-  specialDamage: 50
+  Skill1CoolDown: 5
+  Skill2CoolDown: 8
+  SpecialCoolDown: 20
+--- !u!1 &5739439611267364966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3142464058362167353}
+  m_Layer: 0
+  m_Name: ShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3142464058362167353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5739439611267364966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8157232997635229388}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6437644704447422371
 GameObject:
   m_ObjectHideFlags: 0

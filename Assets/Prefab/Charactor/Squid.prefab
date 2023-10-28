@@ -489,6 +489,68 @@ Transform:
   m_Father: {fileID: 5017197113169436657}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3698045956430939073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8087030624552439358}
+  m_Layer: 0
+  m_Name: ShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8087030624552439358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698045956430939073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.625, z: 0.375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2116317195217579910}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3719831145600884686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5645380467388877524}
+  m_Layer: 0
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5645380467388877524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3719831145600884686}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2116317195217579910}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3740198912466290979
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +876,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6357516740958632700}
-  m_LocalRotation: {x: 0.16245982, y: 0.688191, z: -0.16245985, w: 0.68819094}
+  m_LocalRotation: {x: 0.16245985, y: 0.68819094, z: -0.16245985, w: 0.688191}
   m_LocalPosition: {x: -5, y: 2.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -975,12 +1037,12 @@ GameObject:
   - component: {fileID: 2116317195217579910}
   - component: {fileID: 6079757477143383862}
   - component: {fileID: 2317864502041658661}
-  - component: {fileID: 1448853351084395074}
   - component: {fileID: 2960523331966960063}
   - component: {fileID: 1293620286753287417}
   - component: {fileID: 8744615653051066211}
   - component: {fileID: 2726513491685327145}
   - component: {fileID: 4577754714342480428}
+  - component: {fileID: 7777247282922330191}
   m_Layer: 0
   m_Name: Squid
   m_TagString: Untagged
@@ -995,7 +1057,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7218242173633675500}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 55.6, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -1006,8 +1068,10 @@ Transform:
   - {fileID: 809265611326852269}
   - {fileID: 5993154400469647878}
   - {fileID: 8175696420859636730}
+  - {fileID: 8087030624552439358}
+  - {fileID: 5645380467388877524}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6079757477143383862
 LODGroup:
@@ -1061,29 +1125,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &1448853351084395074
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7218242173633675500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &2960523331966960063
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1137,6 +1178,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2317864502041658661}
+  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
+  skill2: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  special: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  skill1Point: {fileID: 5645380467388877524}
+  skill2Point: {fileID: 5645380467388877524}
+  specialPoint: {fileID: 8087030624552439358}
 --- !u!114 &2726513491685327145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,6 +1197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2317864502041658661}
+  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
+  skill2: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  special: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  skill1Point: {fileID: 5645380467388877524}
+  skill2Point: {fileID: 5645380467388877524}
+  specialPoint: {fileID: 8087030624552439358}
 --- !u!114 &4577754714342480428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1163,16 +1216,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
+  skill2: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  special: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  skill1Point: {fileID: 5645380467388877524}
+  skill2Point: {fileID: 5645380467388877524}
+  specialPoint: {fileID: 8087030624552439358}
   currentHP: 100
   minHP: 0
   maxHP: 100
   moveSpeed: 5
-  skill1Cooldown: 5
-  skill2Cooldown: 8
-  specialCooldown: 10
-  skill1Damage: 20
-  skill2Damage: 30
-  specialDamage: 50
+  Skill1CoolDown: 5
+  Skill2CoolDown: 8
+  SpecialCoolDown: 10
+--- !u!65 &7777247282922330191
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218242173633675500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7306217761958114742
 GameObject:
   m_ObjectHideFlags: 0

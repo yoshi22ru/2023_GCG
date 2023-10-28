@@ -12,7 +12,7 @@ public class CharacterController : Character
         characterStatus = GetComponent<CharacterStatus>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (characterStatus.IsDead)
         {
