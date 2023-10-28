@@ -82,7 +82,6 @@ public class CharacterStatus : Character
         if (skill1CooldownTimer <= 0f)
         {
             // スキルを発動
-            Skill1();
             SetState(Character.Character_State.Skill1);
 
             // クールダウンタイマーを設定
@@ -100,7 +99,6 @@ public class CharacterStatus : Character
         if (skill2CooldownTimer <= 0f)
         {
             // スキルを発動
-            Skill2();
             SetState(Character.Character_State.Skill2);
 
             // クールダウンタイマーを設定
@@ -119,7 +117,6 @@ public class CharacterStatus : Character
         if (specialCooldownTimer <= 0f)
         {
             // Specialを発動
-            Special();
             SetState(Character.Character_State.Special);
 
             // クールダウンタイマーを設定

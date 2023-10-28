@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : Character
+public class CharacterController : MonoBehaviour
 {
     private CharacterStatus characterStatus; // キャラクターのステータス
-
     private void Start()
     {
         // キャラクターのステータスを取得または初期化
@@ -25,7 +24,7 @@ public class CharacterController : Character
         {
             // WASDキーが押されている間はRun状態に遷移
             characterStatus.UpdateStatus();
-            SetState(Character.Character_State.Run);
+            //SetState(Character.Character_State.Run);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
@@ -46,7 +45,7 @@ public class CharacterController : Character
         {
             // 何も入力されていない場合はIdle状態に遷移
             characterStatus.UpdateStatus();
-            SetState(Character.Character_State.Idle);
+            //SetState(Character.Character_State.Idle);
         }
 
         // キャラクターの死亡判定を行う
