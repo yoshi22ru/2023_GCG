@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public static class Protcol
@@ -26,5 +27,22 @@ public static class Protcol
 
     public static Quaternion RotationDeserialize(byte rotate) {
         return Quaternion.Euler(0f, rotate, 0f);
+    }
+
+    public static long TransformSerialize(Vector3 position, Quaternion rotation) {
+        short px, py, pz;
+        (px,py,pz)  = PositionSerialize(position);
+        byte rotate = RotationSerialize(rotation);
+        return ((long)rotate << 48) | ((long)px << 32) | ((long)py << 16) | (long)pz;
+    }
+
+    public static (Vector3, Quaternion) TransformDeserialize(long trans) {
+        byte rotate = (byte) ((trans >> 48) & 0xFF);
+        short px = (short) ((trans >> 32) & 0x_FFFF);
+        short py = (short) ((trans >> 16) & 0x_FFFF);
+        short pz = (short) (trans & 0x_FFFF);
+        Vector3 position = PositionDeserialise(px , py, pz);
+        Quaternion rotation = RotationDeserialize(rotate);
+        return (position, rotation);
     }
 }
