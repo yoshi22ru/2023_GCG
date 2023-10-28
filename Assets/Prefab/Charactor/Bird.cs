@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bird : Character
 {
-    Transform characterPoint;
     [SerializeField] GameObject skill1;
     [SerializeField] GameObject skill2;
     [SerializeField] GameObject special;
@@ -17,6 +16,7 @@ public class Bird : Character
         // Skill1ó‘Ô‚Ì“®ì‚ğÀs
         Debug.Log("aaa");
         Instantiate(skill1, skill1Point.position, transform.rotation);
+        base.Skill1();
     }
 
     protected override void Skill2()
@@ -24,12 +24,14 @@ public class Bird : Character
         // Skill2ó‘Ô‚Ì“®ì‚ğÀs
         Debug.Log("iii");
         Instantiate(skill2, skill2Point.position, transform.rotation);
+        base.Skill2();
     }
 
     protected override void Special()
     {
         // Specialó‘Ô‚Ì“®ì‚ğÀs
         Debug.Log("uuu");
-        Instantiate(special, specialPoint.position, transform.rotation, characterPoint);
+        Instantiate(special, specialPoint.position, transform.rotation);
+        base.Special();
     }
 }

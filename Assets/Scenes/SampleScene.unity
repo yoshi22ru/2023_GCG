@@ -128,7 +128,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7572335396204123815, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
   m_PrefabInstance: {fileID: 581177063}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &379207089
+--- !u!95 &379207096 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1880356326931833000, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
+  m_PrefabInstance: {fileID: 581177063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &379207099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,17 +146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 379207096}
-  skill1: {fileID: 0}
-  skill2: {fileID: 0}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
   special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  skill1Point: {fileID: 0}
-  skill2Point: {fileID: 0}
+  skill1Point: {fileID: 1065748350}
+  skill2Point: {fileID: 771468318}
   specialPoint: {fileID: 771468318}
---- !u!95 &379207096 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1880356326931833000, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
-  m_PrefabInstance: {fileID: 581177063}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &408089676
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,24 +343,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7811793276386201394, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.688191
+      value: 0.68819094
       objectReference: {fileID: 0}
     - target: {fileID: 7811793276386201394, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.16245985
+      value: 0.16245982
       objectReference: {fileID: 0}
     - target: {fileID: 7811793276386201394, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.68819094
+      value: 0.688191
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2771928694896738672, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7572335396204123815, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 379207089}
+      addedObject: {fileID: 379207099}
   m_SourcePrefab: {fileID: 100100000, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -546,7 +545,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.16245985, y: 0.68819094, z: -0.16245985, w: 0.688191}
+  m_LocalRotation: {x: 0.16245982, y: 0.688191, z: -0.16245985, w: 0.68819094}
   m_LocalPosition: {x: -10, y: 60.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -588,6 +587,11 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &1065748350 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 528405523109714338, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
+  m_PrefabInstance: {fileID: 581177063}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1726596127
 GameObject:
   m_ObjectHideFlags: 0

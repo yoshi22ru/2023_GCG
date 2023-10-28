@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-public class CharacterStatus : Character
+public class CharacterStatus : MonoBehaviour
 {
     [SerializeField]
     private float currentHP = 100f; // 現在のHP
@@ -77,54 +77,50 @@ public class CharacterStatus : Character
     }
 
     // キャラクターのスキル1を発動する
-    public void UseSkill1()
+    public bool UseSkill1()
     {
         if (skill1CooldownTimer <= 0f)
         {
-            // スキルを発動
-            SetState(Character.Character_State.Skill1);
-
             // クールダウンタイマーを設定
             skill1CooldownTimer = Skill1CoolDown;
+            return true;
         }
         else
         {
             Debug.Log((skill1CooldownTimer).ToString("F2") + "秒後にスキル1使用可能");
+            return false;
         }
     }
 
     // キャラクターのスキル2を発動する
-    public void UseSkill2()
+    public bool UseSkill2()
     {
         if (skill2CooldownTimer <= 0f)
         {
-            // スキルを発動
-            SetState(Character.Character_State.Skill2);
-
             // クールダウンタイマーを設定
             skill2CooldownTimer = Skill2CoolDown;
+            return true;
         }
         else
         {
-
             Debug.Log((skill2CooldownTimer).ToString("F2") + "秒後にスキル2使用可能");
+            return false;
         }
     }
 
     // キャラクターのSpecialを発動する
-    public void UseSpecial()
+    public bool UseSpecial()
     {
         if (specialCooldownTimer <= 0f)
         {
-            // Specialを発動
-            SetState(Character.Character_State.Special);
-
             // クールダウンタイマーを設定
             specialCooldownTimer = SpecialCoolDown;
+            return true;
         }
         else
         {
             Debug.Log((specialCooldownTimer).ToString("F2") + "秒後にスペシャルスキル使用可能");
+            return false;
         }
     }
 

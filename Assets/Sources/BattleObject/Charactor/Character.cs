@@ -55,28 +55,37 @@ public class Character : BattleObject
         {
             // WASDキーが押されている間はRun状態に遷移
             characterStatus.UpdateStatus();
-            SetState(Character.Character_State.Run);
+            SetState(Character_State.Run);
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-            // Eキーを押した場合、Skill1を発動
-            Skill1();
+            if (characterStatus.UseSkill1())
+            {
+                // Eキーを押した場合、Skill1を発動
+                Skill1();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            // Qキーを押した場合、Skill2を発動
-            Skill2();
+            if (characterStatus.UseSkill2())
+            {
+                // Qキーを押した場合、Skill2を発動
+                Skill2();
+            }
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            // Rキーを押した場合、Specialを発動
-            Special();
+            if(characterStatus.UseSpecial()) 
+            {
+                // Rキーを押した場合、Specialを発動
+                Special();
+            }
         }
         else
         {
             // 何も入力されていない場合はIdle状態に遷移
             characterStatus.UpdateStatus();
-            SetState(Character.Character_State.Idle);
+            SetState(Character_State.Idle);
         }
 
         // キャラクターの死亡判定を行う
@@ -144,26 +153,20 @@ public class Character : BattleObject
 
     protected virtual void Skill1()
     {
-        // Skill1状態の動作を実行
-        Debug.Log("スキル1発動");
-        //Instantiate(skill1, skill1Point.position, transform.rotation);
         characterStatus.UseSkill1();
+        SetState(Character_State.Skill1);
     }
 
     protected virtual void Skill2()
     {
-        // Skill2状態の動作を実行
-        Debug.Log("スキル2発動");
-        //Instantiate(skill2, skill2Point.position, transform.rotation);
         characterStatus.UseSkill2();
+        SetState(Character_State.Skill2);
     }
 
     protected virtual void Special()
     {
-        // Special状態の動作を実行
-        Debug.Log("スペシャルスキル発動");
-        //Instantiate(special, specialPoint.position, transform.rotation, characterPoint);
         characterStatus.UseSpecial();
+        SetState(Character_State.Special);
     }
 }
 

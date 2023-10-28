@@ -912,9 +912,9 @@ GameObject:
   - component: {fileID: 5855831511689305861}
   - component: {fileID: 2310429921653913872}
   - component: {fileID: 1971191341860189538}
-  - component: {fileID: 2771928694896738672}
   - component: {fileID: 4126225133461092104}
   - component: {fileID: 6161644373691631609}
+  - component: {fileID: 1596758910996175625}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -943,7 +943,7 @@ Transform:
   - {fileID: 528405523109714338}
   - {fileID: 3812832313765362687}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6412805952127922632
 LODGroup:
@@ -1050,31 +1050,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1880356326931833000}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 7957833072274404953, guid: 2ac8b13fd769efc4e9ff6318ef00196f, type: 3}
-  special: {fileID: 3153472991145048103, guid: 7fcc87739c863a54a82e8bec044885c3, type: 3}
-  skill1Point: {fileID: 528405523109714338}
-  skill2Point: {fileID: 3812832313765362687}
-  specialPoint: {fileID: 3812832313765362687}
---- !u!114 &2771928694896738672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572335396204123815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9986efad8e668a4ab5d5434716c89c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1880356326931833000}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 7957833072274404953, guid: 2ac8b13fd769efc4e9ff6318ef00196f, type: 3}
-  special: {fileID: 3153472991145048103, guid: 7fcc87739c863a54a82e8bec044885c3, type: 3}
-  skill1Point: {fileID: 528405523109714338}
-  skill2Point: {fileID: 3812832313765362687}
-  specialPoint: {fileID: 3812832313765362687}
 --- !u!114 &4126225133461092104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,13 +1062,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737e6a23d4d1dbd47a102631dc72feb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1880356326931833000}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 7957833072274404953, guid: 2ac8b13fd769efc4e9ff6318ef00196f, type: 3}
-  special: {fileID: 3153472991145048103, guid: 7fcc87739c863a54a82e8bec044885c3, type: 3}
-  skill1Point: {fileID: 528405523109714338}
-  skill2Point: {fileID: 3812832313765362687}
-  specialPoint: {fileID: 3812832313765362687}
   currentHP: 100
   minHP: 0
   maxHP: 100
@@ -1122,6 +1090,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1, z: 0.5}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1596758910996175625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f57a001ed58d98439a51027951ae63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1880356326931833000}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  skill1Point: {fileID: 528405523109714338}
+  skill2Point: {fileID: 3812832313765362687}
+  specialPoint: {fileID: 3812832313765362687}
 --- !u!1 &8075736241546589853
 GameObject:
   m_ObjectHideFlags: 0
