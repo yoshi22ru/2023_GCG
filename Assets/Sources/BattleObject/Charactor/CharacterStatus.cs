@@ -6,13 +6,13 @@ using UnityEngine;
 public class CharacterStatus : MonoBehaviour
 {
     [SerializeField]
-    private float currentHP = 100f; // Œ»İ‚ÌHP
+    private float currentHP = 100f; // ï¿½ï¿½ï¿½İ‚ï¿½HP
     [SerializeField]
-    private float minHP = 0f; // Å¬‚ÌHP
+    private float minHP = 0f; // ï¿½Åï¿½ï¿½ï¿½HP
     [SerializeField]
-    private float maxHP = 100f; // Å‘å‚ÌHP
+    private float maxHP = 100f; // ï¿½Å‘ï¿½ï¿½HP
     [SerializeField]
-    private float moveSpeed = 5f; // ƒLƒƒƒ‰ƒNƒ^[‚ÌˆÚ“®‘¬“x
+    private float moveSpeed = 5f; // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌˆÚ“ï¿½ï¿½ï¿½ï¿½x
     [SerializeField]
     private float Skill1CoolDown = 5f;
     [SerializeField]
@@ -21,12 +21,12 @@ public class CharacterStatus : MonoBehaviour
     private float SpecialCoolDown = 10f;
 
 
-    private bool isDamageTaken = false; // ƒ_ƒ[ƒW‚ğó‚¯‚½‚©‚Ç‚¤‚©
-    private bool isDead = false; // €–S”»’è
+    private bool isDamageTaken = false; // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ó‚¯‚ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
+    private bool isDead = false; // ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½
 
-    private float skill1CooldownTimer = 0f; // Skill1‚ÌƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[
-    private float skill2CooldownTimer = 0f; // Skill2‚ÌƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[
-    private float specialCooldownTimer = 0f; // Special‚ÌƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[
+    private float skill1CooldownTimer = 0f; // Skill1ï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[
+    private float skill2CooldownTimer = 0f; // Skill2ï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[
+    private float specialCooldownTimer = 0f; // Specialï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[
 
     SkillManager skillManager = new SkillManager();
 
@@ -45,86 +45,89 @@ public class CharacterStatus : MonoBehaviour
         get { return moveSpeed; }
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚Ìó‘Ô‚ğXV‚·‚é
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½Ô‚ï¿½ï¿½Xï¿½Vï¿½ï¿½ï¿½ï¿½
     public void UpdateStatus()
     {
         if (isDead)
             return;
 
-        // Skill1‚ÌƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[‚ğXV
-        if (skill1CooldownTimer > 0f)
+        // Skill1ï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½ï¿½Xï¿½V
+        if (skill1CooldownTimer >= 0f)
         {
             skill1CooldownTimer -= Time.deltaTime;
         }
 
-        // Skill2‚ÌƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[‚ğXV
-        if (skill2CooldownTimer > 0f)
+        // Skill2ï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½ï¿½Xï¿½V
+        if (skill2CooldownTimer >= 0f)
         {
             skill2CooldownTimer -= Time.deltaTime;
         }
 
-        // Special‚ÌƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[‚ğXV
-        if (specialCooldownTimer > 0f)
+        // Specialï¿½ÌƒNï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½ï¿½Xï¿½V
+        if (specialCooldownTimer >= 0f)
         {
             specialCooldownTimer -= Time.deltaTime;
         }
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚ªƒ_ƒ[ƒW‚ğó‚¯‚½‚Æ‚«‚ÉŒÄ‚Ño‚³‚ê‚é
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ó‚¯‚ï¿½ï¿½Æ‚ï¿½ï¿½ÉŒÄ‚Ñoï¿½ï¿½ï¿½ï¿½ï¿½
     public void TakeDamage()
     {
         isDamageTaken = false;
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒLƒ‹1‚ğ”­“®‚·‚é
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒXï¿½Lï¿½ï¿½1ï¿½ğ”­“ï¿½ï¿½ï¿½ï¿½ï¿½
     public bool UseSkill1()
     {
         if (skill1CooldownTimer <= 0f)
         {
-            // ƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[‚ğİ’è
+            Debug.Log("use skill1");
+            // ï¿½Nï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½İ’ï¿½
             skill1CooldownTimer = Skill1CoolDown;
             return true;
         }
         else
         {
-            Debug.Log((skill1CooldownTimer).ToString("F2") + "•bŒã‚ÉƒXƒLƒ‹1g—p‰Â”\");
+            Debug.Log("cool time of skill1" + (skill1CooldownTimer).ToString("F2"));
             return false;
         }
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒLƒ‹2‚ğ”­“®‚·‚é
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒXï¿½Lï¿½ï¿½2ï¿½ğ”­“ï¿½ï¿½ï¿½ï¿½ï¿½
     public bool UseSkill2()
     {
         if (skill2CooldownTimer <= 0f)
         {
-            // ƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[‚ğİ’è
+            Debug.Log("use skill2");
+            // ï¿½Nï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½İ’ï¿½
             skill2CooldownTimer = Skill2CoolDown;
             return true;
         }
         else
         {
-            Debug.Log((skill2CooldownTimer).ToString("F2") + "•bŒã‚ÉƒXƒLƒ‹2g—p‰Â”\");
+            Debug.Log("cool time of skill2" + (skill2CooldownTimer).ToString("F2"));
             return false;
         }
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚ÌSpecial‚ğ”­“®‚·‚é
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½Specialï¿½ğ”­“ï¿½ï¿½ï¿½ï¿½ï¿½
     public bool UseSpecial()
     {
         if (specialCooldownTimer <= 0f)
         {
-            // ƒN[ƒ‹ƒ_ƒEƒ“ƒ^ƒCƒ}[‚ğİ’è
+            Debug.Log("use special");
+            // ï¿½Nï¿½[ï¿½ï¿½ï¿½_ï¿½Eï¿½ï¿½ï¿½^ï¿½Cï¿½}ï¿½[ï¿½ï¿½İ’ï¿½
             specialCooldownTimer = SpecialCoolDown;
             return true;
         }
         else
         {
-            Debug.Log((specialCooldownTimer).ToString("F2") + "•bŒã‚ÉƒXƒyƒVƒƒƒ‹ƒXƒLƒ‹g—p‰Â”\");
+            Debug.Log("cool time of special" + (specialCooldownTimer).ToString("F2"));
             return false;
         }
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚Ì€–S”»’è‚ğs‚¤
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
     public void CheckDeath()
     {
         if (currentHP <= minHP)

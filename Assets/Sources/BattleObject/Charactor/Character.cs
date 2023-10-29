@@ -8,9 +8,9 @@ using UnityEngine.TextCore.Text;
 
 public class Character : BattleObject
 {
-    public Animator animator;  // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒAƒjƒ[ƒ^[ƒRƒ“ƒ|[ƒlƒ“ƒg
-    private Character_State currentState; // Œ»İ‚Ìó‘Ô
-    private CharacterStatus characterStatus; // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒe[ƒ^ƒX
+    public Animator animator;  // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒAï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Rï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½g
+    private Character_State currentState; // ï¿½ï¿½ï¿½İ‚Ìï¿½ï¿½
+    private CharacterStatus characterStatus; // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½X
     // Transform characterPoint;
     //[SerializeField] GameObject skill1;
     //[SerializeField] GameObject skill2;
@@ -19,7 +19,7 @@ public class Character : BattleObject
     //[SerializeField] Transform skill2Point;
     //[SerializeField] Transform specialPoint;
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚Ìó‘Ô‚ğ’è‹`
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½Ô‚ï¿½ï¿½`
     public enum Character_State
     {
         None,
@@ -34,11 +34,11 @@ public class Character : BattleObject
 
     private void Start()
     {
-        // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾‚Ü‚½‚Í‰Šú‰»
+        // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½Ü‚ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½
         characterStatus = GetComponent<CharacterStatus>();
-        // ƒAƒjƒ[ƒ^[ƒRƒ“ƒ|[ƒlƒ“ƒg‚ğæ“¾
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Rï¿½ï¿½ï¿½|ï¿½[ï¿½lï¿½ï¿½ï¿½gï¿½ï¿½ï¿½æ“¾
         animator = GetComponent<Animator>();
-        // Å‰‚Ìó‘Ô‚ğİ’è
+        // ï¿½Åï¿½ï¿½Ìï¿½Ô‚ï¿½İ’ï¿½
         SetState(Character_State.Idle);
     }
 
@@ -46,59 +46,61 @@ public class Character : BattleObject
     {
         if (characterStatus.IsDead)
         {
-            // ƒLƒƒƒ‰ƒNƒ^[‚ª€–S‚µ‚Ä‚¢‚éê‡‚Íˆ—‚ğI—¹
+            // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
             return;
         }
+        characterStatus.UpdateStatus();
 
-        // ƒL[“ü—Í‚ÉŠî‚Ã‚¢‚Äó‘Ô‘JˆÚ‚ğ§Œä
+        // ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚ÉŠï¿½Ã‚ï¿½ï¿½Äï¿½Ô‘Jï¿½Ú‚ğ§Œï¿½
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
-            // WASDƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éŠÔ‚ÍRunó‘Ô‚É‘JˆÚ
-            characterStatus.UpdateStatus();
+            // WASDï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ô‚ï¿½Runï¿½ï¿½Ô‚É‘Jï¿½ï¿½
             SetState(Character_State.Run);
         }
-        else if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKey(KeyCode.E))
         {
+            // Debug.Log("input skill1");
             if (characterStatus.UseSkill1())
             {
-                // EƒL[‚ğ‰Ÿ‚µ‚½ê‡ASkill1‚ğ”­“®
+                // Eï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ASkill1ï¿½ğ”­“ï¿½
                 Skill1();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKey(KeyCode.Q))
         {
+            // Debug.Log("input skill2");
             if (characterStatus.UseSkill2())
             {
-                // QƒL[‚ğ‰Ÿ‚µ‚½ê‡ASkill2‚ğ”­“®
+                // Qï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ASkill2ï¿½ğ”­“ï¿½
                 Skill2();
             }
         }
-        else if (Input.GetKeyDown(KeyCode.X))
+        else if (Input.GetKey(KeyCode.X))
         {
-            if(characterStatus.UseSpecial()) 
+            // Debug.Log("input special");
+            if(characterStatus.UseSpecial())
             {
-                // RƒL[‚ğ‰Ÿ‚µ‚½ê‡ASpecial‚ğ”­“®
+                // Rï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ASpecialï¿½ğ”­“ï¿½
                 Special();
             }
         }
         else
         {
-            // ‰½‚à“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍIdleó‘Ô‚É‘JˆÚ
-            characterStatus.UpdateStatus();
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½Idleï¿½ï¿½Ô‚É‘Jï¿½ï¿½
             SetState(Character_State.Idle);
         }
 
-        // ƒLƒƒƒ‰ƒNƒ^[‚Ì€–S”»’è‚ğs‚¤
+        // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
         characterStatus.CheckDeath();
     }
 
-    // ƒLƒƒƒ‰ƒNƒ^[‚Ìó‘Ô‚ğİ’è‚µAƒgƒŠƒK[‚ğ”­“®‚·‚éƒƒ\ƒbƒh
+    // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½Ô‚ï¿½İ’è‚µï¿½Aï¿½gï¿½ï¿½ï¿½Kï¿½[ï¿½ğ”­“ï¿½ï¿½ï¿½ï¿½éƒï¿½\ï¿½bï¿½h
     public void SetState(Character_State newState)
     {
-        // Œ»İ‚Ìó‘Ô‚ğİ’è
+        // ï¿½ï¿½ï¿½İ‚Ìï¿½Ô‚ï¿½İ’ï¿½
         currentState = newState;
 
-        // ƒAƒjƒ[ƒ^[‚ÌƒgƒŠƒK[‚ğƒŠƒZƒbƒg
+        // ï¿½Aï¿½jï¿½ï¿½ï¿½[ï¿½^ï¿½[ï¿½Ìƒgï¿½ï¿½ï¿½Kï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½g
         animator.ResetTrigger("Idle");
         animator.ResetTrigger("Run");
         animator.ResetTrigger("Damage");
@@ -107,7 +109,7 @@ public class Character : BattleObject
         animator.ResetTrigger("Skill2");
         animator.ResetTrigger("Special");
 
-        // V‚µ‚¢ó‘Ô‚É‰‚¶‚ÄƒgƒŠƒK[‚ğİ’è
+        // ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚É‰ï¿½ï¿½ï¿½ï¿½Äƒgï¿½ï¿½ï¿½Kï¿½[ï¿½ï¿½İ’ï¿½
         switch (newState)
         {
             case Character_State.Idle:
@@ -136,19 +138,19 @@ public class Character : BattleObject
 
     protected virtual void Damage(int damage)
     {
-        // Damageó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log(damage + "ƒ_ƒ[ƒW‹ò‚ç‚Á‚½");
+        // Damageï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log(damage + "ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 
     protected virtual void Heal(int heal)
     {
-        Debug.Log(heal + "‰ñ•œ");
+        Debug.Log(heal + "ï¿½ï¿½");
     }
 
     protected virtual void Dead()
     {
-        // Deadó‘Ô‚Ì“®ì‚ğÀs
-        Debug.Log("€–S");
+        // Deadï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
+        Debug.Log("ï¿½ï¿½ï¿½S");
     }
 
     protected virtual void Skill1()

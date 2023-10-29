@@ -30,6 +30,6 @@ public class SkillManager : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
     }
 }

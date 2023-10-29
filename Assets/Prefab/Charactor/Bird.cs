@@ -13,7 +13,7 @@ public class Bird : Character
 
     protected override void Skill1()
     {
-        // Skill1ó‘Ô‚Ì“®ì‚ğÀs
+        // Skill1ï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
         Debug.Log("aaa");
         Instantiate(skill1, skill1Point.position, transform.rotation);
         base.Skill1();
@@ -21,7 +21,7 @@ public class Bird : Character
 
     protected override void Skill2()
     {
-        // Skill2ó‘Ô‚Ì“®ì‚ğÀs
+        // Skill2ï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
         Debug.Log("iii");
         Instantiate(skill2, skill2Point.position, transform.rotation);
         base.Skill2();
@@ -29,7 +29,7 @@ public class Bird : Character
 
     protected override void Special()
     {
-        // Specialó‘Ô‚Ì“®ì‚ğÀs
+        // Specialï¿½ï¿½Ô‚Ì“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½s
         Debug.Log("uuu");
         Instantiate(special, specialPoint.position, transform.rotation);
         base.Special();
