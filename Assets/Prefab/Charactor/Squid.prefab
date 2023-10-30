@@ -1039,10 +1039,10 @@ GameObject:
   - component: {fileID: 2317864502041658661}
   - component: {fileID: 2960523331966960063}
   - component: {fileID: 1293620286753287417}
-  - component: {fileID: 8744615653051066211}
   - component: {fileID: 2726513491685327145}
   - component: {fileID: 4577754714342480428}
   - component: {fileID: 7777247282922330191}
+  - component: {fileID: 3326307223134125265}
   m_Layer: 0
   m_Name: Squid
   m_TagString: Untagged
@@ -1071,7 +1071,7 @@ Transform:
   - {fileID: 8087030624552439358}
   - {fileID: 5645380467388877524}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6079757477143383862
 LODGroup:
@@ -1165,25 +1165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
---- !u!114 &8744615653051066211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7218242173633675500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2317864502041658661}
-  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
-  skill2: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  special: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  skill1Point: {fileID: 5645380467388877524}
-  skill2Point: {fileID: 5645380467388877524}
-  specialPoint: {fileID: 8087030624552439358}
 --- !u!114 &2726513491685327145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,13 +1177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9986efad8e668a4ab5d5434716c89c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2317864502041658661}
-  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
-  skill2: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  special: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  skill1Point: {fileID: 5645380467388877524}
-  skill2Point: {fileID: 5645380467388877524}
-  specialPoint: {fileID: 8087030624552439358}
 --- !u!114 &4577754714342480428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1215,18 +1189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737e6a23d4d1dbd47a102631dc72feb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
-  skill2: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  special: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  skill1Point: {fileID: 5645380467388877524}
-  skill2Point: {fileID: 5645380467388877524}
-  specialPoint: {fileID: 8087030624552439358}
   currentHP: 100
   minHP: 0
   maxHP: 100
   moveSpeed: 5
-  Skill1CoolDown: 5
+  Skill1CoolDown: 3
   Skill2CoolDown: 8
   SpecialCoolDown: 10
 --- !u!65 &7777247282922330191
@@ -1250,6 +1217,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &3326307223134125265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218242173633675500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605dbd6856a6f104e8fde2f5f4f27aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  skill1: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
+  skill2: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
+  special: {fileID: 7957833072274404953, guid: 2ac8b13fd769efc4e9ff6318ef00196f, type: 3}
+  skill1Point: {fileID: 8087030624552439358}
+  skill2Point: {fileID: 8087030624552439358}
+  specialPoint: {fileID: 5645380467388877524}
 --- !u!1 &7306217761958114742
 GameObject:
   m_ObjectHideFlags: 0

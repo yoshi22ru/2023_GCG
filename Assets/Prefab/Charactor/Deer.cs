@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : Character
+public class Deer : Character
 {
     [SerializeField] GameObject skill1;
     [SerializeField] GameObject skill2;
@@ -25,7 +25,8 @@ public class Bird : Character
 
     protected override void Special()
     {
-        Instantiate(special, specialPoint.position, transform.rotation);
+        GameObject Obj = (Instantiate(special, specialPoint.position, transform.rotation));
+        Obj.transform.parent = transform;
         base.Special();
     }
 }

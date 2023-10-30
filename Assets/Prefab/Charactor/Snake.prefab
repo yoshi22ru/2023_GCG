@@ -481,10 +481,10 @@ GameObject:
   - component: {fileID: 5650272712818997174}
   - component: {fileID: 2211152445240698204}
   - component: {fileID: 3149605712952208002}
-  - component: {fileID: 4854814786758227824}
   - component: {fileID: 2203051537082213632}
   - component: {fileID: 8247995169005302289}
   - component: {fileID: 5183105756320266952}
+  - component: {fileID: 274014386977031897}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -513,7 +513,7 @@ Transform:
   - {fileID: 3862978623934341988}
   - {fileID: 8831599080118958887}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &8375344636585295302
 LODGroup:
@@ -607,25 +607,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
---- !u!114 &4854814786758227824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5137746313545845673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 5650272712818997174}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 7986504087968017091, guid: 3202917d47da00442ad7dfd854051a4a, type: 3}
-  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  skill1Point: {fileID: 3862978623934341988}
-  skill2Point: {fileID: 8831599080118958887}
-  specialPoint: {fileID: 8831599080118958887}
 --- !u!114 &2203051537082213632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,13 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9986efad8e668a4ab5d5434716c89c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 5650272712818997174}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 7986504087968017091, guid: 3202917d47da00442ad7dfd854051a4a, type: 3}
-  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  skill1Point: {fileID: 3862978623934341988}
-  skill2Point: {fileID: 8831599080118958887}
-  specialPoint: {fileID: 8831599080118958887}
 --- !u!114 &8247995169005302289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,20 +631,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737e6a23d4d1dbd47a102631dc72feb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 5650272712818997174}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 7986504087968017091, guid: 3202917d47da00442ad7dfd854051a4a, type: 3}
-  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  skill1Point: {fileID: 3862978623934341988}
-  skill2Point: {fileID: 8831599080118958887}
-  specialPoint: {fileID: 8831599080118958887}
   currentHP: 100
   minHP: 0
   maxHP: 100
   moveSpeed: 5
   Skill1CoolDown: 5
   Skill2CoolDown: 8
-  SpecialCoolDown: 10
+  SpecialCoolDown: 20
 --- !u!65 &5183105756320266952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -692,6 +659,25 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4, y: 1, z: 1.2}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &274014386977031897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137746313545845673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88905728ffd989648967dcbcb20b7ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5650272712818997174}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
+  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  skill1Point: {fileID: 3862978623934341988}
+  skill2Point: {fileID: 3862978623934341988}
+  specialPoint: {fileID: 8831599080118958887}
 --- !u!1 &5865766975412000891
 GameObject:
   m_ObjectHideFlags: 0

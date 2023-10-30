@@ -19561,7 +19561,7 @@ Transform:
   - {fileID: 7641101693820271495}
   - {fileID: 1148978324632262572}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &5223716284535086354
 ParticleSystem:
@@ -24411,7 +24411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9277edd93f52ab428bd9b3f87e95146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillSpeed: 6
+  skillSpeed: 7.3
   leftTime: 1.8
 --- !u!135 &6819699956777350877
 SphereCollider:

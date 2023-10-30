@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bird : Character
+public class Fish : Character
 {
     [SerializeField] GameObject skill1;
     [SerializeField] GameObject skill2;
