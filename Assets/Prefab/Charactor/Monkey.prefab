@@ -625,12 +625,12 @@ GameObject:
   - component: {fileID: 8157232997635229388}
   - component: {fileID: 2262783234427875668}
   - component: {fileID: 7255492931425103828}
-  - component: {fileID: 288610913176697727}
   - component: {fileID: 8796671057223987832}
   - component: {fileID: 352776451471829446}
   - component: {fileID: 8579601642791507883}
   - component: {fileID: 675785895791297770}
   - component: {fileID: 8328258914765829185}
+  - component: {fileID: 4956455348401892320}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: Untagged
@@ -659,7 +659,7 @@ Transform:
   - {fileID: 3142464058362167353}
   - {fileID: 2802454001994928188}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &2262783234427875668
 LODGroup:
@@ -713,27 +713,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &288610913176697727
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4876803712735204516}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &8796671057223987832
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -759,7 +738,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &352776451471829446
 MonoBehaviour:
@@ -773,7 +752,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &8579601642791507883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +802,29 @@ MonoBehaviour:
   skill1Point: {fileID: 3142464058362167353}
   skill2Point: {fileID: 2802454001994928188}
   specialPoint: {fileID: 2802454001994928188}
+--- !u!136 &4956455348401892320
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876803712735204516}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5333463
+  m_Height: 1.4282856
+  m_Direction: 1
+  m_Center: {x: 0.013890505, y: 0.6312456, z: 0.047236934}
 --- !u!1 &5739439611267364966
 GameObject:
   m_ObjectHideFlags: 0

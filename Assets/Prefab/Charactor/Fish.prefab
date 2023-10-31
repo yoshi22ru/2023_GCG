@@ -840,12 +840,12 @@ GameObject:
   - component: {fileID: 4018312854137151752}
   - component: {fileID: 2734807068151689886}
   - component: {fileID: 2114088772337579301}
-  - component: {fileID: 6715584546088582711}
   - component: {fileID: 3042942782263111194}
   - component: {fileID: 6647824031608667656}
   - component: {fileID: 5023273696997833046}
   - component: {fileID: 5252279604671150339}
   - component: {fileID: 9048829843011616539}
+  - component: {fileID: 5786538457292488004}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -874,7 +874,7 @@ Transform:
   - {fileID: 7054043022648123885}
   - {fileID: 2340325626301911274}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &2734807068151689886
 LODGroup:
@@ -928,27 +928,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &6715584546088582711
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941205293409301154}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.3, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &3042942782263111194
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -974,7 +953,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &6647824031608667656
 MonoBehaviour:
@@ -988,7 +967,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &5023273696997833046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,6 +1017,29 @@ MonoBehaviour:
   skill1Point: {fileID: 7054043022648123885}
   skill2Point: {fileID: 7054043022648123885}
   specialPoint: {fileID: 7054043022648123885}
+--- !u!136 &5786538457292488004
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941205293409301154}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.47198713
+  m_Height: 1.1531038
+  m_Direction: 1
+  m_Center: {x: -0.018645525, y: 0.3676464, z: -0.07515992}
 --- !u!1 &9120222400485773949
 GameObject:
   m_ObjectHideFlags: 0

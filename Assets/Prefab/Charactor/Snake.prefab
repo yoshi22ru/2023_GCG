@@ -483,8 +483,8 @@ GameObject:
   - component: {fileID: 3149605712952208002}
   - component: {fileID: 2203051537082213632}
   - component: {fileID: 8247995169005302289}
-  - component: {fileID: 5183105756320266952}
   - component: {fileID: 274014386977031897}
+  - component: {fileID: 4876281657879048001}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -513,7 +513,7 @@ Transform:
   - {fileID: 3862978623934341988}
   - {fileID: 8831599080118958887}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &8375344636585295302
 LODGroup:
@@ -592,7 +592,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &3149605712952208002
 MonoBehaviour:
@@ -606,7 +606,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &2203051537082213632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,27 +637,6 @@ MonoBehaviour:
   Skill1CoolDown: 5
   Skill2CoolDown: 8
   SpecialCoolDown: 20
---- !u!65 &5183105756320266952
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5137746313545845673}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.4, y: 1, z: 1.2}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &274014386977031897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,6 +656,29 @@ MonoBehaviour:
   skill1Point: {fileID: 3862978623934341988}
   skill2Point: {fileID: 3862978623934341988}
   specialPoint: {fileID: 8831599080118958887}
+--- !u!136 &4876281657879048001
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137746313545845673}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.61922276
+  m_Height: 1.480236
+  m_Direction: 1
+  m_Center: {x: 0.006606102, y: 0.65615845, z: 0.023903728}
 --- !u!1 &5865766975412000891
 GameObject:
   m_ObjectHideFlags: 0

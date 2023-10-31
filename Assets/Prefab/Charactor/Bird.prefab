@@ -912,8 +912,8 @@ GameObject:
   - component: {fileID: 5855831511689305861}
   - component: {fileID: 2310429921653913872}
   - component: {fileID: 4126225133461092104}
-  - component: {fileID: 6161644373691631609}
   - component: {fileID: 1596758910996175625}
+  - component: {fileID: 46457655383760244}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -942,7 +942,7 @@ Transform:
   - {fileID: 528405523109714338}
   - {fileID: 3812832313765362687}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6412805952127922632
 LODGroup:
@@ -1021,7 +1021,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &2310429921653913872
 MonoBehaviour:
@@ -1035,7 +1035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &4126225133461092104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,27 +1054,6 @@ MonoBehaviour:
   Skill1CoolDown: 3
   Skill2CoolDown: 8
   SpecialCoolDown: 7
---- !u!65 &6161644373691631609
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572335396204123815}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 0.5}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1596758910996175625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,6 +1073,32 @@ MonoBehaviour:
   skill1Point: {fileID: 528405523109714338}
   skill2Point: {fileID: 3812832313765362687}
   specialPoint: {fileID: 3812832313765362687}
+  Skill1Damage: 15
+  Skill2Damage: 30
+  SpecialBuf: 3
+--- !u!136 &46457655383760244
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4487626
+  m_Height: 1.0491314
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.47388357, z: -0.051237404}
 --- !u!1 &8075736241546589853
 GameObject:
   m_ObjectHideFlags: 0
