@@ -113,17 +113,15 @@ public class Character : BattleObject, IPunObservable
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info) {
         if (stream.IsWriting) {
             // send
-            PhotonNetwork.LocalPlayer.SetTransform(this.transform);
-            PhotonNetwork.LocalPlayer.SetHp(getHP());
+            stream.SendNext(Protcol.TransformSerialize(this.transform.position, this.transform.rotation));
         } else {
             // receive
             Vector3 position;
             Quaternion rotation;
-            long trans = PhotonNetwork.LocalPlayer.GetTransform();
+            long trans = (long) stream.ReceiveNext();
             (position, rotation) = Protcol.TransformDeserialize(trans);
             this.transform.position = position;
             this.transform.rotation = rotation;
-            SetHP(PhotonNetwork.LocalPlayer.GetHp());
         }
     }
 }
