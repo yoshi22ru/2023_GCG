@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using UnityEditor.Build.Content;
+// using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class BattleObject : MonoBehaviourPunCallbacks
