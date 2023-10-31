@@ -14529,6 +14529,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillSpeed: 0
   leftTime: 2
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 40
+  bufAttack: 0
+  bufSpeed: 0
+  type: 3
 --- !u!54 &1815217445114506984
 Rigidbody:
   m_ObjectHideFlags: 0

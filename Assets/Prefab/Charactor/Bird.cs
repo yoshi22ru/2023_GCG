@@ -34,9 +34,4 @@ public class Bird : Character
         Instantiate(special, specialPoint.position, transform.rotation);
         base.Special();
     }
-
-    protected override void Damage(int damage)
-    {
-        Debug.Log(Skill1Damage);
-    }
 }
