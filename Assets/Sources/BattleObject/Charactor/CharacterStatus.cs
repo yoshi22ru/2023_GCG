@@ -14,8 +14,6 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5f; // �L�����N�^�[�̈ړ����x
     [SerializeField]
-    private float attackPoint;
-    [SerializeField]
     private float Skill1CoolDown = 5f;
     [SerializeField]
     private float Skill2CoolDown = 8f;
@@ -51,10 +49,6 @@ public class CharacterStatus : MonoBehaviour
         get { return moveSpeed; }
     }
 
-    public float AttackPoint
-    {
-        get { return attackPoint; }
-    }
 
     public void SetHP(float hp)
     {
@@ -66,12 +60,6 @@ public class CharacterStatus : MonoBehaviour
     {
         if (speed > 0)
             moveSpeed = speed;
-    }
-
-    public void SetAttackPoint(float attack)
-    {
-        if (attack > 0)
-            attackPoint = attack;
     }
 
     // �L�����N�^�[�̏�Ԃ��X�V����
@@ -97,12 +85,6 @@ public class CharacterStatus : MonoBehaviour
         {
             specialCooldownTimer -= Time.deltaTime;
         }
-    }
-
-    // �L�����N�^�[���_���[�W���󂯂��Ƃ��ɌĂяo�����
-    public void TakeDamage()
-    {
-        isDamageTaken = false;
     }
 
     // �L�����N�^�[�̃X�L��1�𔭓�����

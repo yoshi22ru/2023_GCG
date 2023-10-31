@@ -8,6 +8,6 @@ public class AttackItem : Item
 
     public override void ItemEffect(CharacterStatus character)
     {
-        character.SetAttackPoint(character.AttackPoint + attack);
+        
     }
 }

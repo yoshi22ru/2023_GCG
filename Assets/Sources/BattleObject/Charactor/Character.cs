@@ -42,6 +42,45 @@ public class Character : BattleObject
         SetState(Character_State.Idle);
     }
 
+    public override void OnHitMyTeamObject(BattleObject gameObject)
+    {
+        SkillManager skillManager =gameObject.gameObject.gameObject.GetComponent<SkillManager>();
+        if (skillManager.type == SkillManager.SkillType.heal)
+        {
+            characterStatus.SetHP(skillManager.GetHeal + characterStatus.CurrentHP);
+        }
+        else if (skillManager.type == SkillManager.SkillType.bufSpeed)
+        {
+            characterStatus.SetMoveSpeed(skillManager.GetBufSpeed + characterStatus.MoveSpeed);
+        }
+        else if (skillManager.type == SkillManager.SkillType.bufAttack)
+        {
+            //characterStatus.SetMoveSpeed(skillManager.GetBufSpeed + characterStatus.MoveSpeed);
+        }
+
+    }
+
+    public override void OnHitEnemyTeamObject(BattleObject gameObject)
+    {
+        SkillManager skillManager = gameObject.gameObject.gameObject.GetComponent<SkillManager>();
+        if(skillManager.type == SkillManager.SkillType.weekDamage)
+        {
+            int damage = skillManager.GetSkill1Damage;
+            characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill1Damage);
+        }
+        else if(skillManager.type == SkillManager.SkillType.midDamage)
+        {
+            int damage = skillManager.GetSkill2Damage;
+            characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill2Damage);
+        }
+        else if(skillManager.type == SkillManager.SkillType.strongDamage)
+        {
+            int damage = skillManager.GetSpecialDamage;
+            characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSpecialDamage);
+        }
+    }
+
+
     private void FixedUpdate()
     {
         if (characterStatus.IsDead)
