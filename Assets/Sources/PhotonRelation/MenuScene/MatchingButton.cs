@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,7 +21,7 @@ public class MatchingButton : MonoBehaviourPunCallbacks
     }
 
     protected virtual void ToConnectRoom() {
-        
+
     }
 
     public override void OnConnected()

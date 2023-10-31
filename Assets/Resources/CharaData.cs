@@ -18,9 +18,9 @@ public class CharaData : ScriptableObject
     public Sprite CharaSprite {get => chara_image;}
     public int MaxHP {get => max_hp;}
     public GameObject CharactorPrefab {get => charactor_prefab;}
-    
+
     public enum Ident_Charactor {
-        saru,
+        saru = 1,
         tori,
         inu,
         i,

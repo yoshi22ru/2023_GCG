@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEditor.Build.Content;
 using UnityEngine;
 
-public class BattleObject : MonoBehaviour
+public class BattleObject : MonoBehaviourPunCallbacks
 {
     #region variables
     bool isSynchronized;
@@ -14,7 +14,7 @@ public class BattleObject : MonoBehaviour
     int HP;
     GameManager manager;
     #endregion
-    
+
     public virtual void OnHitMyTeamObject(BattleObject gameObject) {
 
     }

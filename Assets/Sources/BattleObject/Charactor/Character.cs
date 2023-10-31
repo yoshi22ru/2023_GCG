@@ -1,17 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.TextCore.Text;
 
 
-public class Character : BattleObject
+public class Character : BattleObject, IPunObservable
 {
     public Animator animator;  // �L�����N�^�[�̃A�j���[�^�[�R���|�[�l���g
     private Character_State currentState; // ���݂̏��
     private CharacterStatus characterStatus; // �L�����N�^�[�̃X�e�[�^�X
     [SerializeField] GameObject character;
+    [SerializeField] Transform my_transform;
+    Vector3 p1, p2, v1, v2;
+    half elapsed_time;
+    private const float InterpolationPeriod = 0.1f;
     // Transform characterPoint;
     //[SerializeField] GameObject skill1;
     //[SerializeField] GameObject skill2;
@@ -41,10 +48,17 @@ public class Character : BattleObject
         animator = GetComponent<Animator>();
         // �ŏ��̏�Ԃ�ݒ�
         SetState(Character_State.Idle);
+
+        p1 = my_transform.position;
+        p2 = p1;
+        v1 = Vector3.zero;
+        v2 = v1;
     }
 
     public override void OnHitMyTeamObject(BattleObject gameObject)
     {
+        if (!photonView.IsMine) return;
+
         SkillManager skillManager = gameObject as SkillManager;
         if (skillManager == null)
             return;
@@ -71,6 +85,8 @@ public class Character : BattleObject
 
     public override void OnHitEnemyTeamObject(BattleObject gameObject)
     {
+        if (!photonView.IsMine) return;
+
         SkillManager skillManager = gameObject as SkillManager;
         if (skillManager == null)
             return;
@@ -92,6 +108,19 @@ public class Character : BattleObject
     }
     private void FixedUpdate()
     {
+        if (photonView.IsMine) {
+            p1 = p2;
+            p2 = my_transform.position;
+            elapsed_time = (half) Time.deltaTime;
+        } else {
+            elapsed_time += (half) Time.deltaTime;
+            if (elapsed_time < InterpolationPeriod) {
+                my_transform.position = HermiteSpline.Interpolate(p1, p2, v1, v2, elapsed_time/InterpolationPeriod);
+            } else {
+                my_transform.position = Vector3.LerpUnclamped(p1, p2, elapsed_time/InterpolationPeriod);
+            }
+        }
+
         if (characterStatus.IsDead)
         {
             character.SetActive(false);
@@ -227,6 +256,39 @@ public class Character : BattleObject
     {
         characterStatus.UseSpecial();
         SetState(Character_State.Special);
+    }
+
+    void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info) {
+        if (stream.IsWriting) {
+            // send
+            short vx,vy,vz;
+            (vx, vy, vz) = Protcol.PositionSerialize(my_transform.position);
+            stream.SendNext(vx); stream.SendNext(vy); stream.SendNext(vz);
+            (vx, vy, vz) = Protcol.PositionSerialize((p2 - p1) / elapsed_time);
+            stream.SendNext(vx); stream.SendNext(vy); stream.SendNext(vz);
+            stream.SendNext(Protcol.RotationSerialize(my_transform.rotation));
+        } else {
+            // receive
+
+            // https://zenn.dev/o8que/books/bdcb9af27bdd7d/viewer/1ea062
+            short px = (short) stream.ReceiveNext();
+            short py = (short) stream.ReceiveNext();
+            short pz = (short) stream.ReceiveNext();
+            Vector3 net_pos = Protcol.PositionDeserialise(px, py, pz);
+            px = (short) stream.ReceiveNext();
+            py = (short) stream.ReceiveNext();
+            pz = (short) stream.ReceiveNext();
+            Vector3 net_vel = Protcol.PositionDeserialise(px, py, pz);
+
+            my_transform.rotation = Protcol.RotationDeserialize((byte) stream.ReceiveNext());
+            float lag = Mathf.Max(0f, unchecked(PhotonNetwork.ServerTimestamp - info.SentServerTimestamp) / 1000f);
+
+            p1 = my_transform.position;
+            p2 = net_pos + net_vel * lag;
+            v1 = v2;
+            v2 = net_vel * InterpolationPeriod;
+            elapsed_time = (half) 0;
+        }
     }
 }
 

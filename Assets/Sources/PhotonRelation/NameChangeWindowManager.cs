@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NameChangeWindowManager : Utility.PhotonUtility
 {
@@ -12,6 +13,7 @@ public class NameChangeWindowManager : Utility.PhotonUtility
 
     void Send_New_Name() {
         var new_name = input_name_field.text;
+
         JoinSelectRoom(new_name);
     }
 
@@ -23,12 +25,18 @@ public class NameChangeWindowManager : Utility.PhotonUtility
     #endregion
 
     private void Start() {
+        this.gameObject.SetActive(false);
         ok_button.onClick.AddListener(Send_New_Name);
         cancel_button.onClick.AddListener(Cancel_Set_Name);
     }
 
+    public override void OnJoinedRoom() {
+        Debug.Log("Joined");
+        SceneManager.LoadSceneAsync("CharacterSelect");
+    }
+
     public override void OnJoinRoomFailed(short returnCode, string message)
     {
-        // TODO!
+        input_name_field.text = message;
     }
 }

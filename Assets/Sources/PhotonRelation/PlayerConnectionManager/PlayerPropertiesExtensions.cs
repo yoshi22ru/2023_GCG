@@ -14,6 +14,9 @@ public static class PlayerPropertiesExtensions
     #endregion
     private static readonly Hashtable propsToSet = new Hashtable();
 
+    public static int GetCharacter(this Player player) {
+        return (player.CustomProperties[ScoreKey] is int chara) ? chara : 0;
+    }
     public static int GetScore(this Player player) {
         return (player.CustomProperties[ScoreKey] is int score) ? score : 0;
     }
@@ -30,6 +33,9 @@ public static class PlayerPropertiesExtensions
         return (player.CustomProperties[TransformKey] is long trans) ? trans : 0;
     }
 
+    public static void SetCharacter(this Player player, int chara) {
+        propsToSet[ScoreKey] = chara;
+    }
     public static void SetScore(this Player player, int score) {
         propsToSet[ScoreKey] = score;
     }
