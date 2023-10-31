@@ -23,7 +23,7 @@ public static class PlayerPropertiesExtensions
     }
 
     public static int GetHp(this Player player) {
-        return (int) ((player.CustomProperties[HPKey] is short hp) ? hp : 0);
+        return (player.CustomProperties[HPKey] is short hp) ? hp : 0;
     }
 
     public static long GetTransform(this Player player) {
