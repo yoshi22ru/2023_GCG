@@ -11,7 +11,6 @@ public class Character : BattleObject
     public Animator animator;  // �L�����N�^�[�̃A�j���[�^�[�R���|�[�l���g
     private Character_State currentState; // ���݂̏��
     private CharacterStatus characterStatus; // �L�����N�^�[�̃X�e�[�^�X
-    [SerializeField] GameObject character;
     // Transform characterPoint;
     //[SerializeField] GameObject skill1;
     //[SerializeField] GameObject skill2;
@@ -94,7 +93,7 @@ public class Character : BattleObject
     {
         if (characterStatus.IsDead)
         {
-            character.SetActive(false);
+            gameObject.SetActive(false);
             return;
         }
         characterStatus.UpdateStatus();

@@ -19726,7 +19726,7 @@ Transform:
   - {fileID: 2195905884542783037}
   - {fileID: 3938747928277076420}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6211125795773073634
 ParticleSystem:
@@ -24595,6 +24595,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillSpeed: 0
   leftTime: 3.8
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 50
+  bufAttack: 0
+  bufSpeed: 0
+  type: 3
 --- !u!54 &1734447678082499257
 Rigidbody:
   m_ObjectHideFlags: 0

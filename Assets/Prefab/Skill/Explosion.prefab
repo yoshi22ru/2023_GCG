@@ -24413,6 +24413,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillSpeed: 7.3
   leftTime: 1.8
+  skill1Damage: 15
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 0
+  bufAttack: 0
+  bufSpeed: 0
+  type: 0
 --- !u!135 &6819699956777350877
 SphereCollider:
   m_ObjectHideFlags: 0

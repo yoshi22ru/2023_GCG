@@ -29,8 +29,6 @@ public class CharacterStatus : MonoBehaviour
     private float skill2CooldownTimer = 0f; // Skill2�̃N�[���_�E���^�C�}�[
     private float specialCooldownTimer = 0f; // Special�̃N�[���_�E���^�C�}�[
 
-    SkillManager skillManager = new SkillManager();
-
     public GameObject[] GetSkillPrefab
     {
         get { return skillPrefab; }
