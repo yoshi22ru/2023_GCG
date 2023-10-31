@@ -19,6 +19,8 @@ public class CharacterStatus : MonoBehaviour
     private float Skill2CoolDown = 8f;
     [SerializeField]
     private float SpecialCoolDown = 10f;
+    [SerializeField]
+    GameObject[] skillPrefab;
 
     private bool isDamageTaken = false; // �_���[�W���󂯂����ǂ���
     private bool isDead = false; // ���S����
@@ -29,6 +31,14 @@ public class CharacterStatus : MonoBehaviour
 
     SkillManager skillManager = new SkillManager();
 
+    public GameObject[] GetSkillPrefab
+    {
+        get { return skillPrefab; }
+    }
+    public void SetSkillPrefab(GameObject[] skill)
+    {
+        skillPrefab = skill;
+    }
     public float CurrentHP
     {
         get { return currentHP; }

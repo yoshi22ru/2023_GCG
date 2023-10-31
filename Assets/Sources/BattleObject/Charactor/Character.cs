@@ -11,6 +11,7 @@ public class Character : BattleObject
     public Animator animator;  // �L�����N�^�[�̃A�j���[�^�[�R���|�[�l���g
     private Character_State currentState; // ���݂̏��
     private CharacterStatus characterStatus; // �L�����N�^�[�̃X�e�[�^�X
+    [SerializeField] GameObject character;
     // Transform characterPoint;
     //[SerializeField] GameObject skill1;
     //[SerializeField] GameObject skill2;
@@ -44,7 +45,9 @@ public class Character : BattleObject
 
     public override void OnHitMyTeamObject(BattleObject gameObject)
     {
-        SkillManager skillManager =gameObject.gameObject.gameObject.GetComponent<SkillManager>();
+        SkillManager skillManager = gameObject as SkillManager;
+        if (skillManager == null)
+            return;
         if (skillManager.type == SkillManager.SkillType.heal)
         {
             characterStatus.SetHP(skillManager.GetHeal + characterStatus.CurrentHP);
@@ -55,14 +58,22 @@ public class Character : BattleObject
         }
         else if (skillManager.type == SkillManager.SkillType.bufAttack)
         {
-            //characterStatus.SetMoveSpeed(skillManager.GetBufSpeed + characterStatus.MoveSpeed);
+            GameObject[] skill = characterStatus.GetSkillPrefab;
+            for (int i = 0; i < skill.Length; i++)
+            {
+                skillManager = skill[i].gameObject.GetComponent<SkillManager>();
+                skillManager.SetSkill1Damage(skillManager.GetSkill1Damage + 15);
+                skillManager.SetSkill1Damage(skillManager.GetSkill2Damage + 15);
+                skillManager.SetSkill1Damage(skillManager.GetSpecialDamage + 15);
+            }
         }
-
     }
 
     public override void OnHitEnemyTeamObject(BattleObject gameObject)
     {
-        SkillManager skillManager = gameObject.gameObject.gameObject.GetComponent<SkillManager>();
+        SkillManager skillManager = gameObject as SkillManager;
+        if (skillManager == null)
+            return;
         if(skillManager.type == SkillManager.SkillType.weekDamage)
         {
             int damage = skillManager.GetSkill1Damage;
@@ -79,13 +90,11 @@ public class Character : BattleObject
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSpecialDamage);
         }
     }
-
-
     private void FixedUpdate()
     {
         if (characterStatus.IsDead)
         {
-            // �L�����N�^�[�����S���Ă���ꍇ�͏������I��
+            character.SetActive(false);
             return;
         }
         characterStatus.UpdateStatus();
