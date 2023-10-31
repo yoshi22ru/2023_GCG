@@ -10,6 +10,12 @@ public class Bird : Character
     [SerializeField] Transform skill1Point;
     [SerializeField] Transform skill2Point;
     [SerializeField] Transform specialPoint;
+    [SerializeField]
+    private int Skill1Damage = 15;
+    [SerializeField]
+    private int Skill2Damage = 30;
+    [SerializeField]
+    private float SpecialBuf = 3f;
 
     protected override void Skill1()
     {
@@ -27,5 +33,10 @@ public class Bird : Character
     {
         Instantiate(special, specialPoint.position, transform.rotation);
         base.Special();
+    }
+
+    protected override void Damage(int damage)
+    {
+        Debug.Log(Skill1Damage);
     }
 }

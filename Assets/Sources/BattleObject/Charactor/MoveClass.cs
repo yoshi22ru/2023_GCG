@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using UniRx.Triggers;
+using System.Runtime.CompilerServices;
 
 public class MoveClass : MonoBehaviour
 {
-    public float moveSpeed; // 現在のスピード
-
-
+    CharacterStatus characterStatus;
+    private float speed;
     void Start()
     {
+        CharacterStatus characterStatus = new CharacterStatus();
+        speed = characterStatus.MoveSpeed;
         // UniRX 移動処理を実施
         this.UpdateAsObservable()
             .Where(_ =>
@@ -22,8 +24,8 @@ public class MoveClass : MonoBehaviour
 
     public void Move()
     {
-        var x = Input.GetAxis("Vertical") * moveSpeed;
-        var z = -Input.GetAxis("Horizontal") * moveSpeed;
+        var x = Input.GetAxis("Vertical") * speed;
+        var z = -Input.GetAxis("Horizontal") * speed;
         if (x != 0 || z != 0)
         {
             var direction = new Vector3(x, 0, z);

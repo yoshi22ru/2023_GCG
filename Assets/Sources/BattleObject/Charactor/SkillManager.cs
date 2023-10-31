@@ -26,10 +26,4 @@ public class SkillManager : MonoBehaviour
             currentTime = 0;
         }
     }
-
-    // Update is called once per frame
-    private void OnTriggerEnter(Collider other)
-    {
-        // Destroy(gameObject);
-    }
 }

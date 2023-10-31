@@ -20,7 +20,6 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField]
     private float SpecialCoolDown = 10f;
 
-
     private bool isDamageTaken = false; // �_���[�W���󂯂����ǂ���
     private bool isDead = false; // ���S����
 

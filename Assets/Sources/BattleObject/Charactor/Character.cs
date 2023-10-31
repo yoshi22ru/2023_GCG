@@ -142,7 +142,17 @@ public class Character : BattleObject
         Debug.Log(damage + "�_���[�W������");
     }
 
-    protected virtual void Heal(int heal)
+    protected virtual void BufSpeed(float speedUp)
+    {
+
+    }
+
+    protected virtual void BufDamage(float damage)
+    {
+
+    }
+
+      protected virtual void Heal(int heal)
     {
         Debug.Log(heal + "��");
     }
