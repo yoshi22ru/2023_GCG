@@ -47,6 +47,11 @@ public class CharacterStatus : MonoBehaviour
         get { return maxHP; }
     }
 
+    public float MinHP
+    {
+        get { return minHP; }
+    }
+
     public bool IsDead
     {
         get { return isDead; }
@@ -57,7 +62,10 @@ public class CharacterStatus : MonoBehaviour
         get { return moveSpeed; }
     }
 
-
+    public void SetIsDead(bool life)
+    {
+        isDead = life;
+    }
     public void SetHP(float hp)
     {
         if(hp > 0)
