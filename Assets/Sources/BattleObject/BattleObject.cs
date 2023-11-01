@@ -11,7 +11,6 @@ public class BattleObject : MonoBehaviourPunCallbacks
     bool isSynchronized;
     Team team;
     ObjectType objectType;
-    int HP;
     GameManager manager;
     #endregion
 
@@ -29,6 +28,7 @@ public class BattleObject : MonoBehaviourPunCallbacks
     protected void SetTeam(Team team) {
         this.team = team;
     }
+    /*
     public int getHP() {
         return this.HP;
     }
@@ -38,6 +38,7 @@ public class BattleObject : MonoBehaviourPunCallbacks
         }
         this.HP = HP;
     }
+    */
     public void setManager(GameManager gameManager) {
         this.manager = gameManager;
     }

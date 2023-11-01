@@ -75,7 +75,7 @@ public class SkillManager : BattleObject
     public void SetSpecialDamage(int special)
     {
         if (special > 0)
-            skill1Damage = special;
+            specialDamage = special;
     }
 
     public void SetBufAttack(float bufATK)

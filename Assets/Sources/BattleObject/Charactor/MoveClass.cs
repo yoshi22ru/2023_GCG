@@ -7,11 +7,11 @@ using System.Runtime.CompilerServices;
 
 public class MoveClass : MonoBehaviour
 {
-    CharacterStatus characterStatus;
+    private CharacterStatus characterStatus;
     private float speed;
     void Start()
     {
-        CharacterStatus characterStatus = new CharacterStatus();
+        characterStatus = GetComponent<CharacterStatus>();
         speed = characterStatus.MoveSpeed;
         // UniRX ˆÚ“®ˆ—‚ğÀ{
         this.UpdateAsObservable()

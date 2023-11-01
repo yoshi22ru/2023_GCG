@@ -25,7 +25,7 @@ public class Character : BattleObject
         Special,
     }
 
-    private void Start()
+    private void Awake()
     {
         characterStatus = GetComponent<CharacterStatus>();
         animator = GetComponent<Animator>();
@@ -52,8 +52,8 @@ public class Character : BattleObject
             {
                 skillManager = skill[i].gameObject.GetComponent<SkillManager>();
                 skillManager.SetSkill1Damage(skillManager.GetSkill1Damage + 15);
-                skillManager.SetSkill1Damage(skillManager.GetSkill2Damage + 15);
-                skillManager.SetSkill1Damage(skillManager.GetSpecialDamage + 15);
+                skillManager.SetSkill2Damage(skillManager.GetSkill2Damage + 15);
+                skillManager.SetSpecialDamage(skillManager.GetSpecialDamage + 15);
             }
         }
     }
@@ -65,17 +65,14 @@ public class Character : BattleObject
             return;
         if(skillManager.type == SkillManager.SkillType.weekDamage)
         {
-            int damage = skillManager.GetSkill1Damage;
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill1Damage);
         }
         else if(skillManager.type == SkillManager.SkillType.midDamage)
         {
-            int damage = skillManager.GetSkill2Damage;
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill2Damage);
         }
         else if(skillManager.type == SkillManager.SkillType.strongDamage)
         {
-            int damage = skillManager.GetSpecialDamage;
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSpecialDamage);
         }
         SetState(Character_State.Damage);
@@ -92,17 +89,7 @@ public class Character : BattleObject
         {
             time += Time.deltaTime;
             SetState(Character_State.Dead);
-            if (time >= 1.5)
-            {
-                gameObject.SetActive(false);
-                characterStatus.SetHP(characterStatus.MaxHP);
-            }
-            else if(time >= 10)
-            {
-                characterStatus.SetIsDead(false);
-                gameObject.SetActive(true);
-                time = 0;
-            }
+            characterStatus.SetHP(characterStatus.MaxHP);
         }
 
         if (characterStatus.IsDead == false)

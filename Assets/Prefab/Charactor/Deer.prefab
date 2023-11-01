@@ -241,8 +241,8 @@ GameObject:
   - component: {fileID: 8732106197343106318}
   - component: {fileID: 6035369194824177377}
   - component: {fileID: 5464161094169708156}
-  - component: {fileID: 6183796369536232047}
   - component: {fileID: 7797138418692436367}
+  - component: {fileID: 6318676906970831895}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -271,7 +271,7 @@ Transform:
   - {fileID: 2749935179898289663}
   - {fileID: 4024288856572946021}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6243933476186978154
 LODGroup:
@@ -350,7 +350,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &8732106197343106318
 MonoBehaviour:
@@ -364,7 +364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &6035369194824177377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,27 +395,7 @@ MonoBehaviour:
   Skill1CoolDown: 2
   Skill2CoolDown: 8
   SpecialCoolDown: 10
---- !u!65 &6183796369536232047
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4068790814402866381}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6, y: 1, z: 1.2}
-  m_Center: {x: 0, y: 0.5, z: 0.1}
+  skillPrefab: []
 --- !u!114 &7797138418692436367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +415,29 @@ MonoBehaviour:
   skill1Point: {fileID: 2749935179898289663}
   skill2Point: {fileID: 4024288856572946021}
   specialPoint: {fileID: 4024288856572946021}
+--- !u!136 &6318676906970831895
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068790814402866381}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.7133237
+  m_Height: 1.4266474
+  m_Direction: 1
+  m_Center: {x: 0.011845946, y: 0.6932527, z: 0.041603982}
 --- !u!1 &4238630808702359132
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +462,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4238630808702359132}
-  m_LocalRotation: {x: 0.16245982, y: 0.688191, z: -0.16245985, w: 0.68819094}
+  m_LocalRotation: {x: 0.16245985, y: 0.688191, z: -0.16245984, w: 0.688191}
   m_LocalPosition: {x: -5, y: 2.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
@@ -532,7 +534,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4407278362326777846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.57, z: 0.222}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

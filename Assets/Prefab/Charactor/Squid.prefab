@@ -1041,8 +1041,8 @@ GameObject:
   - component: {fileID: 1293620286753287417}
   - component: {fileID: 2726513491685327145}
   - component: {fileID: 4577754714342480428}
-  - component: {fileID: 7777247282922330191}
   - component: {fileID: 3326307223134125265}
+  - component: {fileID: 5211333665780319534}
   m_Layer: 0
   m_Name: Squid
   m_TagString: Untagged
@@ -1071,7 +1071,7 @@ Transform:
   - {fileID: 8087030624552439358}
   - {fileID: 5645380467388877524}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6079757477143383862
 LODGroup:
@@ -1150,7 +1150,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &1293620286753287417
 MonoBehaviour:
@@ -1164,7 +1164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
 --- !u!114 &2726513491685327145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1196,27 +1195,6 @@ MonoBehaviour:
   Skill1CoolDown: 3
   Skill2CoolDown: 8
   SpecialCoolDown: 10
---- !u!65 &7777247282922330191
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7218242173633675500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.8, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &3326307223134125265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1236,6 +1214,29 @@ MonoBehaviour:
   skill1Point: {fileID: 8087030624552439358}
   skill2Point: {fileID: 8087030624552439358}
   specialPoint: {fileID: 5645380467388877524}
+--- !u!136 &5211333665780319534
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218242173633675500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6505722
+  m_Height: 1.749712
+  m_Direction: 1
+  m_Center: {x: 0.0016336441, y: 0.8548422, z: -0.075773}
 --- !u!1 &7306217761958114742
 GameObject:
   m_ObjectHideFlags: 0
