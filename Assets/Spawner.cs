@@ -8,7 +8,7 @@ public class Spawner : MonoBehaviour
     private GameObject character;
     private float time;
     private CharacterStatus characterStatus;
-    [SerializeField] private Transform spawnPos;
+    //[SerializeField] private Transform spawnPos;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
             if (time >= 2.0)
             {
                 character.SetActive(false);
-                character.transform.position = spawnPos.position;
+                //character.transform.position = spawnPos.position;
                 characterStatus.SetIsDead(false);
                 time = 0;
             }
