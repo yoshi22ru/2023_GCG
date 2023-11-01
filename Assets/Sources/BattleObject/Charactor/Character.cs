@@ -52,8 +52,8 @@ public class Character : BattleObject
             {
                 skillManager = skill[i].gameObject.GetComponent<SkillManager>();
                 skillManager.SetSkill1Damage(skillManager.GetSkill1Damage + 15);
-                skillManager.SetSkill1Damage(skillManager.GetSkill2Damage + 15);
-                skillManager.SetSkill1Damage(skillManager.GetSpecialDamage + 15);
+                skillManager.SetSkill2Damage(skillManager.GetSkill2Damage + 15);
+                skillManager.SetSpecialDamage(skillManager.GetSpecialDamage + 15);
             }
         }
     }
