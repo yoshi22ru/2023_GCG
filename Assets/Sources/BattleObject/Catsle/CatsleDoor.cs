@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Catsle : BattleObject
+public class CatsleDoor : BattleObject
 {
     [SerializeField]
-    private int HP = 300;
+    private int HP = 100;
     [SerializeField]
-    private int maxHP = 300;
+    private int maxHP = 100;
     [SerializeField]
     private int minHP = 0;
 
-    public bool broken = false;
     private Renderer render;
     private float timer = 0;
     private bool onTimer = false;
@@ -23,7 +22,7 @@ public class Catsle : BattleObject
 
     private void Update()
     {
-        if(onTimer)
+        if (onTimer)
             timer += Time.deltaTime;
     }
 
@@ -31,7 +30,7 @@ public class Catsle : BattleObject
     {
         render.material.color = Color.red;
         onTimer = true;
-        if(timer > 0.3)
+        if (timer > 0.3)
         {
             render.material.color = Color.white;
             timer = 0;
@@ -44,26 +43,23 @@ public class Catsle : BattleObject
         if (skillManager.type == SkillManager.SkillType.weekDamage)
         {
             SetHP(HP - skillManager.GetSkill1Damage);
-            if (HP <= 0)
-                broken = true;
         }
         else if (skillManager.type == SkillManager.SkillType.midDamage)
         {
             SetHP(HP - skillManager.GetSkill2Damage);
-            if (HP <= 0)
-                broken = true;
         }
         else if (skillManager.type == SkillManager.SkillType.strongDamage)
         {
             SetHP(HP - skillManager.GetSpecialDamage);
-            if (HP <= 0)
-                broken = true;
         }
+
+        if (HP <= 0)
+            Destroy(gameObject);
     }
 
     public override void OnHitMyTeamObject(BattleObject gameObject)
     {
-        
+
     }
 
     private void SetHP(int hp)

@@ -6,11 +6,11 @@ using UnityEngine;
 public class CharacterStatus : MonoBehaviour
 {
     [SerializeField]
-    private float currentHP = 100f; // ���݂�HP
+    private int currentHP = 100; // ���݂�HP
     [SerializeField]
-    private float minHP = 0f; // �ŏ���HP
+    private int minHP = 0; // �ŏ���HP
     [SerializeField]
-    private float maxHP = 100f; // �ő��HP
+    private int maxHP = 100; // �ő��HP
     [SerializeField]
     private float moveSpeed = 5f; // �L�����N�^�[�̈ړ����x
     [SerializeField]
@@ -37,17 +37,17 @@ public class CharacterStatus : MonoBehaviour
     {
         skillPrefab = skill;
     }
-    public float CurrentHP
+    public int CurrentHP
     {
         get { return currentHP; }
     }
 
-    public float MaxHP
+    public int MaxHP
     {
         get { return maxHP; }
     }
 
-    public float MinHP
+    public int MinHP
     {
         get { return minHP; }
     }
@@ -66,7 +66,7 @@ public class CharacterStatus : MonoBehaviour
     {
         isDead = life;
     }
-    public void SetHP(float hp)
+    public void SetHP(int hp)
     {
         if (hp > 0)
             currentHP = hp;
