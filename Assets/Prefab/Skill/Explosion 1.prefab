@@ -226,7 +226,7 @@ ParticleSystem:
       maxColor: {r: 0.7924528, g: 0, b: 0, a: 0.78039217}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.18553454, g: 1, b: 0.93229496, a: 0.654902}
+        key0: {r: 1, g: 0.5873613, b: 0.18431371, a: 0.654902}
         key1: {r: 0.7264151, g: 0, b: 0, a: 0.9490196}
         key2: {r: 0, g: 0, b: 0, a: 0.6901961}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5112,7 +5112,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.9999995, b: 1, a: 1}
+        key0: {r: 1, g: 0.017629486, b: 0, a: 1}
         key1: {r: 0.735849, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5142,8 +5142,8 @@ ParticleSystem:
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
-        key0: {r: 0, g: 0.44896913, b: 1, a: 1}
-        key1: {r: 0, g: 0.44896913, b: 1, a: 1}
+        key0: {r: 1, g: 0.4246567, b: 0, a: 1}
+        key1: {r: 1, g: 0.85616773, b: 0, a: 1}
         key2: {r: 0.7264151, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -10030,8 +10030,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.25098038, g: 0.74895626, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.92214394, a: 1}
+      minColor: {r: 0.990566, g: 0.43569586, b: 0.11836943, a: 1}
+      maxColor: {r: 1, g: 0, b: 0.01922512, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14858,8 +14858,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0, g: 0.5266113, b: 1, a: 1}
-      maxColor: {r: 0, g: 1, b: 0.9845178, a: 1}
+      minColor: {r: 1, g: 0.36320752, b: 0.36320752, a: 1}
+      maxColor: {r: 1, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19538,7 +19538,7 @@ GameObject:
   - component: {fileID: 6934821357701956932}
   - component: {fileID: 6819699956777350877}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Explosion 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
