@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class NameChangeWindowManager : Utility.PhotonUtility
+public class JoinSelectRoomPanel : Utility.PhotonUtility
 {
     #region SettingName
     [SerializeField] InputField input_name_field;
@@ -32,7 +32,7 @@ public class NameChangeWindowManager : Utility.PhotonUtility
 
     public override void OnJoinedRoom() {
         Debug.Log("Joined");
-        SceneManager.LoadSceneAsync("CharacterSelect");
+        LoadYourAsyncScene("CharacterSelect");
     }
 
     public override void OnJoinRoomFailed(short returnCode, string message)
