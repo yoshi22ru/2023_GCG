@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bird : Character
@@ -16,6 +17,11 @@ public class Bird : Character
     private int Skill2Damage = 30;
     [SerializeField]
     private float SpecialBuf = 3f;
+    [SerializeField] AudioClip skill1SE;
+    [SerializeField] AudioClip skill2SE;
+    [SerializeField] AudioClip specialSE;
+
+
 
     protected override void Skill1()
     {
