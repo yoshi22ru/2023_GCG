@@ -25,7 +25,7 @@ public class Character : BattleObject
         Special,
     }
 
-    private void Start()
+    private void Awake()
     {
         characterStatus = GetComponent<CharacterStatus>();
         animator = GetComponent<Animator>();
