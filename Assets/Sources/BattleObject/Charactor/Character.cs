@@ -65,17 +65,14 @@ public class Character : BattleObject
             return;
         if(skillManager.type == SkillManager.SkillType.weekDamage)
         {
-            int damage = skillManager.GetSkill1Damage;
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill1Damage);
         }
         else if(skillManager.type == SkillManager.SkillType.midDamage)
         {
-            int damage = skillManager.GetSkill2Damage;
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill2Damage);
         }
         else if(skillManager.type == SkillManager.SkillType.strongDamage)
         {
-            int damage = skillManager.GetSpecialDamage;
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSpecialDamage);
         }
         SetState(Character_State.Damage);
