@@ -68,8 +68,12 @@ public class CharacterStatus : MonoBehaviour
     }
     public void SetHP(float hp)
     {
-        if(hp > 0)
+        if (hp > 0)
             currentHP = hp;
+        else if (hp >= maxHP)
+            currentHP = maxHP;
+        else if (hp <= 0)
+            currentHP = 0;
     }
 
     public void SetMoveSpeed(float speed)
