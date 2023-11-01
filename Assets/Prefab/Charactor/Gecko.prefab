@@ -276,8 +276,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575965158904652956}
-  m_LocalRotation: {x: 0.16245984, y: 0.68819094, z: -0.16245985, w: 0.68819106}
-  m_LocalPosition: {x: -5, y: 2.5, z: 0}
+  m_LocalRotation: {x: 0.16245985, y: 0.688191, z: -0.16245984, w: 0.688191}
+  m_LocalPosition: {x: -3.3333335, y: 1.6666667, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -888,7 +888,7 @@ Transform:
   m_GameObject: {fileID: 6286164418673159766}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 55.6, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5190301490388569194}
@@ -1021,10 +1021,10 @@ MonoBehaviour:
   currentHP: 100
   minHP: 0
   maxHP: 100
-  moveSpeed: 5
-  Skill1CoolDown: 10
-  Skill2CoolDown: 8
-  SpecialCoolDown: 20
+  moveSpeed: 6.5
+  Skill1CoolDown: 1
+  Skill2CoolDown: 5
+  SpecialCoolDown: 40
   skillPrefab: []
 --- !u!114 &1590181784663540493
 MonoBehaviour:
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   specialPoint: {fileID: 2520655762945934913}
   skill1SE: {fileID: 8300000, guid: b457908ee16812f46bfb73f6f3cb575b, type: 3}
   skill2SE: {fileID: 8300000, guid: 18ca72dc54058d049bbba9b542ab0fb5, type: 3}
-  specialSE: {fileID: 8300000, guid: bcd7cd0e83f77fa4dbb70bbbb28b6550, type: 3}
+  specialSE: {fileID: 8300000, guid: a8911c156a883c547a3a8e7c9e34efee, type: 3}
 --- !u!136 &2763594635688396010
 CapsuleCollider:
   m_ObjectHideFlags: 0

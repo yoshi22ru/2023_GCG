@@ -378,7 +378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4111518444120596993}
   m_LocalRotation: {x: 0.16245985, y: 0.688191, z: -0.16245984, w: 0.688191}
-  m_LocalPosition: {x: -5, y: 2.5, z: 0}
+  m_LocalPosition: {x: -3.3333335, y: 1.6666667, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -931,7 +931,7 @@ Transform:
   m_GameObject: {fileID: 7572335396204123815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 55.6, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8270987523587231515}
@@ -1023,7 +1023,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &2310429921653913872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,7 @@ MonoBehaviour:
   currentHP: 100
   minHP: 0
   maxHP: 100
-  moveSpeed: 5
+  moveSpeed: 6
   Skill1CoolDown: 1
   Skill2CoolDown: 5
   SpecialCoolDown: 7

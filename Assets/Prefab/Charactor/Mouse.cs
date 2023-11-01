@@ -10,11 +10,20 @@ public class Mouse : Character
     [SerializeField] Transform skill1Point;
     [SerializeField] Transform skill2Point;
     [SerializeField] Transform specialPoint;
+    [SerializeField] AudioClip skill1SE;
+    [SerializeField] AudioClip skill2SE;
+    [SerializeField] AudioClip specialSE;
+    AudioSource audioSource;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     protected override void Skill1()
     {
         Instantiate(skill1, skill1Point.position, transform.rotation);
         base.Skill1();
+        audioSource.PlayOneShot(skill1SE);
     }
 
     protected override void Skill2()
@@ -22,6 +31,7 @@ public class Mouse : Character
         GameObject Obj = (Instantiate(skill2, specialPoint.position, transform.rotation));
         Obj.transform.parent = transform;
         base.Special();
+        audioSource.PlayOneShot(skill2SE);
     }
 
     protected override void Special()
@@ -29,5 +39,6 @@ public class Mouse : Character
         GameObject Obj = (Instantiate(special, specialPoint.position, transform.rotation));
         Obj.transform.parent = transform;
         base.Special();
+        audioSource.PlayOneShot(specialSE);
     }
 }
