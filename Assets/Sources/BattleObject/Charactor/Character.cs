@@ -89,17 +89,7 @@ public class Character : BattleObject
         {
             time += Time.deltaTime;
             SetState(Character_State.Dead);
-            if (time >= 1.5)
-            {
-                gameObject.SetActive(false);
-                characterStatus.SetHP(characterStatus.MaxHP);
-            }
-            else if(time >= 10)
-            {
-                characterStatus.SetIsDead(false);
-                gameObject.SetActive(true);
-                time = 0;
-            }
+            characterStatus.SetHP(characterStatus.MaxHP);
         }
 
         if (characterStatus.IsDead == false)
