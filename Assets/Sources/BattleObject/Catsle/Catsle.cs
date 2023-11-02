@@ -10,6 +10,8 @@ public class Catsle : BattleObject
     private int maxHP = 300;
     [SerializeField]
     private int minHP = 0;
+    [SerializeField]
+    private ParticleSystem particle;
 
     public bool broken = false;
     private Renderer render;
@@ -37,6 +39,10 @@ public class Catsle : BattleObject
             timer = 0;
             onTimer = false;
         }
+        ParticleSystem newParticle = Instantiate(particle);
+        newParticle.transform.position = this.transform.position;
+        newParticle.Play();
+        Destroy(newParticle.gameObject, 0.5f);
 
         SkillManager skillManager = gameObject as SkillManager;
         if (skillManager == null)
