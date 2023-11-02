@@ -964,7 +964,7 @@ MonoBehaviour:
   moveSpeed: 5
   Skill1CoolDown: 1
   Skill2CoolDown: 5
-  SpecialCoolDown: 20
+  SpecialCoolDown: 30
   skillPrefab: []
 --- !u!114 &871152091235851304
 MonoBehaviour:
@@ -1193,7 +1193,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8996732221096504206}
-  m_LocalRotation: {x: 0.16245985, y: 0.688191, z: -0.16245984, w: 0.688191}
+  m_LocalRotation: {x: 0.16245984, y: 0.68819094, z: -0.16245985, w: 0.68819106}
   m_LocalPosition: {x: -5, y: 2.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0

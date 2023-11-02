@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill1: {fileID: 8239280865369750960, guid: 8d3cc116fc7056b4582fae04de7b1a0d, type: 3}
   skill2: {fileID: 9017484664307500583, guid: 15d0f5e25c5ba1a42b96edc1517d22c1, type: 3}
   special: {fileID: 7957833072274404953, guid: 2ac8b13fd769efc4e9ff6318ef00196f, type: 3}
   skill1Point: {fileID: 3142464058362167353}

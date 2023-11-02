@@ -1021,10 +1021,10 @@ MonoBehaviour:
   currentHP: 100
   minHP: 0
   maxHP: 100
-  moveSpeed: 6.5
+  moveSpeed: 7
   Skill1CoolDown: 1
   Skill2CoolDown: 5
-  SpecialCoolDown: 40
+  SpecialCoolDown: 30
   skillPrefab: []
 --- !u!114 &1590181784663540493
 MonoBehaviour:
