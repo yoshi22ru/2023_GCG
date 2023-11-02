@@ -9,11 +9,9 @@ using Photon.Realtime;
 public class ConnectServerButton : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Button connect_button;
-    [SerializeField] private GameObject select_match_mode_panel;
     void Start()
     {
         connect_button.onClick.AddListener(ConnectServer);
-        select_match_mode_panel.SetActive(false);
     }
 
     void ConnectServer()
@@ -31,9 +29,17 @@ public class ConnectServerButton : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnConnectedToMaster() {
+    public override void OnConnected()
+    {
+        Debug.Log("OnConnected");
+
+        PanelManager.instance.SetPanel(PanelManager.Ident_Panel.SelectMatchingMode);
+    }
+
+    public override void OnConnectedToMaster()
+    {
         Debug.Log("connected");
 
-        select_match_mode_panel.SetActive(true);
+        PanelManager.instance.SetPanel(PanelManager.Ident_Panel.SelectMatchingMode);
     }
 }

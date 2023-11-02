@@ -10,6 +10,8 @@ public class CatsleDoor : BattleObject
     private int maxHP = 100;
     [SerializeField]
     private int minHP = 0;
+    [SerializeField]
+    private ParticleSystem particle;
 
     private Renderer render;
     private float timer = 0;
@@ -24,18 +26,27 @@ public class CatsleDoor : BattleObject
     {
         if (onTimer)
             timer += Time.deltaTime;
+        
+        if (timer > 0.7)
+        {
+            render.material.color = Color.white;
+            timer = 0;
+            onTimer = false;
+        }
+
+        if (HP <= 0)
+            Destroy(gameObject);
     }
 
     public override void OnHitEnemyTeamObject(BattleObject gameObject)
     {
         render.material.color = Color.red;
         onTimer = true;
-        if (timer > 0.3)
-        {
-            render.material.color = Color.white;
-            timer = 0;
-            onTimer = false;
-        }
+        
+        ParticleSystem newParticle = Instantiate(particle);
+        newParticle.transform.position = this.transform.position;
+        newParticle.Play();
+        Destroy(newParticle.gameObject, 0.5f);
 
         SkillManager skillManager = gameObject as SkillManager;
         if (skillManager == null)
@@ -52,9 +63,6 @@ public class CatsleDoor : BattleObject
         {
             SetHP(HP - skillManager.GetSpecialDamage);
         }
-
-        if (HP <= 0)
-            Destroy(gameObject);
     }
 
     public override void OnHitMyTeamObject(BattleObject gameObject)

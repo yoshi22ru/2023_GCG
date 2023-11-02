@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
@@ -8,15 +9,15 @@ public class Spawner : MonoBehaviour
     private GameObject character;
     private float time;
     private CharacterStatus characterStatus;
-    //[SerializeField] private Transform spawnPos;
-    // Start is called before the first frame update
+    private Vector3 pos;
+
     void Start()
     {
         character = GameObject.FindWithTag("Character");
         characterStatus = character.GetComponent<CharacterStatus>();
+        pos = SpawnPosition.instance.spawnPos;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (characterStatus.IsDead)
@@ -25,7 +26,7 @@ public class Spawner : MonoBehaviour
             if (time >= 2.0)
             {
                 character.SetActive(false);
-                //character.transform.position = spawnPos.position;
+                character.transform.position = pos;
                 characterStatus.SetIsDead(false);
                 time = 0;
             }

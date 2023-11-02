@@ -9,6 +9,7 @@ public class BattleObject : MonoBehaviourPunCallbacks
 {
     #region variables
     bool isSynchronized;
+    [SerializeField]
     Team team;
     ObjectType objectType;
     GameManager manager;
@@ -45,18 +46,16 @@ public class BattleObject : MonoBehaviourPunCallbacks
 
     #endregion
 
-    private void OnCollisionEnter(Collision other) {
-        if (other.gameObject.CompareTag("BattleObject")) {
+    private void OnTriggerEnter(Collider other) {
             if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject)) {
                 if (this.team == battleObject.team) {
-                    OnHitMyTeamObject(battleObject);
+                OnHitMyTeamObject(battleObject);
                 } else {
-                    OnHitEnemyTeamObject(battleObject);
+                OnHitEnemyTeamObject(battleObject);
                 }
             } else {
                 Debug.Log("There is no Component of Battle Object");
             }
-        }
     }
 
     public enum Team {
