@@ -11,7 +11,6 @@ public class TitleScene : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        Invoke("ChangeScene", 1.5f);
     }
 
 
