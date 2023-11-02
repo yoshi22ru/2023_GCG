@@ -1,36 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
 using System.Runtime.CompilerServices;
+using System.ComponentModel.Design;
 
 public class MoveClass : MonoBehaviour
 {
     private CharacterStatus characterStatus;
     private float speed;
-    void Start()
+    private Vector3 characterPos;
+    private float x;
+    private float z;
+    Rigidbody rb;
+    private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         characterStatus = GetComponent<CharacterStatus>();
         speed = characterStatus.MoveSpeed;
-        // UniRX ˆÚ“®ˆ—‚ðŽÀŽ{
-        this.UpdateAsObservable()
-            .Where(_ =>
-                    (Input.GetAxis("Horizontal") != 0) ||
-                    (Input.GetAxis("Vertical") != 0)
-            )
-            .Subscribe(_ => Move());
+
     }
 
-    public void Move()
+    private void FixedUpdate()
     {
-        var x = Input.GetAxis("Vertical") * speed;
-        var z = -Input.GetAxis("Horizontal") * speed;
-        if (x != 0 || z != 0)
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+        characterPos = new Vector3(x,0,z);
+
+        if (characterPos.magnitude > speed)
         {
-            var direction = new Vector3(x, 0, z);
-            transform.position += new Vector3(x * Time.deltaTime, 0, z * Time.deltaTime);
-            transform.localRotation = Quaternion.LookRotation(direction);
+            characterPos.Normalize();
         }
+        else if (characterPos.magnitude > 0.1f) 
+        {
+            transform.rotation = Quaternion.LookRotation(characterPos);
+        }
+        rb.AddForce(new Vector3(x * speed, 0, z * speed) * 100);
+        rb.AddForce(-GetComponent<Rigidbody>().velocity / Time.fixedDeltaTime);
     }
 }
