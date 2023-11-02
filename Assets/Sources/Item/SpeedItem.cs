@@ -6,7 +6,6 @@ public class SpeedItem : Item
 {
     [SerializeField]
     private int speed = 10;
-    private CharacterStatus characterStatus;
     private float timer = 0;
     private bool onTimer = false;
 
@@ -16,7 +15,7 @@ public class SpeedItem : Item
             timer += Time.deltaTime;
     }
 
-    public override void ItemEffect(CharacterStatus character)
+    public override void ItemEffect(CharacterStatus characterStatus)
     {
         characterStatus.gameObject.GetComponent<CharacterStatus>();
         characterStatus.SetMoveSpeed(characterStatus.MoveSpeed + speed);
