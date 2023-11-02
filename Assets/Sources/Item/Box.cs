@@ -31,9 +31,9 @@ public class Box : MonoBehaviour
                 newParticle.Play();
                 rend.enabled = false;
                 coll.enabled = false;
-                Destroy(newParticle.gameObject, 1.0f);
-                Invoke(nameof(Gatya), 1.0f);
-                Destroy(gameObject, 1.1f);
+                Destroy(newParticle.gameObject, 0.5f);
+                Invoke(nameof(Gatya), 0.5f);
+                Destroy(gameObject, 0.7f);
             }
         }
     }
