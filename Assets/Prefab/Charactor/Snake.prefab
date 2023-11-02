@@ -723,7 +723,7 @@ Transform:
   - {fileID: 5890503705781419832}
   - {fileID: 3292957621146623782}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &8375344636585295302
 LODGroup:
@@ -860,6 +860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88905728ffd989648967dcbcb20b7ca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  team: 0
   animator: {fileID: 5650272712818997174}
   skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
   skill2: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
@@ -999,7 +1000,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3292957621146623782}
   - component: {fileID: 3700574710773956753}
-  - component: {fileID: 8506710786876173483}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -1062,23 +1062,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1336484159506369037}
---- !u!114 &8506710786876173483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6513247873590236899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 1
-  m_BoundingVolume: {fileID: 1130649167632332180}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!1 &6763798992966581060
 GameObject:
   m_ObjectHideFlags: 0

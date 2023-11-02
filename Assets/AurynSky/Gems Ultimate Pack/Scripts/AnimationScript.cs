@@ -13,17 +13,17 @@ public class AnimationScript : MonoBehaviour {
     public float rotationSpeed;
 
     public float floatSpeed;
-    private bool goingUp = true;
+    //private bool goingUp = true;
     public float floatRate;
-    private float floatTimer;
+    //private float floatTimer;
    
     public Vector3 startScale;
     public Vector3 endScale;
 
-    private bool scalingUp = true;
+    //private bool scalingUp = true;
     public float scaleSpeed;
     public float scaleRate;
-    private float scaleTimer;
+    //private float scaleTimer;
 
 	// Use this for initialization
 	void Start () {

@@ -27,7 +27,7 @@ public class CatsleDoor : BattleObject
         if (onTimer)
             timer += Time.deltaTime;
         
-        if (timer > 1.0)
+        if (timer > 0.7)
         {
             render.material.color = Color.white;
             timer = 0;
