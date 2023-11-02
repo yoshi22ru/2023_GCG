@@ -8,25 +8,29 @@ using UnityEngine;
 public class BattleObject : MonoBehaviourPunCallbacks
 {
     #region variables
-    bool isSynchronized;
     [SerializeField]
     Team team;
     ObjectType objectType;
-    GameManager manager;
+    protected GameManager manager;
     #endregion
-
-    public virtual void OnHitMyTeamObject(BattleObject gameObject) {
+    [PunRPC]
+    public virtual void OnHitMyTeamObject(BattleObject gameObject)
+    {
 
     }
-    public virtual void OnHitEnemyTeamObject(BattleObject gameObject) {
+    [PunRPC]
+    public virtual void OnHitEnemyTeamObject(BattleObject gameObject)
+    {
 
     }
     #region accessor
 
-    public Team GetTeam() {
+    public Team GetTeam()
+    {
         return team;
     }
-    protected void SetTeam(Team team) {
+    protected void SetTeam(Team team)
+    {
         this.team = team;
     }
     /*
@@ -40,29 +44,40 @@ public class BattleObject : MonoBehaviourPunCallbacks
         this.HP = HP;
     }
     */
-    public void setManager(GameManager gameManager) {
+    public void setManager(GameManager gameManager)
+    {
         this.manager = gameManager;
     }
 
+
     #endregion
 
-    private void OnTriggerEnter(Collider other) {
-            if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject)) {
-                if (this.team == battleObject.team) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject))
+        {
+            if (this.team == battleObject.team)
+            {
                 OnHitMyTeamObject(battleObject);
-                } else {
-                OnHitEnemyTeamObject(battleObject);
-                }
-            } else {
-                Debug.Log("There is no Component of Battle Object");
             }
+            else
+            {
+                OnHitEnemyTeamObject(battleObject);
+            }
+        }
+        else
+        {
+            Debug.Log("There is no Component of Battle Object");
+        }
     }
 
-    public enum Team {
+    public enum Team
+    {
         Red,
         Blue,
     }
-    public enum ObjectType {
+    public enum ObjectType
+    {
         PlayerCharacter,
         NPC,
         DamagingObject,

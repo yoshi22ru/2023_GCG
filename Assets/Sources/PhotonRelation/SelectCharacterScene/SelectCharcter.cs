@@ -143,4 +143,12 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     {
         return team;
     }
+
+    public CharaData.Ident_Character GetCharacter() {
+        return _Character;
+    }
+
+    public int GetActorNum() {
+        return actor_number;
+    }
 }

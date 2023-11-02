@@ -83,6 +83,10 @@ public class CharacterStatus : MonoBehaviour
     }
 
     // �L�����N�^�[�̏�Ԃ��X�V����
+    private void Update() {
+        UpdateStatus();
+        CheckDeath();
+    }
     public void UpdateStatus()
     {
         if (isDead)

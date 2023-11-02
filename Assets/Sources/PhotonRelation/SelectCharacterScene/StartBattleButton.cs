@@ -10,7 +10,8 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
     [SerializeField] private List<SelectCharacter> selections;
     [SerializeField] private Button start_button;
 
-    private void Awake() {
+    private void Awake()
+    {
         for (int i = 0; i < selections.Count; ++i)
         {
             selections[i].SetActorNum(i + 1);
@@ -24,14 +25,18 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
 
     void StartBattle()
     {
-        if (IsEven()) {
+        if (IsEven())
+        {
             Debug.Log("team is not even");
             return;
         }
-        if (photonView.IsRoomView) {
+        if (photonView.IsRoomView)
+        {
             Debug.Log("you are not owner");
             return;
         }
+
+        SetParams();
 
         switch (Random.Range(1, 2))
         {
@@ -44,18 +49,34 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
         }
     }
 
-    bool IsEven() {
+    bool IsEven()
+    {
         int count = 0;
 
-        for (int i = 0; i < selections.Count; ++i) {
-            if (selections[i].GetTeam() == BattleObject.Team.Blue) {
+        for (int i = 0; i < selections.Count; ++i)
+        {
+            if (selections[i].GetTeam() == BattleObject.Team.Blue)
+            {
                 ++count;
             }
         }
 
-        if (count != selections.Count / 2) {
+        if (count != selections.Count / 2)
+        {
             return true;
         }
         return false;
+    }
+
+    void SetParams()
+    {
+        for (int i = 0; i < selections.Count; ++i)
+        {
+            VariableManager.player_selections.Add(new VariableManager.PlayerSelection(
+                    selections[i].GetTeam(),
+                    selections[i].GetCharacter(),
+                    selections[i].GetActorNum()
+            ));
+        }
     }
 }
