@@ -8,6 +8,8 @@ public class MoveClass : MonoBehaviour
 {
     private CharacterStatus characterStatus;
     private float speed;
+    float inputHorizontal;
+    float inputVertical;
     private Vector3 moving, latestPos;
     Rigidbody rb;
     private void Start()
@@ -20,37 +22,27 @@ public class MoveClass : MonoBehaviour
 
     void Update()
     {
-        MovementControll();
-        Movement();
+        inputHorizontal = Input.GetAxisRaw("Horizontal");
+        inputVertical = Input.GetAxisRaw("Vertical");
+
     }
 
     void FixedUpdate()
     {
-        RotateToMovingDirection();
-    }
-    void MovementControll()
-    {
-        //斜め移動と縦横の移動を同じ速度にするためにVector3をNormalize()する。
-        moving = new Vector3(Input.GetAxisRaw("Vertical") ,0, -Input.GetAxisRaw("Horizontal"));
-        moving.Normalize();
-        moving = moving * speed;
-    }
+        // カメラの方向から、X-Z平面の単位ベクトルを取得
+        Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-    public void RotateToMovingDirection()
-    {
-        Vector3 differenceDis = new Vector3(transform.position.x, 0, transform.position.z) - new Vector3(latestPos.x, 0, latestPos.z);
-        latestPos = transform.position;
-        //移動してなくても回転してしまうので、一定の距離以上移動したら回転させる
-        if (Mathf.Abs(differenceDis.x) > 0.001f || Mathf.Abs(differenceDis.z) > 0.001f)
+        // 方向キーの入力値とカメラの向きから、移動方向を決定
+        Vector3 moveForward = cameraForward * inputVertical + Camera.main.transform.right * inputHorizontal;
+
+        // 移動方向にスピードを掛ける。
+        rb.velocity = moveForward * speed * 1.5f;
+
+        // キャラクターの向きを進行方向に
+        if (moveForward != Vector3.zero)
         {
-            Quaternion rot = Quaternion.LookRotation(differenceDis);
-            rot = Quaternion.Slerp(rb.transform.rotation, rot, 0.1f);
-            this.transform.rotation = rot;
+            Quaternion quaternion = Quaternion.LookRotation(moveForward);
+            this.transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, speed * 0.005f);
         }
-    }
-
-    void Movement()
-    {
-        rb.velocity = moving;
     }
 }
