@@ -11,7 +11,8 @@ public class PanelManager : MonoBehaviourPunCallbacks
     public static PanelManager instance;
     Ident_Panel now_panel = Ident_Panel.EndEnum;
     [SerializeField] private List<GameObject> panels;
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
     }
     void Start()
@@ -19,13 +20,18 @@ public class PanelManager : MonoBehaviourPunCallbacks
         SetPanel(now_panel);
     }
 
-    public void SetPanel(Ident_Panel ident_Panel) {
+    public void SetPanel(Ident_Panel ident_Panel)
+    {
         Debug.Log(ident_Panel);
         now_panel = ident_Panel;
-        for (int i = 0; i < panels.Count; ++i) {
-            if (i == (int) now_panel) {
+        for (int i = 0; i < panels.Count; ++i)
+        {
+            if (i == (int)now_panel)
+            {
                 panels[i].SetActive(true);
-            } else {
+            }
+            else
+            {
                 panels[i].SetActive(false);
             }
         }
@@ -33,12 +39,13 @@ public class PanelManager : MonoBehaviourPunCallbacks
 
     public override void OnDisconnected(DisconnectCause cause)
     {
-      Debug.Log("Disconnected");
-      Debug.Log(cause);
+        Debug.Log("Disconnected");
+        Debug.Log(cause);
     }
 
 
-    public enum Ident_Panel {
+    public enum Ident_Panel
+    {
         // SelectBattleMode,
         SelectMatchingMode,
         // ChangeName,

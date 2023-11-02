@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         CharaData chara =
          charaDataBase.charadata[(int) VariableManager.character];
 
+        // var obj = PhotonNetwork.Instantiate(chara.name);
+
         if (VariableManager.my_team == BattleObject.Team.Blue) {
         }
     }

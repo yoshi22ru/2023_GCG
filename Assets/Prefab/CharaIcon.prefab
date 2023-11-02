@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8330271350868761475}
   - component: {fileID: 4348660724082470557}
   - component: {fileID: 7412297352867037315}
+  - component: {fileID: 5073973388210572956}
   m_Layer: 5
   m_Name: charabackground
   m_TagString: Untagged
@@ -66,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d85917af19270ec43b04d0dd3b955bda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cec11eb0be5421f49b0302ba5171a075, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,6 +77,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5073973388210572956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202111726327163293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 887674435994985504}
+          m_TargetAssemblyTypeName: SelectCharacter, Assembly-CSharp
+          m_MethodName: ChangeTeam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &2827337803653571067
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,6 +367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1602792489807175945}
+  - component: {fileID: 887674435994985504}
   m_Layer: 5
   m_Name: CharaIcon
   m_TagString: Untagged
@@ -367,6 +398,23 @@ RectTransform:
   m_AnchoredPosition: {x: -24, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &887674435994985504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383243728711917845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44115225c3b9a0f4e90f66ab3340bd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  up: {fileID: 8665852513834042036}
+  down: {fileID: 5189123851345024470}
+  chara_sprite: {fileID: 3822148557058092746}
+  team_color: {fileID: 7412297352867037315}
+  charaDataBase: {fileID: 11400000, guid: 129d2dbd825665048991f3d815f5b501, type: 2}
 --- !u!1 &7697753541876551931
 GameObject:
   m_ObjectHideFlags: 0
