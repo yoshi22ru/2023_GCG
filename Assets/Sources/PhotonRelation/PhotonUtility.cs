@@ -4,6 +4,7 @@ using System.IO.IsolatedStorage;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Utility
 {
@@ -21,6 +22,15 @@ namespace Utility
     #endregion
 
     #region RappedFunction
+
+    public static IEnumerator LoadYourAsyncScene(string scene_name) {
+      AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene_name);
+
+      while (!asyncLoad.isDone) {
+        yield return null;
+      }
+      Debug.Log("Loaded");
+    }
     public static void Connect(string GameVersion)
     {
       if (PhotonNetwork.IsConnected == false)
@@ -72,10 +82,10 @@ namespace Utility
         CleanupCacheOnLeave = true
       };
 
-      if (PhotonNetwork.InLobby)
-      {
+      // if (PhotonNetwork.InLobby)
+      // {
         PhotonNetwork.CreateRoom(roomName, roomOptions);
-      }
+      // }
     }
 
     public static void JoinSelectRoom(string targetRoomName)

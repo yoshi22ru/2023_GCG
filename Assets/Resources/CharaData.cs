@@ -10,19 +10,20 @@ public class CharaData : ScriptableObject
     [SerializeField]
     private Sprite chara_image;
     [SerializeField]
-    private int max_hp;
-    [SerializeField]
     private GameObject charactor_prefab;
 
     public string CharaName {get => chara_name;}
     public Sprite CharaSprite {get => chara_image;}
-    public int MaxHP {get => max_hp;}
     public GameObject CharactorPrefab {get => charactor_prefab;}
 
-    public enum Ident_Charactor {
-        saru = 1,
-        tori,
-        inu,
-        i,
+    public enum Ident_Character {
+        Bird,
+        Deer,
+        Fish,
+        Gecko,
+        Monkey,
+        Mouse,
+        Snake,
+        Squid,
     }
 }
