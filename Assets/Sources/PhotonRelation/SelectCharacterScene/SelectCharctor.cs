@@ -12,6 +12,7 @@ public class SelectCharctor : MonoBehaviourPunCallbacks
     [SerializeField] private Button up;
     [SerializeField] private Button down;
     [SerializeField] private Sprite chara_sprite;
+    [SerializeField] private Image team_color;
     [SerializeField] CharaDataBase charaDataBase;
     CharaData.Ident_Charactor _Charactor;
     [SerializeField] private int actor_number;
@@ -22,6 +23,12 @@ public class SelectCharctor : MonoBehaviourPunCallbacks
         {
             up.onClick.AddListener(ScrollUp);
             down.onClick.AddListener(ScrollDown);
+        }
+
+        if ((actor_number % 2) == 0) {
+            SetTeam(Color.blue);
+        } else {
+            SetTeam(Color.red);
         }
 
         _Charactor = (CharaData.Ident_Charactor)Enum.GetValues(typeof(CharaData.Ident_Charactor)).Cast<int>().Min();
@@ -57,6 +64,16 @@ public class SelectCharctor : MonoBehaviourPunCallbacks
         chara_sprite = data.CharaSprite;
         // TODO!
         PhotonNetwork.LocalPlayer.SetCharacter((int)_Charactor);
+    }
+
+    private void SetTeam(Color color) {
+        if (color == Color.blue) {
+            team_color.color = Color.blue;
+            VariableManager.my_team = BattleObject.Team.Blue;
+        } else {
+            team_color.color = Color.red;
+            VariableManager.my_team = BattleObject.Team.Red;
+        }
     }
 
     private void LateUpdate()
