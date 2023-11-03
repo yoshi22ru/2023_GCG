@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2824616246765815673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3111400078391494309}
+  - component: {fileID: 5013729221472196083}
+  m_Layer: 0
+  m_Name: PrefabPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3111400078391494309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824616246765815673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 80.14557, y: 3.6939325, z: 77.88488}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5013729221472196083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2824616246765815673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2cef433135775498d0cf35ca93cc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrefabList:
+  - {fileID: 7572335396204123815, guid: 86f5584754d52da47bc3fd0f3e30e515, type: 3}
+  - {fileID: 4068790814402866381, guid: 4aa6fd0de707540439eae9a5922dd400, type: 3}
+  - {fileID: 8941205293409301154, guid: a8935035e7435fb488f4e39f3ceeb768, type: 3}
+  - {fileID: 6286164418673159766, guid: 5cd487d47c55d9842a5ad1266c2efca2, type: 3}
+  - {fileID: 4876803712735204516, guid: 0f11d121e86c87e4e8c1d1edf69cff8f, type: 3}
+  - {fileID: 7550194517339994131, guid: dbfcc8e28ba573d4eb01b0f2798a7baf, type: 3}
+  - {fileID: 5137746313545845673, guid: 459336ef281cba840b17815817cf94bf, type: 3}
+  - {fileID: 7218242173633675500, guid: f5de5b0e13790a54d8aff66186f3d84b, type: 3}

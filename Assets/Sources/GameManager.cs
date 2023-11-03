@@ -1,4 +1,4 @@
-using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     // index is actor number
     List<PlayerInfomations> characters;
     [SerializeField] private CharaDataBase charaDataBase;
-    [SerializeField] List<Vector3> red_spawn_pos;
-    [SerializeField] List<Vector3> blue_spawn_pos;
+    [SerializeField] List<Transform> red_spawn_pos;
+    [SerializeField] List<Transform> blue_spawn_pos;
     public static GameManager manager;
 
     #endregion
@@ -27,15 +27,16 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameObject obj;
         if (VariableManager.my_team == BattleObject.Team.Blue) {
             obj = PhotonNetwork.Instantiate(chara.CharaName,
-             blue_spawn_pos[VariableManager.GetIndex(VariableManager.my_team, PhotonNetwork.LocalPlayer.ActorNumber)],
+             blue_spawn_pos[VariableManager.GetIndex(VariableManager.my_team, PhotonNetwork.LocalPlayer.ActorNumber)].position,
              Quaternion.Euler(0.0f, -90.0f, 0.0f));
         } else {
             obj = PhotonNetwork.Instantiate(chara.CharaName,
-             red_spawn_pos[VariableManager.GetIndex(VariableManager.my_team, PhotonNetwork.LocalPlayer.ActorNumber)],
+             red_spawn_pos[VariableManager.GetIndex(VariableManager.my_team, PhotonNetwork.LocalPlayer.ActorNumber)].position,
              Quaternion.Euler(0.0f, 90.0f, 0.0f));
         }
         var tmp = obj.GetComponent<Character>();
 
+        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "character : " + tmp + "\n");
         photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team, this);
     }
 

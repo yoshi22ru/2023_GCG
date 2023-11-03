@@ -24,29 +24,45 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
         start_button.onClick.AddListener(StartBattle);
     }
 
-    void FixedUpdate() {
+    void FixedUpdate()
+    {
         CheckAll();
 
-        if (Input.GetKey(KeyCode.Return)) {
-            selections[PhotonNetwork.LocalPlayer.ActorNumber].SetDecision(true);
+        if (Input.GetKey(KeyCode.Return))
+        {
+            Debug.Log("return key");
+            for (int i = 0; i < selections.Count; ++i)
+            {
+                selections[i].OnDecision();
+            }
         }
-        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace)) {
-            selections[PhotonNetwork.LocalPlayer.ActorNumber].SetDecision(false);
+        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace))
+        {
+            for (int i = 0; i < selections.Count; ++i)
+            {
+                selections[i].OffDecision();
+            }
         }
     }
 
-    void CheckAll() {
+    void CheckAll()
+    {
         int i = 0;
-        for (; i < selections.Count; ++i) {
-            if (!selections[i].GetDecision()) {
+        for (; i < selections.Count; ++i)
+        {
+            if (!selections[i].GetDecision())
+            {
                 break;
             }
         }
 
-        if (i == selections.Count) {
+        if (i == selections.Count)
+        {
             SelectPanelManager.instance
                 .SetPanel(SelectPanelManager.Ident_Panel.StartPanel);
-        } else {
+        }
+        else
+        {
             SelectPanelManager.instance
                 .SetPanel(SelectPanelManager.Ident_Panel.DefaultPanel);
         }
@@ -65,13 +81,14 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
         //     return;
         // }
 
-        SetParams();
 
         photonView.RPC(nameof(rpcLoadScene), RpcTarget.All);
     }
 
     [PunRPC]
-    void rpcLoadScene() {
+    void rpcLoadScene()
+    {
+        SetParams();
         switch (Random.Range(1, 2))
         {
             case 1:
@@ -81,7 +98,7 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
                 SceneManager.LoadScene("Stage2");
                 break;
         }
-    } 
+    }
 
     bool IsEven()
     {

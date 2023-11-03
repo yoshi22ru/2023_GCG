@@ -1,4 +1,5 @@
 using System.Linq;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,11 +23,9 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     private void Start()
     {
         // Debug.Log("your actor number is : " + PhotonNetwork.LocalPlayer.ActorNumber);
-        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
-        {
-            up.onClick.AddListener(ScrollUp);
-            down.onClick.AddListener(ScrollDown);
-        }
+        up.onClick.AddListener(ScrollUp);
+        down.onClick.AddListener(ScrollDown);
+
 
         if (actor_number % 2 == 1)
         {
@@ -43,6 +42,10 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
     private void ScrollUp()
     {
+        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+            return;
+        }
+
         if ((_Character - 1) <= (CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min())
         {
             // underflow
@@ -55,6 +58,10 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     }
     private void ScrollDown()
     {
+        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+            return;
+        }
+
         if ((_Character + 1) >= (CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Max())
         {
             // overflow
@@ -80,8 +87,36 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
     }
 
+    #region receive event
+
+    public void TurnDecision()
+    {
+        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            SetDecision(!decide);
+        }
+    }
+
+    public void OnDecision() {
+        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+            return;
+        }
+        SetDecision(true);
+    }
+
+    public void OffDecision() {
+        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+            return;
+        }
+        SetDecision(false);
+    }
+
+    #endregion
+
     private void SetData(CharaData.Ident_Character ident_Character)
     {
+        if (decide) return;
+
         this._Character = ident_Character;
         CharaData data = charaDataBase.charadata[(int)ident_Character];
 
@@ -90,7 +125,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             VariableManager.character = ident_Character;
-            PhotonNetwork.LocalPlayer.SetTeam((int)team);
+            PhotonNetwork.LocalPlayer.SetCharacter((int)_Character);
         }
     }
 
@@ -110,18 +145,23 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             VariableManager.my_team = team;
-            PhotonNetwork.LocalPlayer.SetCharacter((int)_Character);
+            PhotonNetwork.LocalPlayer.SetTeam((int)team);
         }
     }
 
-    public void SetDecision(bool decision) {
-        if (!(decide^decision)) {
+    private void SetDecision(bool decision)
+    {
+        if (!(decide ^ decision))
+        {
             return;
         }
         decide = decision;
-        if (decision) {
+        if (decision)
+        {
             chara_sprite.color = Color.black;
-        } else {
+        }
+        else
+        {
             chara_sprite.color = Color.white;
         }
         if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
@@ -137,7 +177,9 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
+        // if update is not rerated this
         if (targetPlayer.ActorNumber != actor_number) return;
+        // if updated properties are mine
         if (PhotonNetwork.LocalPlayer.ActorNumber == targetPlayer.ActorNumber) return;
 
         if (targetPlayer.TryGetCharacter(out var character))
@@ -150,7 +192,8 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
             SetTeam((BattleObject.Team)team);
         }
 
-        if (targetPlayer.TryGetDecision(out var is_decide)) {
+        if (targetPlayer.TryGetDecision(out var is_decide))
+        {
             SetDecision(is_decide);
         }
     }
@@ -166,28 +209,31 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         return team;
     }
 
-    public bool GetDecision() {
+    public bool GetDecision()
+    {
         return decide;
     }
 
-    public CharaData.Ident_Character GetCharacter() {
+    public CharaData.Ident_Character GetCharacter()
+    {
         return _Character;
     }
 
-    public int GetActorNum() {
+    public int GetActorNum()
+    {
         return actor_number;
-    }
-
-    public void TurnDecision() {
-        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber) {
-            SetDecision(!decide);
-        }
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        PhotonNetwork.LocalPlayer.SetCharacter((int) _Character);
-        PhotonNetwork.LocalPlayer.SetTeam((int) team);
+        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) return;
+
+        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "actor_number : " + actor_number + "\n");
+        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "character : " + _Character + "\n");
+        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "team : " + team + "\n");
+
+        PhotonNetwork.LocalPlayer.SetCharacter((int)_Character);
+        PhotonNetwork.LocalPlayer.SetTeam((int)team);
         PhotonNetwork.LocalPlayer.SetDecision(decide);
     }
 }

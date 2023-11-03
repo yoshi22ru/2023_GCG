@@ -6,7 +6,6 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
-using Photon.Pun;
 
 
 public class Character : BattleObject, IPunObservable

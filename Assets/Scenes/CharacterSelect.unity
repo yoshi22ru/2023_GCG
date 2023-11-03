@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 19173283}
   - component: {fileID: 19173282}
   - component: {fileID: 19173281}
+  - component: {fileID: 19173284}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -191,6 +192,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &19173284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19173280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be21746ae35633640bc4d6de65c6cbac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &74885700
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +398,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 750581033461585607, guid: bd7992a02d47ecb43822f23eeab79e9b, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 760463685332338327, guid: bd7992a02d47ecb43822f23eeab79e9b, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524850670989488677, guid: bd7992a02d47ecb43822f23eeab79e9b, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4893414352010768314, guid: bd7992a02d47ecb43822f23eeab79e9b, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148918050945308906, guid: bd7992a02d47ecb43822f23eeab79e9b, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5626392247505494275, guid: bd7992a02d47ecb43822f23eeab79e9b, type: 3}
       propertyPath: m_Name
       value: Canvas
