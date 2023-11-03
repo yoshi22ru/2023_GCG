@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 public class StartBattleButton : MonoBehaviourPunCallbacks
 {
@@ -23,6 +24,34 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
         start_button.onClick.AddListener(StartBattle);
     }
 
+    void FixedUpdate() {
+        CheckAll();
+
+        if (Input.GetKey(KeyCode.Return)) {
+            selections[PhotonNetwork.LocalPlayer.ActorNumber].SetDecision(true);
+        }
+        if (Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Backspace)) {
+            selections[PhotonNetwork.LocalPlayer.ActorNumber].SetDecision(false);
+        }
+    }
+
+    void CheckAll() {
+        int i = 0;
+        for (; i < selections.Count; ++i) {
+            if (!selections[i].GetDecision()) {
+                break;
+            }
+        }
+
+        if (i == selections.Count) {
+            SelectPanelManager.instance
+                .SetPanel(SelectPanelManager.Ident_Panel.StartPanel);
+        } else {
+            SelectPanelManager.instance
+                .SetPanel(SelectPanelManager.Ident_Panel.DefaultPanel);
+        }
+    }
+
     void StartBattle()
     {
         if (IsEven())
@@ -30,14 +59,19 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
             Debug.Log("team is not even");
             return;
         }
-        if (photonView.IsRoomView)
-        {
-            Debug.Log("you are not owner");
-            return;
-        }
+        // if (photonView.IsRoomView)
+        // {
+        //     Debug.Log("you are not owner");
+        //     return;
+        // }
 
         SetParams();
 
+        photonView.RPC(nameof(rpcLoadScene), RpcTarget.All);
+    }
+
+    [PunRPC]
+    void rpcLoadScene() {
         switch (Random.Range(1, 2))
         {
             case 1:
@@ -47,7 +81,7 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
                 SceneManager.LoadScene("Stage2");
                 break;
         }
-    }
+    } 
 
     bool IsEven()
     {

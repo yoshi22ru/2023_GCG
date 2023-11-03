@@ -16,6 +16,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     [SerializeField] CharaDataBase charaDataBase;
     CharaData.Ident_Character _Character;
     int actor_number;
+    bool decide;
     BattleObject.Team team;
 
     private void Start()
@@ -36,6 +37,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
             SetTeam(BattleObject.Team.Blue);
         }
 
+        SetDecision(false);
         SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min());
     }
 
@@ -88,7 +90,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             VariableManager.character = ident_Character;
-            PhotonNetwork.LocalPlayer.SetCharacter((int)ident_Character);
+            PhotonNetwork.LocalPlayer.SetTeam((int)team);
         }
     }
 
@@ -112,6 +114,22 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
     }
 
+    public void SetDecision(bool decision) {
+        if (!(decide^decision)) {
+            return;
+        }
+        decide = decision;
+        if (decision) {
+            chara_sprite.color = Color.black;
+        } else {
+            chara_sprite.color = Color.white;
+        }
+        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
+        {
+            PhotonNetwork.LocalPlayer.SetDecision(decision);
+        }
+    }
+
     private void LateUpdate()
     {
         PhotonNetwork.LocalPlayer.SendPlayerProperties();
@@ -131,6 +149,10 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         {
             SetTeam((BattleObject.Team)team);
         }
+
+        if (targetPlayer.TryGetDecision(out var is_decide)) {
+            SetDecision(is_decide);
+        }
     }
 
     public void SetActorNum(int actor_number)
@@ -144,11 +166,28 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         return team;
     }
 
+    public bool GetDecision() {
+        return decide;
+    }
+
     public CharaData.Ident_Character GetCharacter() {
         return _Character;
     }
 
     public int GetActorNum() {
         return actor_number;
+    }
+
+    public void TurnDecision() {
+        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber) {
+            SetDecision(!decide);
+        }
+    }
+
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        PhotonNetwork.LocalPlayer.SetCharacter((int) _Character);
+        PhotonNetwork.LocalPlayer.SetTeam((int) team);
+        PhotonNetwork.LocalPlayer.SetDecision(decide);
     }
 }

@@ -59,6 +59,8 @@ public class Bird : Character
             p1 = p2;
             p2 = my_transform.position;
             elapsed_time = (half) Time.deltaTime;
+
+            return;
         } else {
             elapsed_time += (half) Time.deltaTime;
             if (elapsed_time < InterpolationPeriod) {

@@ -17,7 +17,7 @@ public class SelectRandomORPrivatePanel : MonoBehaviourPunCallbacks
 
     void ShiftInputRoomName() {
         Debug.Log("private room");
-        PanelManager.instance.SetPanel(PanelManager.Ident_Panel.InputRoomName);
+        MenuPanelManager.instance.SetPanel(MenuPanelManager.Ident_Panel.InputRoomName);
     }
     void RandomEnterRoom() {
         Debug.Log("random enter room");

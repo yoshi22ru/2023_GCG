@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8330271350868761475}
   - component: {fileID: 4348660724082470557}
   - component: {fileID: 7412297352867037315}
+  - component: {fileID: 589596302770177526}
   m_Layer: 5
   m_Name: TeamImage
   m_TagString: Untagged
@@ -76,6 +77,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &589596302770177526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2202111726327163293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2918109176378653368}
+          m_TargetAssemblyTypeName: SelectCharacter, Assembly-CSharp
+          m_MethodName: ChangeTeam
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &2827337803653571067
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +150,7 @@ GameObject:
   - component: {fileID: 5781742953711854071}
   - component: {fileID: 4229039641954778067}
   - component: {fileID: 3822148557058092746}
+  - component: {fileID: 7511755234819909252}
   m_Layer: 5
   m_Name: IconImage
   m_TagString: Untagged
@@ -185,6 +216,35 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7511755234819909252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3175269904182145079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2918109176378653368}
+          m_TargetAssemblyTypeName: SelectCharacter, Assembly-CSharp
+          m_MethodName: TurnDecision
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &5793710244774589081
 GameObject:
   m_ObjectHideFlags: 0

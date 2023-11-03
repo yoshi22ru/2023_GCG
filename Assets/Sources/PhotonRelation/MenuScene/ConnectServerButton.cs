@@ -33,13 +33,13 @@ public class ConnectServerButton : MonoBehaviourPunCallbacks
     {
         Debug.Log("OnConnected");
 
-        PanelManager.instance.SetPanel(PanelManager.Ident_Panel.SelectMatchingMode);
+        MenuPanelManager.instance.SetPanel(MenuPanelManager.Ident_Panel.SelectMatchingMode);
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("connected");
 
-        PanelManager.instance.SetPanel(PanelManager.Ident_Panel.SelectMatchingMode);
+        MenuPanelManager.instance.SetPanel(MenuPanelManager.Ident_Panel.SelectMatchingMode);
     }
 }

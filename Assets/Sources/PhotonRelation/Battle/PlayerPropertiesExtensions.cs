@@ -9,6 +9,7 @@ public static class PlayerPropertiesExtensions
     #region HashKeys
     private const string CharacterKey = "Chara";
     private const string TeamKey = "Team";
+    private const string DecisionKey = "Decision";
     private const string ScoreKey = "Score";
     private const string MessageKey = "Message";
     private const string HPKey = "hp";
@@ -22,6 +23,10 @@ public static class PlayerPropertiesExtensions
         if (character == -1) {
             return false;
         }
+        return true;
+    }
+    public static bool TryGetDecision(this Player player, out bool is_decide) {
+        is_decide = (player.CustomProperties[DecisionKey] is bool decide) ? decide : false;
         return true;
     }
     public static bool TryGetTeam(this Player player, out int team_color) {
@@ -68,6 +73,12 @@ public static class PlayerPropertiesExtensions
     #region Setter
     public static void SetCharacter(this Player player, int chara) {
         propsToSet[CharacterKey] = chara;
+    }
+    public static void SetDecision(this Player player, bool decide) {
+        propsToSet[DecisionKey] = decide;
+    }
+    public static void SetTeam(this Player player, int team) {
+        propsToSet[TeamKey] = team;
     }
     public static void SetScore(this Player player, int score) {
         propsToSet[ScoreKey] = score;

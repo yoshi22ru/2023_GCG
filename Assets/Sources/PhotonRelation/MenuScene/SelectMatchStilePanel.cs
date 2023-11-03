@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class SelectMatchStilePanel : MonoBehaviourPunCallbacks
 {
-    PanelManager panelManager;
+    MenuPanelManager panelManager;
     [SerializeField] private Button random_match_button;
     [SerializeField] private Button private_match_button;
 
     private void Start() {
-        panelManager = PanelManager.instance;
+        panelManager = MenuPanelManager.instance;
         random_match_button.onClick.AddListener(EnterRandomRoom);
         private_match_button.onClick.AddListener(ShiftInputRoomNamePanel);
     }
@@ -22,7 +22,7 @@ public class SelectMatchStilePanel : MonoBehaviourPunCallbacks
     }
 
     void ShiftInputRoomNamePanel() {
-        panelManager.SetPanel(PanelManager.Ident_Panel.InputRoomName);
+        panelManager.SetPanel(MenuPanelManager.Ident_Panel.InputRoomName);
     }
 
     public override void OnJoinedRoom() {
