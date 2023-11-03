@@ -560,6 +560,7 @@ GameObject:
   - component: {fileID: 8328258914765829185}
   - component: {fileID: 4956455348401892320}
   - component: {fileID: 9168634046952157025}
+  - component: {fileID: -1193060064612429262}
   m_Layer: 0
   m_Name: Monkey
   m_TagString: Untagged
@@ -589,7 +590,7 @@ Transform:
   - {fileID: 1968822504733517315}
   - {fileID: 6450256747667231081}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &2262783234427875668
 LODGroup:
@@ -728,6 +729,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   animator: {fileID: 0}
+  my_transform: {fileID: 8157232997635229388}
   skill1: {fileID: 8239280865369750960, guid: 8d3cc116fc7056b4582fae04de7b1a0d, type: 3}
   skill2: {fileID: 9017484664307500583, guid: 15d0f5e25c5ba1a42b96edc1517d22c1, type: 3}
   special: {fileID: 7957833072274404953, guid: 2ac8b13fd769efc4e9ff6318ef00196f, type: 3}
@@ -856,6 +858,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-1193060064612429262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876803712735204516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 8328258914765829185}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &5136372962432204738
 GameObject:
   m_ObjectHideFlags: 0

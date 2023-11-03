@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 7797138418692436367}
   - component: {fileID: 6318676906970831895}
   - component: {fileID: -3163185255769624374}
+  - component: {fileID: 7738483986150560512}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -376,7 +377,7 @@ Transform:
   - {fileID: 9209339409480764798}
   - {fileID: 4648797144373378095}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6243933476186978154
 LODGroup:
@@ -515,6 +516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   animator: {fileID: 5991094812295722536}
+  my_transform: {fileID: 7580856601421009894}
   skill1: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
   skill2: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
   special: {fileID: 7986504087968017091, guid: 3202917d47da00442ad7dfd854051a4a, type: 3}
@@ -643,6 +645,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7738483986150560512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4068790814402866381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7797138418692436367}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &4407278362326777846
 GameObject:
   m_ObjectHideFlags: 0

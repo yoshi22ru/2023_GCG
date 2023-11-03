@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 274014386977031897}
   - component: {fileID: 4876281657879048001}
   - component: {fileID: 7193320759901495718}
+  - component: {fileID: -4113190623638258572}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -862,6 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   animator: {fileID: 5650272712818997174}
+  my_transform: {fileID: 7575099522674250422}
   skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
   skill2: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
   special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
@@ -990,6 +992,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4113190623638258572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5137746313545845673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 274014386977031897}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6513247873590236899
 GameObject:
   m_ObjectHideFlags: 0

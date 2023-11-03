@@ -2446,7 +2446,7 @@ PrefabInstance:
     - target: {fileID: 8468580286963035556, guid: 1ab3a639355f6bb4dab0c0c64f58d803, type: 3}
       propertyPath: private_button
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 340187858}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5799748350023025963, guid: 1ab3a639355f6bb4dab0c0c64f58d803, type: 3}
