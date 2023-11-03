@@ -36,8 +36,8 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         var tmp = obj.GetComponent<Character>();
 
-        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "character : " + tmp + "\n");
-        photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team, this);
+
+        photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
     }
 
 
