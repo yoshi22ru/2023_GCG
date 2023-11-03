@@ -38,7 +38,7 @@ public class Character : BattleObject, IPunObservable
         SetState(Character_State.Idle);
     }
     [PunRPC]
-    public void Initialize(Team team, GameManager gameManager) {
+    public void Initialize(Team team) {
         SetTeam(team);
         setManager(GameManager.manager);
 
