@@ -7,7 +7,6 @@ using Photon.Pun;
 
 public class StartBattleButton : MonoBehaviourPunCallbacks
 {
-    
     [SerializeField] private List<SelectCharacter> selections;
     [SerializeField] private Button start_button;
 
@@ -29,6 +28,11 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
         if (IsEven())
         {
             Debug.Log("team is not even");
+            return;
+        }
+        if (photonView.IsRoomView)
+        {
+            Debug.Log("you are not owner");
             return;
         }
 
