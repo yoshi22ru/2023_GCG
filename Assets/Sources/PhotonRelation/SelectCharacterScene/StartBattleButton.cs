@@ -7,6 +7,7 @@ using Photon.Pun;
 
 public class StartBattleButton : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private List<SelectCharacter> selections;
     [SerializeField] private Button start_button;
 
     private void Awake()
