@@ -39,7 +39,7 @@ public class MoveClass : MonoBehaviour
         rb.velocity = moveForward * speed * 1.5f;
 
         // キャラクターの向きを進行方向に
-        if (moveForward != Vector3.zero)
+        if (moveForward != Vector3.zero && CountDown.instance.isCountFinish == true)
         {
             Quaternion quaternion = Quaternion.LookRotation(moveForward);
             this.transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, speed * 0.005f);

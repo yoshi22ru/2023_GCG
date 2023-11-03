@@ -71,7 +71,7 @@ public class Snake : Character
             characterStatus.SetHP(characterStatus.MaxHP);
         }
 
-        if (characterStatus.IsDead == false)
+        if (characterStatus.IsDead == false && CountDown.instance.isCountFinish == true)
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
