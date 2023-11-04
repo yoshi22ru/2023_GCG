@@ -18,14 +18,16 @@ public class CameraManager : MonoBehaviour
     private Vector3 cameraVelocity;
     private Vector3 TargetPosition => follow.position + offset;
     CameraManager cameraManager;
+    bool Initialized = false;
 
     private void Awake()
     {
         if(instance == null)
             instance = this;
     }
-    private void Start()
+    public void Initialize()
     {
+        Debug.Log("cameramanager started");
         follow = myCharacter.transform;
         cam = GetComponent<CinemachineVirtualCamera>();
         cameraManager = GetComponent<CameraManager>();
@@ -36,10 +38,14 @@ public class CameraManager : MonoBehaviour
         cam.Follow = characterCameraPoint.transform;
         cam.LookAt = characterShotPoint.transform;
         cameraPos = TargetPosition;
+
+        Initialized = true;
     }
 
     private void FixedUpdate()
     {
+        if (!Initialized) return;
+
         var targetPos = TargetPosition;
         cameraPos = Vector3.SmoothDamp(cameraPos, targetPos, ref cameraVelocity, 0.5f);
     }

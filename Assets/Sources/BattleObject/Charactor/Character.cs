@@ -18,6 +18,22 @@ public class Character : BattleObject, IPunObservable
     protected Vector3 p1, p2, v1, v2;
     protected half elapsed_time;
     protected const float InterpolationPeriod = 0.1f;
+    
+    #region skill variables
+    [SerializeField] GameObject skill1;
+    [SerializeField] GameObject skill2;
+    [SerializeField] GameObject special;
+    [SerializeField] Transform skill1Point;
+    [SerializeField] Transform skill2Point;
+    [SerializeField] Transform specialPoint;
+    [SerializeField] AudioClip skill1SE;
+    [SerializeField] AudioClip skill2SE;
+    [SerializeField] AudioClip specialSE;
+    [SerializeField] bool is_child_1;
+    [SerializeField] bool is_child_2;
+    [SerializeField] bool is_child_Special;
+    AudioSource audioSource;
+    #endregion
 
     public enum Character_State
     {
@@ -36,12 +52,17 @@ public class Character : BattleObject, IPunObservable
         characterStatus = GetComponent<CharacterStatus>();
         animator = GetComponent<Animator>();
         SetState(Character_State.Idle);
+        setManager(GameManager.manager);
     }
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     [PunRPC]
     public void Initialize(Team team) {
         SetTeam(team);
-        setManager(GameManager.manager);
-
         manager.AddPlayer(this, characterStatus, PhotonNetwork.LocalPlayer.ActorNumber, team);
     }
 
@@ -114,6 +135,7 @@ public class Character : BattleObject, IPunObservable
             } else {
                 my_transform.position = Vector3.LerpUnclamped(p1, p2, elapsed_time/InterpolationPeriod);
             }
+            return;
         }
 
         if (characterStatus.IsDead)
@@ -216,18 +238,33 @@ public class Character : BattleObject, IPunObservable
     {
         characterStatus.UseSkill1();
         SetState(Character_State.Skill1);
+        var buf = Instantiate(skill1, skill1Point.position, transform.rotation);
+        if (is_child_1) {
+            buf.transform.parent = my_transform;
+        }
+        audioSource.PlayOneShot(skill1SE);
     }
 
     protected virtual void Skill2()
     {
         characterStatus.UseSkill2();
         SetState(Character_State.Skill2);
+        var buf = Instantiate(skill2, skill2Point.position, transform.rotation);
+        if (is_child_2) {
+            buf.transform.parent = my_transform;
+        }
+        audioSource.PlayOneShot(skill2SE);
     }
 
     protected virtual void Special()
     {
         characterStatus.UseSpecial();
         SetState(Character_State.Special);
+        var buf = Instantiate(special, specialPoint.position, transform.rotation);
+        if (is_child_Special) {
+            buf.transform.parent = my_transform;
+        }
+        audioSource.PlayOneShot(specialSE);
     }
 
     void IPunObservable.OnPhotonSerializeView(Photon.Pun.PhotonStream stream, Photon.Pun.PhotonMessageInfo info) {

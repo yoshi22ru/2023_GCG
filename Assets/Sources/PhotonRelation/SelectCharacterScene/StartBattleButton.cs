@@ -56,7 +56,7 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
             }
         }
 
-        if (i == selections.Count)
+        if (i == selections.Count & IsEven())
         {
             SelectPanelManager.instance
                 .SetPanel(SelectPanelManager.Ident_Panel.StartPanel);
@@ -70,11 +70,6 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
 
     void StartBattle()
     {
-        if (IsEven())
-        {
-            Debug.Log("team is not even");
-            return;
-        }
         // if (photonView.IsRoomView)
         // {
         //     Debug.Log("you are not owner");
@@ -112,7 +107,7 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
             }
         }
 
-        if (count != selections.Count / 2)
+        if (count == selections.Count / 2)
         {
             return true;
         }

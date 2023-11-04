@@ -15,7 +15,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     [SerializeField] private Image chara_sprite;
     [SerializeField] private Image team_color;
     [SerializeField] CharaDataBase charaDataBase;
-    CharaData.Ident_Character _Character;
+    CharaData.Ident_Character _Character = CharaData.Ident_Character.Bird;
     int actor_number;
     bool decide;
     BattleObject.Team team;
@@ -228,9 +228,9 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     {
         if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) return;
 
-        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "actor_number : " + actor_number + "\n");
-        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "character : " + _Character + "\n");
-        File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "team : " + team + "\n");
+        // File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "actor_number : " + actor_number + "\n");
+        // File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "character : " + _Character + "\n");
+        // File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "team : " + team + "\n");
 
         PhotonNetwork.LocalPlayer.SetCharacter((int)_Character);
         PhotonNetwork.LocalPlayer.SetTeam((int)team);

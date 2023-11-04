@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviourPunCallbacks
          charaDataBase.charadata[(int)VariableManager.character];
 
         GameObject obj;
+        Debug.Log("object : " + chara.name + "\n");
+        Debug.Log("position : " + VariableManager.my_team +
+        PhotonNetwork.LocalPlayer.ActorNumber + "\n");
         if (VariableManager.my_team == BattleObject.Team.Blue) {
             obj = PhotonNetwork.Instantiate(chara.CharaName,
              blue_spawn_pos[VariableManager.GetIndex(VariableManager.my_team, PhotonNetwork.LocalPlayer.ActorNumber)].position,
@@ -37,9 +40,14 @@ public class GameManager : MonoBehaviourPunCallbacks
              Quaternion.Euler(0.0f, 90.0f, 0.0f));
         }
         var tmp = obj.GetComponent<Character>();
-        Instantiate(cameramanager, obj.transform);
-        CameraManager.instance.myCharacter = obj;
+        Instantiate(cameramanager, obj.transform).transform.parent = obj.transform;
 
+        Debug.Log("cameramanager set");
+
+        CameraManager.instance.myCharacter = obj;
+        CameraManager.instance.Initialize();
+
+        Debug.Log("tmp" + tmp);
         photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
     }
 
