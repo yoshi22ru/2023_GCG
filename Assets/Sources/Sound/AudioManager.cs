@@ -8,6 +8,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     [SerializeField] private List<AudioData> audioDataList;
     private AudioSource audioSource;
 
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -16,6 +17,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     private void Update()
     {
         //audioSource.volume = volumeSlider;
+        DontDestroyOnLoad(gameObject);
     }
     public void PlaySE(AudioType type)
     {
