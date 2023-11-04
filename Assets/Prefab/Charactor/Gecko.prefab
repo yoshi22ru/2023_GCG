@@ -731,12 +731,11 @@ GameObject:
   - component: {fileID: 7006474085619321807}
   - component: {fileID: 7646740285137070705}
   - component: {fileID: 5276291351728673135}
-  - component: {fileID: 4752857940624145493}
   - component: {fileID: 4799335323196037115}
-  - component: {fileID: 1590181784663540493}
   - component: {fileID: 2763594635688396010}
   - component: {fileID: 8654620189550129383}
   - component: {fileID: 5157741009178066923}
+  - component: {fileID: 8943432472206885252}
   m_Layer: 0
   m_Name: Gecko
   m_TagString: Untagged
@@ -766,7 +765,7 @@ Transform:
   - {fileID: 2520655762945934913}
   - {fileID: 4982933374544751042}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &7301462259672627378
 LODGroup:
@@ -859,18 +858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4752857940624145493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286164418673159766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9986efad8e668a4ab5d5434716c89c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4799335323196037115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,30 +878,6 @@ MonoBehaviour:
   Skill2CoolDown: 5
   SpecialCoolDown: 30
   skillPrefab: []
---- !u!114 &1590181784663540493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286164418673159766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e28b4e22fa83f6942b6868e856f5c57b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  animator: {fileID: 7006474085619321807}
-  my_transform: {fileID: 677525309882137524}
-  skill1: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
-  skill2: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
-  special: {fileID: 7053385775836331393, guid: 5805e8d85f3cd834eb86312aac62abd0, type: 3}
-  skill1Point: {fileID: 3828777967455100985}
-  skill2Point: {fileID: 2520655762945934913}
-  specialPoint: {fileID: 2520655762945934913}
-  skill1SE: {fileID: 8300000, guid: b457908ee16812f46bfb73f6f3cb575b, type: 3}
-  skill2SE: {fileID: 8300000, guid: 18ca72dc54058d049bbba9b542ab0fb5, type: 3}
-  specialSE: {fileID: 8300000, guid: a8911c156a883c547a3a8e7c9e34efee, type: 3}
 --- !u!136 &2763594635688396010
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1053,10 +1016,37 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1590181784663540493}
+  - {fileID: 8943432472206885252}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &8943432472206885252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286164418673159766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  animator: {fileID: 7006474085619321807}
+  my_transform: {fileID: 677525309882137524}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 7053385775836331393, guid: 5805e8d85f3cd834eb86312aac62abd0, type: 3}
+  skill1Point: {fileID: 3828777967455100985}
+  skill2Point: {fileID: 3828777967455100985}
+  specialPoint: {fileID: 2520655762945934913}
+  skill1SE: {fileID: 8300000, guid: a6749282c84475f42874571d27f3ec2c, type: 3}
+  skill2SE: {fileID: 8300000, guid: af7a3951c2c4f7b4e9d9fcfe219de812, type: 3}
+  specialSE: {fileID: 8300000, guid: a8911c156a883c547a3a8e7c9e34efee, type: 3}
+  is_child_1: 0
+  is_child_2: 0
+  is_child_Special: 1
 --- !u!1 &7424689058606534647
 GameObject:
   m_ObjectHideFlags: 0

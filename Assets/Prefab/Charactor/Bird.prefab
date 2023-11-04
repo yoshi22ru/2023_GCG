@@ -776,10 +776,10 @@ GameObject:
   - component: {fileID: 5855831511689305861}
   - component: {fileID: 2310429921653913872}
   - component: {fileID: 4126225133461092104}
-  - component: {fileID: 1596758910996175625}
   - component: {fileID: 46457655383760244}
   - component: {fileID: 119947044564844693}
   - component: {fileID: 7568107164451526289}
+  - component: {fileID: 1002824160273941480}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Character
@@ -808,7 +808,7 @@ Transform:
   - {fileID: 3812832313765362687}
   - {fileID: 4033932761021236322}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6412805952127922632
 LODGroup:
@@ -921,33 +921,6 @@ MonoBehaviour:
   Skill2CoolDown: 5
   SpecialCoolDown: 30
   skillPrefab: []
---- !u!114 &1596758910996175625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572335396204123815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f57a001ed58d98439a51027951ae63a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  animator: {fileID: 1880356326931833000}
-  my_transform: {fileID: 1058467058186207363}
-  skill1: {fileID: 8239280865369750960, guid: c166eb0236cb25f4fb9246e52f61286d, type: 3}
-  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
-  skill1Point: {fileID: 528405523109714338}
-  skill2Point: {fileID: 3812832313765362687}
-  specialPoint: {fileID: 3812832313765362687}
-  Skill1Damage: 15
-  Skill2Damage: 30
-  SpecialBuf: 3
-  skill1SE: {fileID: 8300000, guid: a6749282c84475f42874571d27f3ec2c, type: 3}
-  skill2SE: {fileID: 8300000, guid: dc2c9dfb30d3440488b7a59474752c4f, type: 3}
-  specialSE: {fileID: 8300000, guid: 16a30a9e6edd60c44a701ac1f0e2f88a, type: 3}
 --- !u!136 &46457655383760244
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1086,10 +1059,37 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1596758910996175625}
+  - {fileID: 1002824160273941480}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1002824160273941480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  animator: {fileID: 1880356326931833000}
+  my_transform: {fileID: 1058467058186207363}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  skill1Point: {fileID: 528405523109714338}
+  skill2Point: {fileID: 528405523109714338}
+  specialPoint: {fileID: 3812832313765362687}
+  skill1SE: {fileID: 8300000, guid: a6749282c84475f42874571d27f3ec2c, type: 3}
+  skill2SE: {fileID: 8300000, guid: af7a3951c2c4f7b4e9d9fcfe219de812, type: 3}
+  specialSE: {fileID: 8300000, guid: 4b3ef1af5f2f43d4a9a9e879cd5c669a, type: 3}
+  is_child_1: 0
+  is_child_2: 0
+  is_child_Special: 1
 --- !u!1 &8075736241546589853
 GameObject:
   m_ObjectHideFlags: 0
