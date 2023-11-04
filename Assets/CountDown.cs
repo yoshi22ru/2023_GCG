@@ -47,5 +47,7 @@ public class CountDown : MonoBehaviour
         startLabel.SetActive(true);
         yield return new WaitForSeconds(1f);
         startLabel.SetActive(false);
+
+        GameManager.manager.StartEvent();
     }
 }

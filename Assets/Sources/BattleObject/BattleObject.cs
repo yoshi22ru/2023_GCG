@@ -54,6 +54,8 @@ public class BattleObject : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!photonView.IsMine) return;
+        
         if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject))
         {
             if (this.team == battleObject.team)

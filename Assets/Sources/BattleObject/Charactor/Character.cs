@@ -69,8 +69,6 @@ public class Character : BattleObject, IPunObservable
     [PunRPC]
     public override void OnHitMyTeamObject(BattleObject gameObject)
     {
-        if (!photonView.IsMine) return;
-
         SkillManager skillManager = gameObject as SkillManager;
         if (skillManager == null)
             return;
@@ -98,8 +96,6 @@ public class Character : BattleObject, IPunObservable
     [PunRPC]
     public override void OnHitEnemyTeamObject(BattleObject gameObject)
     {
-        if (!photonView.IsMine) return;
-
         SkillManager skillManager = gameObject as SkillManager;
         if (skillManager == null)
             return;
@@ -124,6 +120,11 @@ public class Character : BattleObject, IPunObservable
 
     private void FixedUpdate()
     {
+        if (GameManager.manager.current_state != GameManager.BattleState.Battle) {
+            return;
+        }
+
+
         if (photonView.IsMine) {
             p1 = p2;
             p2 = my_transform.position;
@@ -234,10 +235,12 @@ public class Character : BattleObject, IPunObservable
         }
     }
 
+    [PunRPC]
     protected virtual void Skill1()
     {
         characterStatus.UseSkill1();
-        SetState(Character_State.Skill1);
+        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Skill1);
+        // SetState(Character_State.Skill1);
         var buf = Instantiate(skill1, skill1Point.position, transform.rotation);
         if (is_child_1) {
             buf.transform.parent = my_transform;
@@ -245,10 +248,12 @@ public class Character : BattleObject, IPunObservable
         audioSource.PlayOneShot(skill1SE);
     }
 
+    [PunRPC]
     protected virtual void Skill2()
     {
         characterStatus.UseSkill2();
-        SetState(Character_State.Skill2);
+        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Skill2);
+        // SetState(Character_State.Skill2);
         var buf = Instantiate(skill2, skill2Point.position, transform.rotation);
         if (is_child_2) {
             buf.transform.parent = my_transform;
@@ -256,9 +261,11 @@ public class Character : BattleObject, IPunObservable
         audioSource.PlayOneShot(skill2SE);
     }
 
+    [PunRPC]
     protected virtual void Special()
     {
         characterStatus.UseSpecial();
+        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Special);
         SetState(Character_State.Special);
         var buf = Instantiate(special, specialPoint.position, transform.rotation);
         if (is_child_Special) {
