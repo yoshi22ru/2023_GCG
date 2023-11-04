@@ -6,20 +6,17 @@ using System;
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
 {
     [SerializeField] private List<AudioData> audioDataList;
-
     private AudioSource audioSource;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        
+        //audioSource.volume = volumeSlider;
     }
-
     public void PlaySE(AudioType type)
     {
         AudioClip audioClip = FindAudioClip(type);
