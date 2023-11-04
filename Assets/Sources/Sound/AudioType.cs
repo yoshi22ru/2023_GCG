@@ -11,4 +11,5 @@ public enum AudioType
     StageBgm2,
     DecideButton,
     BackButton,
+    ChangeButton,
 }

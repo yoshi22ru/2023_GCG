@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DesideButton
   m_EditorClassIdentifier: 
   type: 9
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 46b82e911e8e8fb47b95417a634d13f7, type: 3}

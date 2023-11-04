@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: StageBgm1
   m_EditorClassIdentifier: 
   type: 7
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: ef8a9d67a4cebea47aae676104c0b2a0, type: 3}

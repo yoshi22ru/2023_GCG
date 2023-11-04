@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 783c68e96b21ba64c95367cff5c54276, type: 3}
-  m_Name: MainBgm1
+  m_Name: ChangeButton
   m_EditorClassIdentifier: 
-  type: 4
-  audioClip: {fileID: 8300000, guid: a10660c0cefd8d247a56cee8384af955, type: 3}
+  type: 11
+  audioClip: {fileID: 8300000, guid: 44ec709f63fe4b842892ba92d65edadf, type: 3}
