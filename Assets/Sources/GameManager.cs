@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private CharaDataBase charaDataBase;
     [SerializeField] List<Transform> red_spawn_pos;
     [SerializeField] List<Transform> blue_spawn_pos;
+    [SerializeField] private
+    GameObject cameramanager;
     public static GameManager manager;
 
     #endregion
@@ -35,7 +37,8 @@ public class GameManager : MonoBehaviourPunCallbacks
              Quaternion.Euler(0.0f, 90.0f, 0.0f));
         }
         var tmp = obj.GetComponent<Character>();
-
+        Instantiate(cameramanager, obj.transform);
+        CameraManager.instance.myCharacter = obj;
 
         photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
     }
