@@ -32,14 +32,15 @@ public class ConnectServerButton : MonoBehaviourPunCallbacks
     public override void OnConnected()
     {
         Debug.Log("OnConnected");
-
+        connect_button.interactable = true;
         MenuPanelManager.instance.SetPanel(MenuPanelManager.Ident_Panel.SelectMatchingMode);
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("connected");
-
+        connect_button.interactable = true;
         MenuPanelManager.instance.SetPanel(MenuPanelManager.Ident_Panel.SelectMatchingMode);
+
     }
 }
