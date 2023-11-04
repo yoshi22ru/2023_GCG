@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -170,6 +171,24 @@ public class CharacterStatus : MonoBehaviour
             isDead = true;
             currentHP = minHP;
         }
+    }
+    public float GetSkill1Cool() {
+        return Skill1CoolDown;
+    }
+    public float GetSkill2Cool() {
+        return Skill2CoolDown;
+    }
+    public float GetSpecialCool() {
+        return SpecialCoolDown;
+    }
+    public float GetCurrentSkill1Cool() {
+        return skill1CooldownTimer;
+    }
+    public float GetCurrentSkill2Cool() {
+        return skill2CooldownTimer;
+    }
+    public float GetCurrentSpecialCool() {
+        return specialCooldownTimer;
     }
 }
 

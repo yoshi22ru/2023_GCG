@@ -8,17 +8,27 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     #region variables
     List<Catsle> catsles;
-    BattleState current_state;
+    public BattleState current_state;
     // index is actor number
     List<PlayerInfomations> characters;
     [SerializeField] private CharaDataBase charaDataBase;
     [SerializeField] List<Transform> red_spawn_pos;
     [SerializeField] List<Transform> blue_spawn_pos;
-    [SerializeField] private
-    GameObject cameramanager;
+    [SerializeField] private GameObject cameramanager;
+    [SerializeField] float BattleTime;
+    [SerializeField] CoolTimeView coolTimeView;
+    float current_time;
     public static GameManager manager;
 
     #endregion
+
+    private void Awake() {
+        if (manager == null) {
+            manager = this;
+        } else {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {
@@ -40,6 +50,7 @@ public class GameManager : MonoBehaviourPunCallbacks
              Quaternion.Euler(0.0f, 90.0f, 0.0f));
         }
         var tmp = obj.GetComponent<Character>();
+        coolTimeView.SetStatus(obj.GetComponent<CharacterStatus>());
         Instantiate(cameramanager, obj.transform).transform.parent = obj.transform;
 
         Debug.Log("cameramanager set");
@@ -51,8 +62,24 @@ public class GameManager : MonoBehaviourPunCallbacks
         photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
     }
 
+    public void StartEvent() {
+        current_state = BattleState.Battle;
+        current_time = BattleTime;
+    }
 
-    enum BattleState
+    void FixedUpdate() {
+        current_time -= Time.fixedDeltaTime;
+
+
+        if (current_time <= 0.0f) {
+            current_state = BattleState.Ended;
+
+            // TODO!
+        }
+    }
+
+
+    public enum BattleState
     {
         BeforeStart,
         Battle,
