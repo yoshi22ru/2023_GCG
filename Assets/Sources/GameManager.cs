@@ -51,15 +51,15 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         var tmp = obj.GetComponent<Character>();
         coolTimeView.SetStatus(obj.GetComponent<CharacterStatus>());
-        Instantiate(cameramanager, obj.transform).transform.parent = obj.transform;
+        // Instantiate(cameramanager, obj.transform).transform.parent = obj.transform;
 
-        Debug.Log("cameramanager set");
+        Debug.Log("camera manager set");
 
         CameraManager.instance.myCharacter = obj;
         CameraManager.instance.Initialize();
 
         Debug.Log("tmp" + tmp);
-        photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
+        // photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
     }
 
     public void StartEvent() {
@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         current_time = BattleTime;
     }
 
-    void FixedUpdate() {
+    private void FixedUpdate() {
         current_time -= Time.fixedDeltaTime;
 
 

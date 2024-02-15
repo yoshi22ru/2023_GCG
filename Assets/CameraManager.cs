@@ -27,7 +27,7 @@ public class CameraManager : MonoBehaviour
     }
     public void Initialize()
     {
-        Debug.Log("cameramanager started");
+        Debug.Log("camera manager started");
         follow = myCharacter.transform;
         cam = GetComponent<CinemachineVirtualCamera>();
         cameraManager = GetComponent<CameraManager>();

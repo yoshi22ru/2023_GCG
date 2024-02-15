@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class HermiteSpline
 {
-    public static float Interpolate(float p1, float p2, float v1, float v2, float t) {
+    static float Interpolate(float p1, float p2, float v1, float v2, float t) {
         float a = 2f * p1 - 2f * p2 + v1 + v2;
         float b = -3f * p1 + 3f * p2 - 2f * v1 - v2;
         return t * (t * (t * a + b) + v1) + p1;
