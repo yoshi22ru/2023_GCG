@@ -51,15 +51,6 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         var tmp = obj.GetComponent<Character>();
         coolTimeView.SetStatus(obj.GetComponent<CharacterStatus>());
-        // Instantiate(cameramanager, obj.transform).transform.parent = obj.transform;
-
-        Debug.Log("camera manager set");
-
-        CameraManager.instance.myCharacter = obj;
-        CameraManager.instance.Initialize();
-
-        Debug.Log("tmp" + tmp);
-        // photonView.RPC(nameof(tmp.Initialize), RpcTarget.All, VariableManager.my_team);
     }
 
     public void StartEvent() {

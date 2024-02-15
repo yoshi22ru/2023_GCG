@@ -31,9 +31,8 @@ public class SelectMatchStilePanel : MonoBehaviourPunCallbacks
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         string roomName = "";
-        char buf;
         for (int i = 0; i < 5; ++i) {
-            buf = (char)Random.Range('a', 'Z');
+            var buf = (char)Random.Range('a', 'Z');
             roomName += buf;
         }
         Utility.PhotonUtility.CreateAndJoinRoom(roomName, true);

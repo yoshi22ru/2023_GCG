@@ -66,6 +66,12 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
             SelectPanelManager.instance
                 .SetPanel(SelectPanelManager.Ident_Panel.DefaultPanel);
         }
+
+        if (PhotonNetwork.OfflineMode && selections[0].GetDecision())
+        {
+            SelectPanelManager.instance
+                .SetPanel(SelectPanelManager.Ident_Panel.StartPanel);
+        }
     }
 
     void StartBattle()
@@ -77,11 +83,11 @@ public class StartBattleButton : MonoBehaviourPunCallbacks
         // }
 
 
-        photonView.RPC(nameof(rpcLoadScene), RpcTarget.All);
+        photonView.RPC(nameof(RPCLoadScene), RpcTarget.All);
     }
 
     [PunRPC]
-    void rpcLoadScene()
+    void RPCLoadScene()
     {
         SetParams();
         switch (Random.Range(1, 2))

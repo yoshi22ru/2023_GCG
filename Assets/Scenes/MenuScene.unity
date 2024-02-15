@@ -1813,7 +1813,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d4a5910bdafc1a14184f68e16718b00b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c38b871d11c75804187209c916239ebe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3554,6 +3554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1a4ea8e9fe1fc4b97272c26f272871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offlineMode: 1
   connect_button: {fileID: 1905764648}
 --- !u!95 &1905764647
 Animator:
@@ -4131,6 +4132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1a4ea8e9fe1fc4b97272c26f272871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offlineMode: 0
   connect_button: {fileID: 2106021381}
 --- !u!1 &2111610936
 GameObject:

@@ -58,6 +58,13 @@ public class Character : BattleObject, IPunObservable
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        if (photonView.IsMine)
+        {
+            Debug.Log(this.name+" : " + photonView.IsMine);
+            CameraManager.instance.myCharacter = this.gameObject;
+            CameraManager.instance.Initialize();
+        }
     }
 
     [PunRPC]

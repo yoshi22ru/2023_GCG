@@ -8,6 +8,7 @@ using Photon.Realtime;
 
 public class ConnectServerButton : MonoBehaviourPunCallbacks
 {
+    public bool offlineMode;
     [SerializeField] private Button connect_button;
     void Start()
     {
@@ -18,6 +19,11 @@ public class ConnectServerButton : MonoBehaviourPunCallbacks
     {
         connect_button.interactable = false;
 
+        if (offlineMode)
+        {
+            PhotonNetwork.OfflineMode = true;
+        }
+        
         if (PhotonNetwork.IsConnected == false)
         {
             PhotonNetwork.GameVersion = "v1.0";
