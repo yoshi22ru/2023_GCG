@@ -5,11 +5,14 @@ using Photon.Pun;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
 
 
 public class Character : BattleObject, IPunObservable
 {
+    private MoveClass _moveClass;
+    private Vector3 moveVector;
     public Animator animator;
     protected Character_State currentState;
     protected CharacterStatus characterStatus;
@@ -51,6 +54,8 @@ public class Character : BattleObject, IPunObservable
     {
         characterStatus = GetComponent<CharacterStatus>();
         animator = GetComponent<Animator>();
+        var rbody = GetComponent<Rigidbody>();
+        _moveClass = new MoveClass(my_transform, rbody, characterStatus);
         SetState(Character_State.Idle);
         setManager(GameManager.manager);
     }
@@ -312,6 +317,14 @@ public class Character : BattleObject, IPunObservable
             v2 = net_vel * InterpolationPeriod;
             elapsed_time = (half) 0;
         }
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        if (!photonView.IsMine) return;
+
+        var value = context.ReadValue<Vector2>();
+        _moveClass.Move(value);
     }
 }
 

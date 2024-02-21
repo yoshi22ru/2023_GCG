@@ -4,45 +4,37 @@ using UnityEngine;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
 
-public class MoveClass : MonoBehaviour
+public class MoveClass
 {
     private CharacterStatus characterStatus;
-    private float speed;
-    float inputHorizontal;
-    float inputVertical;
     private Vector3 moving, latestPos;
     Rigidbody rb;
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        characterStatus = GetComponent<CharacterStatus>();
-        speed = characterStatus.MoveSpeed;
+    private Transform _myTrans;
 
+    public MoveClass(Transform transform, Rigidbody rb, CharacterStatus characterStatus)
+    {
+        this._myTrans = transform;
+        this.rb = rb;
+        this.characterStatus = characterStatus;
     }
 
-    void Update()
+    public void Move(Vector2 inputVector2)
     {
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-        inputVertical = Input.GetAxisRaw("Vertical");
-
-    }
-
-    void FixedUpdate()
-    {
-        // ƒJƒƒ‰‚Ì•ûŒü‚©‚çAX-Z•½–Ê‚Ì’PˆÊƒxƒNƒgƒ‹‚ğæ“¾
+        // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½AX-Zï¿½ï¿½ï¿½Ê‚Ì’Pï¿½Êƒxï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½æ“¾
         Vector3 cameraForward = Vector3.Scale(Camera.main.transform.forward, new Vector3(1, 0, 1)).normalized;
 
-        // •ûŒüƒL[‚Ì“ü—Í’l‚ÆƒJƒƒ‰‚ÌŒü‚«‚©‚çAˆÚ“®•ûŒü‚ğŒˆ’è
-        Vector3 moveForward = cameraForward * inputVertical + Camera.main.transform.right * inputHorizontal;
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½[ï¿½Ì“ï¿½ï¿½Í’lï¿½ÆƒJï¿½ï¿½ï¿½ï¿½ï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        Vector3 moveForward = cameraForward * inputVector2.y + Camera.main.transform.right * inputVector2.x;
 
-        // ˆÚ“®•ûŒü‚ÉƒXƒs[ƒh‚ğŠ|‚¯‚éB
-        rb.velocity = moveForward * speed * 1.5f;
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉƒXï¿½sï¿½[ï¿½hï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½ï¿½B
+        rb.velocity = moveForward * characterStatus.MoveSpeed * 1.5f;
 
-        // ƒLƒƒƒ‰ƒNƒ^[‚ÌŒü‚«‚ğis•ûŒü‚É
+        // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌŒï¿½ï¿½ï¿½ï¿½ï¿½iï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (moveForward != Vector3.zero && CountDown.instance.isCountFinish == true)
         {
             Quaternion quaternion = Quaternion.LookRotation(moveForward);
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, speed * 0.005f);
+            this._myTrans.rotation =
+                Quaternion.Slerp(_myTrans.rotation, quaternion, characterStatus.MoveSpeed * 0.005f);
         }
     }
 }
