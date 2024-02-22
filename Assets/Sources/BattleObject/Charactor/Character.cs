@@ -20,7 +20,7 @@ public class Character : BattleObject, IPunObservable
     [SerializeField] protected Transform my_transform;
     protected Vector3 p1, p2, v1, v2;
     protected half elapsed_time;
-    protected const float InterpolationPeriod = 0.1f;
+    protected const float InterpolationPeriod = 0.25f;
     
     #region skill variables
     [SerializeField] GameObject skill1;
@@ -55,9 +55,9 @@ public class Character : BattleObject, IPunObservable
         characterStatus = GetComponent<CharacterStatus>();
         animator = GetComponent<Animator>();
         var rbody = GetComponent<Rigidbody>();
-        _moveClass = new MoveClass(my_transform, rbody, characterStatus);
         SetState(Character_State.Idle);
         setManager(GameManager.manager);
+        _moveClass = new MoveClass(my_transform, rbody, characterStatus);
     }
 
     void Start()

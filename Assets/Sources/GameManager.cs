@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         var tmp = obj.GetComponent<Character>();
         coolTimeView.SetStatus(obj.GetComponent<CharacterStatus>());
+        
+        // FIXME
+        StartEvent();
     }
 
     public void StartEvent() {
