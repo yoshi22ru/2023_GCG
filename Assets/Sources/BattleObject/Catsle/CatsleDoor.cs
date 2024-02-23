@@ -38,7 +38,7 @@ public class CatsleDoor : BattleObject
             Destroy(gameObject);
     }
 
-    public override void OnHitEnemyTeamObject(BattleObject gameObject)
+    protected override void OnHitEnemyTeamObject(BattleObject battleObject)
     {
         render.material.color = Color.red;
         onTimer = true;
@@ -48,7 +48,7 @@ public class CatsleDoor : BattleObject
         newParticle.Play();
         Destroy(newParticle.gameObject, 0.5f);
 
-        SkillManager skillManager = gameObject as SkillManager;
+        SkillManager skillManager = battleObject as SkillManager;
         if (skillManager == null)
             return;
         if (skillManager.type == SkillManager.SkillType.weekDamage)
@@ -65,7 +65,7 @@ public class CatsleDoor : BattleObject
         }
     }
 
-    public override void OnHitMyTeamObject(BattleObject gameObject)
+    protected override void OnHitMyTeamObject(BattleObject battleObject)
     {
 
     }

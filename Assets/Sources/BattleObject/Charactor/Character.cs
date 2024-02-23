@@ -60,7 +60,7 @@ public class Character : BattleObject, IPunObservable
         _moveClass = new MoveClass(my_transform, rbody, characterStatus);
     }
 
-    void Start()
+    private void Start()
     {
         audioSource = GetComponent<AudioSource>();
 
@@ -78,12 +78,11 @@ public class Character : BattleObject, IPunObservable
         manager.AddPlayer(this, characterStatus, PhotonNetwork.LocalPlayer.ActorNumber, team);
     }
 
-    [PunRPC]
-    public override void OnHitMyTeamObject(BattleObject gameObject)
+    protected override void OnHitMyTeamObject(BattleObject battleObject)
     {
-        SkillManager skillManager = gameObject as SkillManager;
-        if (skillManager == null)
-            return;
+        SkillManager skillManager = battleObject as SkillManager;
+        if (skillManager == null) return;
+        
         if (skillManager.type == SkillManager.SkillType.heal)
         {
             characterStatus.SetHP(skillManager.GetHeal + characterStatus.CurrentHP);
@@ -105,12 +104,11 @@ public class Character : BattleObject, IPunObservable
         }
     }
 
-    [PunRPC]
-    public override void OnHitEnemyTeamObject(BattleObject gameObject)
+    protected override void OnHitEnemyTeamObject(BattleObject battleObject)
     {
-        SkillManager skillManager = gameObject as SkillManager;
-        if (skillManager == null)
-            return;
+        SkillManager skillManager = battleObject as SkillManager;
+        if (skillManager == null) return;
+        
         if(skillManager.type == SkillManager.SkillType.weekDamage)
         {
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill1Damage);
@@ -124,8 +122,7 @@ public class Character : BattleObject, IPunObservable
             characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSpecialDamage);
         }
 
-        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Damage);
-        // SetState(Character_State.Damage);
+        SetState(Character_State.Damage);
     }
 
 
@@ -156,8 +153,7 @@ public class Character : BattleObject, IPunObservable
             time += Time.deltaTime;
 
             if (currentState != Character_State.Dead) {
-                photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Dead);
-                // SetState(Character_State.Dead);
+                SetState(Character_State.Dead);
             }
             characterStatus.SetHP(characterStatus.MaxHP);
         }
@@ -167,48 +163,15 @@ public class Character : BattleObject, IPunObservable
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
             {
                 if (currentState != Character_State.Run) {
-                    photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Run);
-                    // SetState(Character_State.Run);
-                }
-            }
-            else if (Input.GetKey(KeyCode.E))
-            {
-                if (characterStatus.UseSkill1())
-                {
-                    photonView.RPC(nameof(Skill1), RpcTarget.All);
-                    // Skill1();
-                }
-            }
-            else if (Input.GetKey(KeyCode.Q))
-            {
-                if (characterStatus.UseSkill2())
-                {
-                    photonView.RPC(nameof(Skill2), RpcTarget.All);
-                    // Skill2();
-                }
-            }
-            else if (Input.GetKey(KeyCode.X))
-            {
-                if (characterStatus.UseSpecial())
-                {
-                    photonView.RPC(nameof(Special), RpcTarget.All);
-                    // Special();
                 }
             }
             else if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.K))
             {
                 characterStatus.SetIsDead(true);
             }
-            else
-            {
-                if (currentState != Character_State.Idle) {
-                    photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Idle);
-                    // SetState(Character_State.Idle);
-                }
-            }
         }
     }
-    [PunRPC]
+    
     public void SetState(Character_State newState)
     {
         currentState = newState;
@@ -247,12 +210,10 @@ public class Character : BattleObject, IPunObservable
         }
     }
 
-    [PunRPC]
     protected virtual void Skill1()
     {
         characterStatus.UseSkill1();
-        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Skill1);
-        // SetState(Character_State.Skill1);
+        SetState(Character_State.Skill1);
         var buf = Instantiate(skill1, skill1Point.position, transform.rotation);
         if (is_child_1) {
             buf.transform.parent = my_transform;
@@ -260,12 +221,10 @@ public class Character : BattleObject, IPunObservable
         audioSource.PlayOneShot(skill1SE);
     }
 
-    [PunRPC]
     protected virtual void Skill2()
     {
         characterStatus.UseSkill2();
-        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Skill2);
-        // SetState(Character_State.Skill2);
+        SetState(Character_State.Skill2);
         var buf = Instantiate(skill2, skill2Point.position, transform.rotation);
         if (is_child_2) {
             buf.transform.parent = my_transform;
@@ -273,11 +232,9 @@ public class Character : BattleObject, IPunObservable
         audioSource.PlayOneShot(skill2SE);
     }
 
-    [PunRPC]
     protected virtual void Special()
     {
         characterStatus.UseSpecial();
-        photonView.RPC(nameof(SetState), RpcTarget.All, Character_State.Special);
         SetState(Character_State.Special);
         var buf = Instantiate(special, specialPoint.position, transform.rotation);
         if (is_child_Special) {
@@ -319,13 +276,69 @@ public class Character : BattleObject, IPunObservable
         }
     }
 
+    #region InputCallback
+
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!photonView.IsMine) return;
-
         var value = context.ReadValue<Vector2>();
+
+        Debug.Log(nameof(OnMove) + " is already set on callback");
+        
+        // FIXME
+        if (value == Vector2.zero)
+        {
+            SetState(Character_State.Idle);
+        }
+        else
+        {
+            SetState(Character_State.Run);
+        }
+        
         _moveClass.Move(value);
     }
+
+
+    public void OnSkill1(InputAction.CallbackContext context)
+    {
+        if (!photonView.IsMine) return;
+        Debug.Log(nameof(OnSkill1) + " is already set on callback");
+
+        if (!characterStatus.UseSkill1()) return;
+
+        // FIXME
+
+        Skill1();
+
+    }
+
+    public void OnSkill2(InputAction.CallbackContext context)
+    {
+        if (!photonView.IsMine) return;
+        Debug.Log(nameof(OnSkill2) + " is already set on callback");
+
+        if (!characterStatus.UseSkill2()) return;
+
+        // FIXME
+
+        Skill2();
+
+    }
+
+    public void OnSpecial(InputAction.CallbackContext context)
+    {
+        if (!photonView.IsMine) return;
+        Debug.Log(nameof(OnSpecial) + " is already set on callback");
+
+        if (!characterStatus.UseSpecial()) return;
+
+        // FIXME
+
+        Special();
+
+    }
+
+    #endregion
 }
 
 

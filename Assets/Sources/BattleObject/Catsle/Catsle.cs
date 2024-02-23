@@ -16,7 +16,7 @@ public class Catsle : BattleObject
 
     public bool broken = false;
 
-    public override void OnHitEnemyTeamObject(BattleObject gameObject)
+    protected override void OnHitEnemyTeamObject(BattleObject battleObject)
     {
         if (doors[0] == null || doors[1] == null)
         {
@@ -26,7 +26,7 @@ public class Catsle : BattleObject
             //newParticle.Play();
             //Destroy(newParticle.gameObject, 1.0f);
 
-            SkillManager skillManager = gameObject as SkillManager;
+            SkillManager skillManager = battleObject as SkillManager;
             if (skillManager == null)
                 return;
             if (skillManager.type == SkillManager.SkillType.weekDamage)
@@ -50,7 +50,7 @@ public class Catsle : BattleObject
         }
     }
 
-    public override void OnHitMyTeamObject(BattleObject gameObject)
+    protected override void OnHitMyTeamObject(BattleObject battleObject)
     {
         
     }

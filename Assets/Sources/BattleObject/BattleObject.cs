@@ -14,12 +14,12 @@ public class BattleObject : MonoBehaviourPunCallbacks
     protected GameManager manager;
     #endregion
     [PunRPC]
-    public virtual void OnHitMyTeamObject(BattleObject gameObject)
+    protected virtual void OnHitMyTeamObject(BattleObject battleObject)
     {
 
     }
     [PunRPC]
-    public virtual void OnHitEnemyTeamObject(BattleObject gameObject)
+    protected virtual void OnHitEnemyTeamObject(BattleObject battleObject)
     {
 
     }
@@ -54,8 +54,6 @@ public class BattleObject : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!photonView.IsMine) return;
-        
         if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject))
         {
             if (this.team == battleObject.team)
@@ -66,10 +64,6 @@ public class BattleObject : MonoBehaviourPunCallbacks
             {
                 OnHitEnemyTeamObject(battleObject);
             }
-        }
-        else
-        {
-            Debug.Log("There is no Component of Battle Object");
         }
     }
 
