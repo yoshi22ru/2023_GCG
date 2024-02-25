@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
+using Sources.BattleObject;
 
 public class SelectCharacter : MonoBehaviourPunCallbacks
 {
