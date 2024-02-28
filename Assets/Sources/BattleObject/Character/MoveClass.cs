@@ -33,7 +33,7 @@ public class MoveClass
         if (moveForward != Vector3.zero && CountDown.instance.isCountFinish == true)
         {
             Quaternion quaternion = Quaternion.LookRotation(moveForward);
-            this._myTrans.rotation =
+            _myTrans.rotation =
                 Quaternion.Slerp(_myTrans.rotation, quaternion, characterStatus.MoveSpeed * 0.005f);
         }
     }

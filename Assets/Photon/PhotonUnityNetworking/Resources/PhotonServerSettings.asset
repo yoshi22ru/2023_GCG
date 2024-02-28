@@ -49,6 +49,9 @@ MonoBehaviour:
   - rpcLoadScene
   - SendParams
   - RPCLoadScene
+  - Skill1Sync
+  - Skill2Sync
+  - SpecialSync
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

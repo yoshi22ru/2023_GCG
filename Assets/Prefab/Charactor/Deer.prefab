@@ -512,7 +512,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 4057262514297728169}
   - {fileID: -292374488434263640}
   sceneViewId: 0
   InstantiationId: 0
@@ -531,7 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   animator: {fileID: 5991094812295722536}
-  my_transform: {fileID: 7580856601421009894}
+  myTransform: {fileID: 7580856601421009894}
   skill1: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
   skill2: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
   special: {fileID: 7986504087968017091, guid: 3202917d47da00442ad7dfd854051a4a, type: 3}

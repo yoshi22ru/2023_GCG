@@ -321,41 +321,41 @@ namespace Sources.BattleObject.Character
 
         protected virtual void Skill1()
         {
-            characterStatus.UseSkill1();
-            SetState(Character_State.Skill1);
-            var buf = Instantiate(skill1, skill1Point.position, transform.rotation);
-            if (is_child_1)
-            {
-                buf.transform.parent = myTransform;
-            }
-
-            _audioSourceCache.PlayOneShot(skill1SE);
+            // characterStatus.UseSkill1();
+            // SetState(Character_State.Skill1);
+            // var buf = Instantiate(skill1, skill1Point.position, transform.rotation);
+            // if (is_child_1)
+            // {
+            //     buf.transform.parent = myTransform;
+            // }
+            //
+            // _audioSourceCache.PlayOneShot(skill1SE);
         }
 
         protected virtual void Skill2()
         {
-            characterStatus.UseSkill2();
-            SetState(Character_State.Skill2);
-            var buf = Instantiate(skill2, skill2Point.position, transform.rotation);
-            if (is_child_2)
-            {
-                buf.transform.parent = myTransform;
-            }
-
-            _audioSourceCache.PlayOneShot(skill2SE);
+            // characterStatus.UseSkill2();
+            // SetState(Character_State.Skill2);
+            // var buf = Instantiate(skill2, skill2Point.position, transform.rotation);
+            // if (is_child_2)
+            // {
+            //     buf.transform.parent = myTransform;
+            // }
+            //
+            // _audioSourceCache.PlayOneShot(skill2SE);
         }
 
         protected virtual void Special()
         {
-            characterStatus.UseSpecial();
-            SetState(Character_State.Special);
-            var buf = Instantiate(special, specialPoint.position, transform.rotation);
-            if (is_child_Special)
-            {
-                buf.transform.parent = myTransform;
-            }
-
-            _audioSourceCache.PlayOneShot(specialSE);
+            // characterStatus.UseSpecial();
+            // SetState(Character_State.Special);
+            // var buf = Instantiate(special, specialPoint.position, transform.rotation);
+            // if (is_child_Special)
+            // {
+            //     buf.transform.parent = myTransform;
+            // }
+            //
+            // _audioSourceCache.PlayOneShot(specialSE);
         }
 
         // FIXME
