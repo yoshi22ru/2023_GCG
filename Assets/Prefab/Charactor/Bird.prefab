@@ -774,12 +774,15 @@ GameObject:
   - component: {fileID: 6412805952127922632}
   - component: {fileID: 1880356326931833000}
   - component: {fileID: 5855831511689305861}
-  - component: {fileID: 2310429921653913872}
   - component: {fileID: 4126225133461092104}
   - component: {fileID: 46457655383760244}
   - component: {fileID: 119947044564844693}
   - component: {fileID: 7568107164451526289}
   - component: {fileID: 1002824160273941480}
+  - component: {fileID: 1607830030115302425}
+  - component: {fileID: 2399571834778197732}
+  - component: {fileID: 2390138864546180846}
+  - component: {fileID: 6891735351524802225}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Character
@@ -889,18 +892,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
---- !u!114 &2310429921653913872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7572335396204123815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fffec018f724dcd4eaa1ae1c1b04bc4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4126225133461092104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1059,7 +1050,8 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1002824160273941480}
+  - {fileID: 2399571834778197732}
+  - {fileID: 2390138864546180846}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1070,14 +1062,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7572335396204123815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   team: 0
   animator: {fileID: 1880356326931833000}
-  my_transform: {fileID: 1058467058186207363}
+  myTransform: {fileID: 1058467058186207363}
   skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
   skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
   special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
@@ -1090,6 +1082,182 @@ MonoBehaviour:
   is_child_1: 0
   is_child_2: 0
   is_child_Special: 1
+--- !u!114 &1607830030115302425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ee447be11d5b9555caefcc6aa122384f, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6891735351524802225}
+        m_TargetAssemblyTypeName: Sources.BattleObject.Character.Character, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4cf4bb07-7586-4ce0-aaf4-dc942228fa8f
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6891735351524802225}
+        m_TargetAssemblyTypeName: Sources.BattleObject.Character.Character, Assembly-CSharp
+        m_MethodName: OnSkill1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 79d8bf7f-9d91-441d-85be-c1f2ee8f9f73
+    m_ActionName: Player/Skill1[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6891735351524802225}
+        m_TargetAssemblyTypeName: Sources.BattleObject.Character.Character, Assembly-CSharp
+        m_MethodName: OnSkill2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: edef7b54-0a33-4b5d-9963-b058627c6ce2
+    m_ActionName: Player/Skill2[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6891735351524802225}
+        m_TargetAssemblyTypeName: Sources.BattleObject.Character.Character, Assembly-CSharp
+        m_MethodName: OnSpecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3124e793-72f6-4e5f-ad2d-9ffe116d30e1
+    m_ActionName: Player/Special[/Keyboard/x]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &2399571834778197732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &2390138864546180846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: Idle
+  - Type: 9
+    SynchronizeType: 0
+    Name: Run
+  - Type: 9
+    SynchronizeType: 0
+    Name: Damage
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 0
+    Name: Skill1
+  - Type: 9
+    SynchronizeType: 0
+    Name: Skill2
+  - Type: 9
+    SynchronizeType: 0
+    Name: Special
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &6891735351524802225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572335396204123815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33243d02631aacf281aaa9fe5dc4896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  animator: {fileID: 1880356326931833000}
+  myTransform: {fileID: 1058467058186207363}
+  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
+  skill1Point: {fileID: 528405523109714338}
+  skill2Point: {fileID: 528405523109714338}
+  specialPoint: {fileID: 4033932761021236322}
+  skill1SE: {fileID: 8300000, guid: a6749282c84475f42874571d27f3ec2c, type: 3}
+  skill2SE: {fileID: 8300000, guid: af7a3951c2c4f7b4e9d9fcfe219de812, type: 3}
+  specialSE: {fileID: 8300000, guid: 4b3ef1af5f2f43d4a9a9e879cd5c669a, type: 3}
+  is_child_1: 0
+  is_child_2: 0
+  is_child_Special: 0
 --- !u!1 &8075736241546589853
 GameObject:
   m_ObjectHideFlags: 0

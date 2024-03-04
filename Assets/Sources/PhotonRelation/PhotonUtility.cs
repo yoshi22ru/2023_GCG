@@ -44,12 +44,12 @@ namespace Utility
       }
     }
 
-    public static void SetMyName(string NicName)
+    public static void SetMyName(string nicName)
     {
       if (PhotonNetwork.IsConnected)
       {
-        PhotonNetwork.LocalPlayer.NickName = NicName;
-        Debug.Log("NicName : " + NicName);
+        PhotonNetwork.LocalPlayer.NickName = nicName;
+        Debug.Log("NicName : " + nicName);
       }
       else
       {
@@ -59,16 +59,14 @@ namespace Utility
 
     private static void JoinLoby()
     {
-      if (PhotonNetwork.IsConnected)
+      if (!PhotonNetwork.IsConnected) return;
+      if (PhotonNetwork.JoinLobby())
       {
-        if (PhotonNetwork.JoinLobby())
-        {
-          Debug.Log("Join Loby");
-        }
-        else
-        {
-          Debug.Log("Join Loby Failed");
-        }
+        Debug.Log("Join Loby");
+      }
+      else
+      {
+        Debug.Log("Join Loby Failed");
       }
     }
 
