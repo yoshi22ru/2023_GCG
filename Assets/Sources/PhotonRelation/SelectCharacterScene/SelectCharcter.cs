@@ -7,7 +7,8 @@ using UnityEngine.UI;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
-using Sources.BattleObject;
+using Resources.Character;
+using Sources.InGame.BattleObject;
 
 public class SelectCharacter : MonoBehaviourPunCallbacks
 {
@@ -119,7 +120,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         if (decide) return;
 
         this._Character = ident_Character;
-        CharaData data = charaDataBase.charadata[(int)ident_Character];
+        CharaData data = charaDataBase.character_data[(int)ident_Character];
 
         this.chara_sprite.sprite = data.CharaSprite;
 

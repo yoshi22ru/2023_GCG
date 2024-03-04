@@ -2,15 +2,17 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Sources.BattleObject;
-using Sources.BattleObject.Character;
+using Resources.Character;
+using Sources.InGame.BattleObject;
+using Sources.InGame.BattleObject.Castle;
+using Sources.InGame.BattleObject.Character;
 using UnityEngine;
 
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
     #region variables
-    List<Catsle> catsles;
+    List<Castle> catsles;
     public BattleState current_state;
     // index is actor number
     List<PlayerInfomations> characters;
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         current_state = BattleState.BeforeStart;
         CharaData chara =
-         charaDataBase.charadata[(int)VariableManager.character];
+         charaDataBase.character_data[(int)VariableManager.character];
 
         GameObject obj;
         Debug.Log("object : " + chara.name + "\n");

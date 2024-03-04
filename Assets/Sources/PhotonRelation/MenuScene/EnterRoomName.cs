@@ -1,31 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class EnterRoomName : Utility.PhotonUtility
+
+namespace Sources.PhotonRelation.MenuScene
 {
-    #region SettingName
-    [SerializeField] InputField input_room_name_field;
-    [SerializeField] Button ok_button;
-    [SerializeField] Button cancel_button;
+    public class EnterRoomName : MenuPanelBase
+    {
+        #region SettingName
 
-    void Send_New_Name() {
-        var new_name = input_room_name_field.text;
-        SetMyName(new_name);
+        [SerializeField] InputField roomNameField;
+        [SerializeField] Button submitButton;
+        [SerializeField] Button cancelButton;
+
+        private void SetNewName()
+        {
+            var newName = roomNameField.text;
+            SetMyName(newName);
+        }
+
+        private void CancelSetName()
+        {
+            roomNameField.text = "";
+            Manager.ReturnPanel();
+        }
+
+        #endregion
+
+        private void Start()
+        {
+            submitButton.onClick.AddListener(SetNewName);
+            cancelButton.onClick.AddListener(CancelSetName);
+        }
+        private void SetMyName(string newName)
+        {
+            if (PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.LocalPlayer.NickName = newName;
+                Debug.Log("NicName : " + newName);
+            }
+            else
+            {
+                Debug.Log("Not Connected");
+            }
+        }
+
     }
-
-    void Cancel_Set_Name() {
-        input_room_name_field.text = "";
-        this.gameObject.SetActive(false);
-    }
-
-    #endregion
-
-    private void Start() {
-        ok_button.onClick.AddListener(Send_New_Name);
-        cancel_button.onClick.AddListener(Cancel_Set_Name);
-    }
-
-
 }
