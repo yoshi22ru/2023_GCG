@@ -881,13 +881,13 @@ GameObject:
   - component: {fileID: 2734807068151689886}
   - component: {fileID: 2114088772337579301}
   - component: {fileID: 3042942782263111194}
-  - component: {fileID: 5252279604671150339}
   - component: {fileID: 5786538457292488004}
   - component: {fileID: 4705462469004793}
   - component: {fileID: 748607778428920448}
-  - component: {fileID: 9110765061513397974}
   - component: {fileID: 5146971128123175376}
   - component: {fileID: -6096541320617429772}
+  - component: {fileID: 6065455661739431681}
+  - component: {fileID: 1214909414649720791}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Untagged
@@ -998,26 +998,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &5252279604671150339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941205293409301154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737e6a23d4d1dbd47a102631dc72feb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHP: 100
-  minHP: 0
-  maxHP: 100
-  moveSpeed: 7
-  Skill1CoolDown: 1
-  Skill2CoolDown: 5
-  SpecialCoolDown: 10
-  skillPrefab: []
 --- !u!136 &5786538457292488004
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1156,38 +1136,10 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 9110765061513397974}
   - {fileID: -6096541320617429772}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &9110765061513397974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941205293409301154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  animator: {fileID: 2114088772337579301}
-  my_transform: {fileID: 4018312854137151752}
-  skill1: {fileID: 2060900179291159282, guid: 5228d02d0c8065043bddd3e866b67568, type: 3}
-  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  special: {fileID: 3153472991145048103, guid: 7fcc87739c863a54a82e8bec044885c3, type: 3}
-  skill1Point: {fileID: 7054043022648123885}
-  skill2Point: {fileID: 7054043022648123885}
-  specialPoint: {fileID: 7054043022648123885}
-  skill1SE: {fileID: 8300000, guid: b457908ee16812f46bfb73f6f3cb575b, type: 3}
-  skill2SE: {fileID: 8300000, guid: af7a3951c2c4f7b4e9d9fcfe219de812, type: 3}
-  specialSE: {fileID: 8300000, guid: 6e43c94cd4fe7be419f876f2025f5adb, type: 3}
-  is_child_1: 0
-  is_child_2: 0
-  is_child_Special: 0
 --- !u!114 &5146971128123175376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,7 +1152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ee447be11d5b9555caefcc6aa122384f, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: d0affc863fe1d7ab8b48964e0fe6ec9e, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -1215,8 +1167,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9110765061513397974}
-        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+      - m_Target: {fileID: 6065455661739431681}
+        m_TargetAssemblyTypeName: Sources.InGame.BattleObject.Character.Character,
+          Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -1229,6 +1182,57 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4cf4bb07-7586-4ce0-aaf4-dc942228fa8f
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6065455661739431681}
+        m_TargetAssemblyTypeName: Sources.InGame.BattleObject.Character.Character,
+          Assembly-CSharp
+        m_MethodName: OnSkill1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 79d8bf7f-9d91-441d-85be-c1f2ee8f9f73
+    m_ActionName: Player/Skill1[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6065455661739431681}
+        m_TargetAssemblyTypeName: Sources.InGame.BattleObject.Character.Character,
+          Assembly-CSharp
+        m_MethodName: OnSkill2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: edef7b54-0a33-4b5d-9963-b058627c6ce2
+    m_ActionName: Player/Skill2[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6065455661739431681}
+        m_TargetAssemblyTypeName: Sources.InGame.BattleObject.Character.Character,
+          Assembly-CSharp
+        m_MethodName: OnSpecial
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3124e793-72f6-4e5f-ad2d-9ffe116d30e1
+    m_ActionName: Player/Special[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1250,3 +1254,39 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &6065455661739431681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941205293409301154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4019855de69fbad838fd4b8f9949e097, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  animator: {fileID: 2114088772337579301}
+  myTransform: {fileID: 4018312854137151752}
+  skill1: {fileID: 0}
+  skill2: {fileID: 0}
+  special: {fileID: 0}
+  skill1Point: {fileID: 0}
+  skill2Point: {fileID: 0}
+  specialPoint: {fileID: 0}
+  skill1SE: {fileID: 0}
+  skill2SE: {fileID: 0}
+  specialSE: {fileID: 0}
+--- !u!114 &1214909414649720791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941205293409301154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ef6cefbfdee1ca480faf40507a9de9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

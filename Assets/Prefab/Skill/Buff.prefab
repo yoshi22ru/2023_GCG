@@ -9685,8 +9685,8 @@ GameObject:
   - component: {fileID: 8029142899459995171}
   - component: {fileID: 6810471105834413002}
   - component: {fileID: 3528235069938405983}
-  - component: {fileID: 7565387500173285363}
   - component: {fileID: 3241456927353507820}
+  - component: {fileID: 3646881581762941588}
   m_Layer: 0
   m_Name: Buff
   m_TagString: Untagged
@@ -14507,27 +14507,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &7565387500173285363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155335147208632822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9277edd93f52ab428bd9b3f87e95146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillSpeed: 0
-  leftTime: 7.5
-  skill1Damage: 0
-  skill2Damage: 0
-  specialDamage: 0
-  healValue: 0
-  bufAttack: 0
-  bufSpeed: 3
-  type: 5
 --- !u!54 &3241456927353507820
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14555,6 +14534,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3646881581762941588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7155335147208632822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8134aca5ce2bf47a4b622b4c16794903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  skillSpeed: 0
+  leftTime: 0
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 0
+  bufAttack: 0
+  bufSpeed: 0
+  type: 0
 --- !u!1 &8365031647153227681
 GameObject:
   m_ObjectHideFlags: 0

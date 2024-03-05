@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7909250533478703700}
   - component: {fileID: 6642199199589531581}
   - component: {fileID: 3627856772980114984}
-  - component: {fileID: 3422816415815915411}
   - component: {fileID: 1889208009276889968}
+  - component: {fileID: 1482120935870445816}
   m_Layer: 0
   m_Name: Star aura
   m_TagString: Untagged
@@ -4840,27 +4840,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3422816415815915411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7053385775836331393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9277edd93f52ab428bd9b3f87e95146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillSpeed: 0
-  leftTime: 7.5
-  skill1Damage: 0
-  skill2Damage: 0
-  specialDamage: 0
-  healValue: 0
-  bufAttack: 0
-  bufSpeed: 0
-  type: 4
 --- !u!54 &1889208009276889968
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4888,6 +4867,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1482120935870445816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053385775836331393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8134aca5ce2bf47a4b622b4c16794903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  skillSpeed: 0
+  leftTime: 0
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 0
+  bufAttack: 0
+  bufSpeed: 0
+  type: 0
 --- !u!1 &8554865047300510678
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,6 @@ namespace Sources.InGame.BattleObject.Character.Concrete
 
     public class Deer : Character
     {
-        // Temporary implementation
         protected override void Skill1()
         {
             characterStatus.UseSkill1();

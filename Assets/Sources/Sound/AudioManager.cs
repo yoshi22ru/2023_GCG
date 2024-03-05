@@ -11,6 +11,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
     private void Awake()
     {
+        base.Awake();
         audioSource = GetComponent<AudioSource>();
     }
 

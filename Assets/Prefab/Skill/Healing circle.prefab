@@ -19699,9 +19699,9 @@ GameObject:
   - component: {fileID: 8037160467862551414}
   - component: {fileID: 6211125795773073634}
   - component: {fileID: 959509697232157438}
-  - component: {fileID: 8981237443071083934}
   - component: {fileID: 1734447678082499257}
   - component: {fileID: 6145341756050294076}
+  - component: {fileID: 2852573024307390282}
   m_Layer: 0
   m_Name: Healing circle
   m_TagString: Untagged
@@ -24581,27 +24581,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8981237443071083934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7986504087968017091}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9277edd93f52ab428bd9b3f87e95146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillSpeed: 0
-  leftTime: 3.8
-  skill1Damage: 0
-  skill2Damage: 0
-  specialDamage: 0
-  healValue: 50
-  bufAttack: 0
-  bufSpeed: 0
-  type: 3
 --- !u!54 &1734447678082499257
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24650,3 +24629,25 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 4
   m_Center: {x: 0, y: 0.005049944, z: 0}
+--- !u!114 &2852573024307390282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7986504087968017091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8134aca5ce2bf47a4b622b4c16794903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  skillSpeed: 0
+  leftTime: 0
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 0
+  bufAttack: 0
+  bufSpeed: 0
+  type: 0
