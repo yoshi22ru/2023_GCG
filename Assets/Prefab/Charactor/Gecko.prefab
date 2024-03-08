@@ -730,13 +730,14 @@ GameObject:
   - component: {fileID: 7301462259672627378}
   - component: {fileID: 7006474085619321807}
   - component: {fileID: 7646740285137070705}
-  - component: {fileID: 4799335323196037115}
   - component: {fileID: 2763594635688396010}
   - component: {fileID: 8654620189550129383}
   - component: {fileID: 5157741009178066923}
-  - component: {fileID: 8943432472206885252}
   - component: {fileID: 4094866415178891289}
   - component: {fileID: 4530916041903642736}
+  - component: {fileID: 5153829365005559842}
+  - component: {fileID: 110280728934476228}
+  - component: {fileID: 7989628070300781216}
   m_Layer: 0
   m_Name: Gecko
   m_TagString: Untagged
@@ -847,26 +848,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &4799335323196037115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286164418673159766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 737e6a23d4d1dbd47a102631dc72feb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHP: 100
-  minHP: 0
-  maxHP: 100
-  moveSpeed: 7
-  Skill1CoolDown: 1
-  Skill2CoolDown: 5
-  SpecialCoolDown: 30
-  skillPrefab: []
 --- !u!136 &2763594635688396010
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1005,38 +986,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 8943432472206885252}
   - {fileID: 4530916041903642736}
+  - {fileID: 5153829365005559842}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &8943432472206885252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6286164418673159766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9301a693fe81777408ee88b20d093293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  team: 0
-  animator: {fileID: 7006474085619321807}
-  my_transform: {fileID: 677525309882137524}
-  skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
-  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  special: {fileID: 7053385775836331393, guid: 5805e8d85f3cd834eb86312aac62abd0, type: 3}
-  skill1Point: {fileID: 3828777967455100985}
-  skill2Point: {fileID: 3828777967455100985}
-  specialPoint: {fileID: 2520655762945934913}
-  skill1SE: {fileID: 8300000, guid: a6749282c84475f42874571d27f3ec2c, type: 3}
-  skill2SE: {fileID: 8300000, guid: af7a3951c2c4f7b4e9d9fcfe219de812, type: 3}
-  specialSE: {fileID: 8300000, guid: a8911c156a883c547a3a8e7c9e34efee, type: 3}
-  is_child_1: 0
-  is_child_2: 0
-  is_child_Special: 1
 --- !u!114 &4094866415178891289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ee447be11d5b9555caefcc6aa122384f, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: d0affc863fe1d7ab8b48964e0fe6ec9e, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -1064,7 +1018,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8943432472206885252}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Character, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -1078,6 +1032,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4cf4bb07-7586-4ce0-aaf4-dc942228fa8f
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 79d8bf7f-9d91-441d-85be-c1f2ee8f9f73
+    m_ActionName: Player/Skill1[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: edef7b54-0a33-4b5d-9963-b058627c6ce2
+    m_ActionName: Player/Skill2[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 3124e793-72f6-4e5f-ad2d-9ffe116d30e1
+    m_ActionName: Player/Special[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1099,6 +1065,89 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &5153829365005559842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286164418673159766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: Idle
+  - Type: 9
+    SynchronizeType: 0
+    Name: Run
+  - Type: 9
+    SynchronizeType: 0
+    Name: Damage
+  - Type: 9
+    SynchronizeType: 0
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 0
+    Name: Skill1
+  - Type: 9
+    SynchronizeType: 0
+    Name: Skill2
+  - Type: 9
+    SynchronizeType: 0
+    Name: Special
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &110280728934476228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286164418673159766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cec4275ce08e0c09bf23afd74a511c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  animator: {fileID: 7006474085619321807}
+  myTransform: {fileID: 677525309882137524}
+  skill1: {fileID: 0}
+  skill2: {fileID: 0}
+  special: {fileID: 0}
+  skill1Point: {fileID: 0}
+  skill2Point: {fileID: 0}
+  specialPoint: {fileID: 0}
+  skill1SE: {fileID: 0}
+  skill2SE: {fileID: 0}
+  specialSE: {fileID: 0}
+--- !u!114 &7989628070300781216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6286164418673159766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b9ebead5308c3bd9760fe99958f95d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 100
+  minHP: 0
+  maxHP: 100
+  moveSpeed: 5
+  Skill1CoolDown: 5
+  Skill2CoolDown: 8
+  SpecialCoolDown: 10
+  skillPrefab: []
 --- !u!1 &7424689058606534647
 GameObject:
   m_ObjectHideFlags: 0

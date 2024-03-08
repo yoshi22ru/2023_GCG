@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6110186768456505189}
   - component: {fileID: 752539684574157507}
   - component: {fileID: 2720597269299860099}
-  - component: {fileID: 2679482684157012554}
+  - component: {fileID: 972945154219730521}
   m_Layer: 0
   m_Name: ItemBox
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5492728243937981127
 MeshFilter:
@@ -136,7 +136,7 @@ CapsuleCollider:
   m_Height: 1.5921278
   m_Direction: 1
   m_Center: {x: -0.00000017881393, y: 0.019720942, z: 0}
---- !u!114 &2679482684157012554
+--- !u!114 &972945154219730521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6038894647997399910}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76ea4355785d95f4e9c61a4a90c95636, type: 3}
+  m_Script: {fileID: 11500000, guid: 78bf8b212383c2dedbb39d1ff17b3b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 7478511228589223841, guid: 04cc72c3f81a6a84cbd06480f1b6d9c3, type: 3}
-  - {fileID: 4017844887331589113, guid: da7b5bd5076e94049b1b391ca11da9e5, type: 3}
-  - {fileID: 6829843662522274280, guid: ad2b85f26ea472b4197bb0aff2c123f2, type: 3}
-  particle: {fileID: 4855211828642977510, guid: aed12c224fbc8704d8eaa07a52e88f44, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  particle: {fileID: 0}

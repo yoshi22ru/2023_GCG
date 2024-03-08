@@ -4906,9 +4906,9 @@ GameObject:
   - component: {fileID: 2145314521902459719}
   - component: {fileID: 2629628210209888467}
   - component: {fileID: 9159431108497599183}
-  - component: {fileID: 4129064136813043050}
   - component: {fileID: 1354446172611977107}
   - component: {fileID: 195401346209765863}
+  - component: {fileID: 945885873966983612}
   m_Layer: 0
   m_Name: Snow slash
   m_TagString: Untagged
@@ -9787,27 +9787,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &4129064136813043050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060900179291159282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9277edd93f52ab428bd9b3f87e95146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillSpeed: 0
-  leftTime: 0.7
-  skill1Damage: 15
-  skill2Damage: 0
-  specialDamage: 0
-  healValue: 0
-  bufAttack: 0
-  bufSpeed: 0
-  type: 0
 --- !u!54 &1354446172611977107
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9857,6 +9836,28 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &945885873966983612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060900179291159282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8134aca5ce2bf47a4b622b4c16794903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  skillSpeed: 0
+  leftTime: 0
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 0
+  bufAttack: 0
+  bufSpeed: 0
+  type: 0
 --- !u!1 &5243545912859313696
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,16 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
-using Sources;
 using Sources.InGame.BattleObject.Skill;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
-using UnityEngine.TextCore.Text;
 
 namespace Sources.InGame.BattleObject.Character
 {
@@ -19,7 +13,7 @@ namespace Sources.InGame.BattleObject.Character
     // , IPunObservable
     {
         private MoveClass _moveClass;
-        private Vector3 moveVector;
+        private Vector3 _moveVector;
         public Animator animator;
         protected Character_State currentState;
         protected CharacterStatus characterStatus;
@@ -37,13 +31,11 @@ namespace Sources.InGame.BattleObject.Character
         [SerializeField] Transform skill1Point;
         [SerializeField] Transform skill2Point;
         [SerializeField] Transform specialPoint;
-        [SerializeField] AudioClip skill1SE;
-        [SerializeField] AudioClip skill2SE;
-        [SerializeField] AudioClip specialSE;
-        [SerializeField] bool is_child_1;
-        [SerializeField] bool is_child_2;
-        [SerializeField] bool is_child_Special;
-        private AudioSource _audioSourceCache;
+        
+        // [SerializeField] AudioClip skill1SE;
+        // [SerializeField] AudioClip skill2SE;
+        // [SerializeField] AudioClip specialSE;
+        // private AudioSource _audioSourceCache;
 
         #region Getter
 
@@ -77,25 +69,25 @@ namespace Sources.InGame.BattleObject.Character
             get { return specialPoint; }
         }
 
-        protected AudioClip Skill1SE
-        {
-            get { return skill1SE; }
-        }
-
-        protected AudioClip Skill2SE
-        {
-            get { return skill2SE; }
-        }
-
-        protected AudioClip SpecialSE
-        {
-            get { return specialSE; }
-        }
-
-        protected AudioSource AudioSourceCache
-        {
-            get { return _audioSourceCache; }
-        }
+        // protected AudioClip Skill1SE
+        // {
+        //     get { return skill1SE; }
+        // }
+        //
+        // protected AudioClip Skill2SE
+        // {
+        //     get { return skill2SE; }
+        // }
+        //
+        // protected AudioClip SpecialSE
+        // {
+        //     get { return specialSE; }
+        // }
+        //
+        // protected AudioSource AudioSourceCache
+        // {
+        //     get { return _audioSourceCache; }
+        // }
         
         #endregion
         
@@ -132,7 +124,7 @@ namespace Sources.InGame.BattleObject.Character
 
         #endregion
 
-        public enum Character_State
+        protected enum Character_State
         {
             None,
             Idle,
@@ -156,7 +148,7 @@ namespace Sources.InGame.BattleObject.Character
 
         private void Start()
         {
-            _audioSourceCache = GetComponent<AudioSource>();
+            // _audioSourceCache = GetComponent<AudioSource>();
 
 
             if (photonView.IsMine)

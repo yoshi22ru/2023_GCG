@@ -9,7 +9,6 @@ namespace Sources.InGame.BattleObject.Character.Concrete
 
     public class Fish : Character
     {
-        // Temporary implementation
         protected override void Skill1()
         {
             characterStatus.UseSkill1();
@@ -21,7 +20,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
         private void Skill1Sync()
         {
             Instantiate(Skill1Prefab, Skill1Point.position, myTransform.rotation);
-            AudioSourceCache.PlayOneShot(Skill1SE);
+            // AudioSourceCache.PlayOneShot(Skill1SE);
         }
 
         protected override void Skill2()
@@ -35,7 +34,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
         private void Skill2Sync()
         {
             Instantiate(Skill2Prefab, Skill2Point.position, myTransform.rotation);
-            AudioSourceCache.PlayOneShot(Skill2SE);
+            // AudioSourceCache.PlayOneShot(Skill2SE);
         }
 
         protected override void Special()
@@ -49,7 +48,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
         private void SpecialSync()
         {
             Instantiate(SpecialPrefab, Skill2Point.position, myTransform.rotation);
-            AudioSourceCache.PlayOneShot(SpecialSE);
+            // AudioSourceCache.PlayOneShot(SpecialSE);
         }
     }
 }

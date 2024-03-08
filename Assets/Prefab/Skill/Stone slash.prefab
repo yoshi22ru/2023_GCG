@@ -4907,8 +4907,8 @@ GameObject:
   - component: {fileID: 1379504315796101638}
   - component: {fileID: 5207987601858127898}
   - component: {fileID: -2124047584551714313}
-  - component: {fileID: -8318124366454551196}
   - component: {fileID: 6292610771142240052}
+  - component: {fileID: 3374574939671497920}
   m_Layer: 0
   m_Name: Stone slash
   m_TagString: Untagged
@@ -9815,27 +9815,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8318124366454551196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3153472991145048103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9277edd93f52ab428bd9b3f87e95146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillSpeed: 0
-  leftTime: 0.7
-  skill1Damage: 0
-  skill2Damage: 0
-  specialDamage: 70
-  healValue: 0
-  bufAttack: 0
-  bufSpeed: 0
-  type: 2
 --- !u!64 &6292610771142240052
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9858,6 +9837,28 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &3374574939671497920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3153472991145048103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8134aca5ce2bf47a4b622b4c16794903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team: 0
+  skillSpeed: 0
+  leftTime: 0
+  skill1Damage: 0
+  skill2Damage: 0
+  specialDamage: 0
+  healValue: 0
+  bufAttack: 0
+  bufSpeed: 0
+  type: 0
 --- !u!1 &3307283671839139976
 GameObject:
   m_ObjectHideFlags: 0
