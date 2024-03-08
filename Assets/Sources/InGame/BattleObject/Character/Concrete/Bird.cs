@@ -20,7 +20,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
             Instantiate(Skill1Prefab, Skill1Point.position, myTransform.rotation);
             // FIXME
             // AudioSourceCache.PlayOneShot(Skill1SE);
-            AudioManager.Instance.PlaySE(/* TODO */);
+            AudioManager.Instance.PlaySE(AudioType.buffItem);
         }
 
         protected override void Skill2()
