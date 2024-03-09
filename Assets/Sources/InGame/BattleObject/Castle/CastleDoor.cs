@@ -50,17 +50,9 @@ namespace Sources.InGame.BattleObject.Castle
             SkillManager skillManager = battleObject as SkillManager;
             if (skillManager == null)
                 return;
-            if (skillManager.type == SkillManager.SkillType.weekDamage)
+            if (skillManager.type == SkillManager.SkillType.damage)
             {
-                SetHP(HP - skillManager.GetSkill1Damage);
-            }
-            else if (skillManager.type == SkillManager.SkillType.midDamage)
-            {
-                SetHP(HP - skillManager.GetSkill2Damage);
-            }
-            else if (skillManager.type == SkillManager.SkillType.strongDamage)
-            {
-                SetHP(HP - skillManager.GetSpecialDamage);
+                SetHP(HP - skillManager.GetSkillDamage);
             }
         }
 

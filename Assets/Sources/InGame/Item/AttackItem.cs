@@ -32,9 +32,7 @@ public class AttackItem : Item
             for (int i = 0; i < skill.Length; i++)
             {
                 skillManager = skill[i].gameObject.GetComponent<SkillManager>();
-                skillManager.SetSkill1Damage(skillManager.GetSkill1Damage - attack);
-                skillManager.SetSkill1Damage(skillManager.GetSkill2Damage - attack);
-                skillManager.SetSkill1Damage(skillManager.GetSpecialDamage - attack);
+                skillManager.SetSkillDamage(skillManager.GetSkillDamage - attack);
             }
             onTimer = false;
             Destroy(gameObject);
@@ -50,9 +48,7 @@ public class AttackItem : Item
         for (int i = 0; i < skill.Length; i++)
         {
             skillManager = skill[i].gameObject.GetComponent<SkillManager>();
-            skillManager.SetSkill1Damage(skillManager.GetSkill1Damage + attack);
-            skillManager.SetSkill1Damage(skillManager.GetSkill2Damage + attack);
-            skillManager.SetSkill1Damage(skillManager.GetSpecialDamage + attack);
+            skillManager.SetSkillDamage(skillManager.GetSkillDamage + attack);
         }
 
         onTimer = true;
