@@ -8,9 +8,7 @@ namespace Sources.InGame.BattleObject.Skill
         public float skillSpeed;
         public float leftTime;
         private float _currentTime;
-        [SerializeField] int skill1Damage;
-        [SerializeField] int skill2Damage;
-        [SerializeField] int specialDamage;
+        [SerializeField] int skillDamage;
         [SerializeField] int healValue;
         [SerializeField] float bufAttack;
         [SerializeField] float bufSpeed;
@@ -19,9 +17,7 @@ namespace Sources.InGame.BattleObject.Skill
 
         public enum SkillType
         {
-            weekDamage,
-            midDamage,
-            strongDamage,
+            damage,
             heal,
             bufAttack,
             bufSpeed,
@@ -34,19 +30,9 @@ namespace Sources.InGame.BattleObject.Skill
             get { return healValue; }
         }
 
-        public int GetSkill1Damage
+        public int GetSkillDamage
         {
-            get { return skill1Damage; }
-        }
-
-        public int GetSkill2Damage
-        {
-            get { return skill2Damage; }
-        }
-
-        public int GetSpecialDamage
-        {
-            get { return specialDamage; }
+            get { return skillDamage; }
         }
 
         public float GetBufAttack
@@ -65,22 +51,10 @@ namespace Sources.InGame.BattleObject.Skill
                 healValue = heal;
         }
 
-        public void SetSkill1Damage(int skill1)
+        public void SetSkillDamage(int skillATK)
         {
-            if (skill1 > 0)
-                skill1Damage = skill1;
-        }
-
-        public void SetSkill2Damage(int skill2)
-        {
-            if (skill2 > 0)
-                skill2Damage = skill2;
-        }
-
-        public void SetSpecialDamage(int special)
-        {
-            if (special > 0)
-                specialDamage = special;
+            if (skillATK > 0)
+                skillDamage = skillATK;
         }
 
         public void SetBufAttack(float bufATK)

@@ -185,9 +185,7 @@ namespace Sources.InGame.BattleObject.Character
                 for (int i = 0; i < skill.Length; i++)
                 {
                     skillManager = skill[i].gameObject.GetComponent<SkillManager>();
-                    skillManager.SetSkill1Damage(skillManager.GetSkill1Damage + 15);
-                    skillManager.SetSkill2Damage(skillManager.GetSkill2Damage + 15);
-                    skillManager.SetSpecialDamage(skillManager.GetSpecialDamage + 15);
+                    skillManager.SetSkillDamage(skillManager.GetSkillDamage + 15);
                 }
             }
         }
@@ -197,17 +195,9 @@ namespace Sources.InGame.BattleObject.Character
             SkillManager skillManager = battleObject as SkillManager;
             if (skillManager == null) return;
 
-            if (skillManager.type == SkillManager.SkillType.weekDamage)
+            if (skillManager.type == SkillManager.SkillType.damage)
             {
-                characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill1Damage);
-            }
-            else if (skillManager.type == SkillManager.SkillType.midDamage)
-            {
-                characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkill2Damage);
-            }
-            else if (skillManager.type == SkillManager.SkillType.strongDamage)
-            {
-                characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSpecialDamage);
+                characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkillDamage);
             }
 
             SetState(Character_State.Damage);

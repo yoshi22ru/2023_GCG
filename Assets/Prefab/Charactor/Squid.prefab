@@ -1032,7 +1032,7 @@ Transform:
   - {fileID: 5645380467388877524}
   - {fileID: 2177247073396121777}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!205 &6079757477143383862
 LODGroup:
@@ -1328,15 +1328,12 @@ MonoBehaviour:
   team: 0
   animator: {fileID: 2317864502041658661}
   myTransform: {fileID: 2116317195217579910}
-  skill1: {fileID: 0}
-  skill2: {fileID: 0}
-  special: {fileID: 0}
-  skill1Point: {fileID: 0}
-  skill2Point: {fileID: 0}
-  specialPoint: {fileID: 0}
-  skill1SE: {fileID: 0}
-  skill2SE: {fileID: 0}
-  specialSE: {fileID: 0}
+  skill1: {fileID: 161766660727748596, guid: 0c7b9169fc3e47f4a93ef45ef488604b, type: 3}
+  skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
+  special: {fileID: 3153472991145048103, guid: 7fcc87739c863a54a82e8bec044885c3, type: 3}
+  skill1Point: {fileID: 5645380467388877524}
+  skill2Point: {fileID: 8087030624552439358}
+  specialPoint: {fileID: 8087030624552439358}
 --- !u!114 &8866022566139581542
 MonoBehaviour:
   m_ObjectHideFlags: 0
