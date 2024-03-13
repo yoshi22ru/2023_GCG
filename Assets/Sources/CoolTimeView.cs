@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sources.InGame.BattleObject.Character;
 using UnityEngine;
 using UnityEngine.UI;
 

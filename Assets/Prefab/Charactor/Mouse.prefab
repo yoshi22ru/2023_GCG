@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 1213688433953315983}
   m_Layer: 0
   m_Name: Mouse
-  m_TagString: Untagged
+  m_TagString: BattleObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

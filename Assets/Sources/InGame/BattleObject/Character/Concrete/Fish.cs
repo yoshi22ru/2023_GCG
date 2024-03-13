@@ -11,43 +11,46 @@ namespace Sources.InGame.BattleObject.Character.Concrete
     {
         protected override void Skill1()
         {
-            characterStatus.UseSkill1();
-            SetState(Character_State.Skill1);
+            CharacterStatus.UseSkill1();
+            SetState(CharacterState.Skill1);
             photonView.RPC(nameof(Skill1Sync), RpcTarget.All);
         }
 
         [PunRPC]
         private void Skill1Sync()
         {
-            Instantiate(Skill1Prefab, Skill1Point.position, myTransform.rotation);
+            var instance = Instantiate(Skill1Prefab, Skill1Point.position, myTransform.rotation).GetComponent<BattleObject>();
+            instance.SetTeam(GetTeam());
             // AudioSourceCache.PlayOneShot(Skill1SE);
         }
 
         protected override void Skill2()
         {
-            characterStatus.UseSkill2();
-            SetState(Character_State.Skill2);
+            CharacterStatus.UseSkill2();
+            SetState(CharacterState.Skill2);
             photonView.RPC(nameof(Skill2Sync), RpcTarget.All);
         }
 
         [PunRPC]
         private void Skill2Sync()
         {
-            Instantiate(Skill2Prefab, Skill2Point.position, myTransform.rotation);
+            var instance = Instantiate(Skill2Prefab, Skill2Point.position, myTransform.rotation).GetComponent<BattleObject>();
+            instance.SetTeam(GetTeam());
             // AudioSourceCache.PlayOneShot(Skill2SE);
         }
 
         protected override void Special()
         {
-            characterStatus.UseSpecial();
-            SetState(Character_State.Special);
+            CharacterStatus.UseSpecial();
+            SetState(CharacterState.Special);
             photonView.RPC(nameof(SpecialSync), RpcTarget.All);
         }
 
         [PunRPC]
         private void SpecialSync()
         {
-            Instantiate(SpecialPrefab, Skill2Point.position, myTransform.rotation);
+            var instance = Instantiate(SpecialPrefab, Skill2Point.position, myTransform.rotation).GetComponent<BattleObject>();
+            instance.SetTeam(GetTeam());
             // AudioSourceCache.PlayOneShot(SpecialSE);
         }
     }

@@ -72,7 +72,6 @@ namespace Sources.PhotonRelation.MenuScene
         [PunRPC]
         private void RPCLoadScene(int stageNum)
         {
-            Debug.Log("LoadScene");
             switch (stageNum)
             {
                 case 1:

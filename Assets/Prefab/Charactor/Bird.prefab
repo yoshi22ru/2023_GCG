@@ -784,7 +784,7 @@ GameObject:
   - component: {fileID: 8205963927015032890}
   m_Layer: 0
   m_Name: Bird
-  m_TagString: Character
+  m_TagString: BattleObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1204,13 +1204,10 @@ MonoBehaviour:
   myTransform: {fileID: 1058467058186207363}
   skill1: {fileID: 8239280865369750960, guid: cf627148926daa64f8b52e795fac3019, type: 3}
   skill2: {fileID: 1171201465392465800, guid: 052c5b4a693337b4fa68c08068717128, type: 3}
-  special: {fileID: 7155335147208632822, guid: 21efe025e445ba24faa01467794768cc, type: 3}
+  special: {fileID: 6103284405816278665, guid: 11f9664ebc633024eb89e920dedec66a, type: 3}
   skill1Point: {fileID: 528405523109714338}
   skill2Point: {fileID: 528405523109714338}
   specialPoint: {fileID: 528405523109714338}
-  skill1SE: {fileID: 0}
-  skill2SE: {fileID: 0}
-  specialSE: {fileID: 0}
 --- !u!114 &8205963927015032890
 MonoBehaviour:
   m_ObjectHideFlags: 0

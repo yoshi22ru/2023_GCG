@@ -29,7 +29,7 @@ namespace Sources.InGame.BattleObject.Castle
                 SkillManager skillManager = battleObject as SkillManager;
                 if (skillManager == null)
                     return;
-                if (skillManager.type == SkillManager.SkillType.damage)
+                if (skillManager.type == SkillManager.SkillType.Damage)
                 {
                     SetHP(HP - skillManager.GetSkillDamage);
                     if (HP <= 0)

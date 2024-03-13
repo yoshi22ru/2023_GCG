@@ -13,10 +13,11 @@ namespace Sources.PhotonRelation.SelectCharacterScene
     public class SelectCharacterPanel : MenuPanelBase
     {
         [SerializeField] private List<SelectCharacter> selections;
+        [SerializeField] private Text roomName;
 
         private void Awake()
         {
-            Debug.Log(PhotonNetwork.OfflineMode);
+            roomName.text = PhotonNetwork.CurrentRoom.Name;
             for (int i = 0; i < selections.Count; ++i)
             {
                 selections[i].SetActorNum(i + 1);
@@ -26,6 +27,7 @@ namespace Sources.PhotonRelation.SelectCharacterScene
 
         void FixedUpdate()
         {
+            // FIXME : reactive call
             CheckAll();
         }
 
@@ -75,16 +77,21 @@ namespace Sources.PhotonRelation.SelectCharacterScene
             return false;
         }
 
-        void SetParams()
+        private void SetParams()
         {
-            for (int i = 0; i < selections.Count; ++i)
+            var message="";
+            foreach (var select in selections)
             {
-                VariableManager.player_selections.Add(new VariableManager.PlayerSelection(
-                    selections[i].GetTeam(),
-                    selections[i].GetCharacter(),
-                    selections[i].GetActorNum()
-                ));
+                message += $"Number : {select.GetActorNum()}\n" +
+                           $"Team   : {select.GetTeam()}\n" +
+                           $"Chara  : {select.GetCharacter()}\n";
+                VariableManager.PlayerSelections.Add(new VariableManager.PlayerSelection(
+                    select.GetTeam(),
+                    select.GetCharacter(),
+                    select.GetActorNum()));
             }
+
+            Debug.Log(message);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.CompilerServices;
 using System.ComponentModel.Design;
+using Sources.InGame.BattleObject.Character;
 
 public class MoveClass
 {

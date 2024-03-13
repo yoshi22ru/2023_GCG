@@ -18,8 +18,9 @@ namespace Sources.PhotonRelation.MenuScene
 
         private void SetNewName()
         {
+            ButtonOff();
             var newName = roomNameField.text;
-            SetMyName(newName);
+            EnterRoom(newName);
         }
 
         private void CancelSetName()
@@ -35,18 +36,41 @@ namespace Sources.PhotonRelation.MenuScene
             submitButton.onClick.AddListener(SetNewName);
             cancelButton.onClick.AddListener(CancelSetName);
         }
-        private void SetMyName(string newName)
+        private void EnterRoom(string newName)
         {
             if (PhotonNetwork.IsConnected)
             {
-                PhotonNetwork.LocalPlayer.NickName = newName;
-                Debug.Log("NicName : " + newName);
+                PhotonNetwork.JoinRoom(newName);
             }
             else
             {
-                Debug.Log("Not Connected");
+                roomNameField.text = "Not Connected";
             }
         }
 
+        public override void OnJoinedRoom()
+        {
+            ButtonOn();
+            Manager.ShiftPanel(MenuPanelDB.IdentPanel.SelectCharacter);
+        }
+
+
+        private void ButtonOff()
+        {
+            submitButton.interactable = false;
+            cancelButton.interactable = false;
+        }
+
+        private void ButtonOn()
+        {
+            submitButton.interactable = true;
+            cancelButton.interactable = true;
+        }
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            roomNameField.text = message;
+            ButtonOn();
+        }
+        
     }
 }
