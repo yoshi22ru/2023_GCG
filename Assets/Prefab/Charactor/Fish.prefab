@@ -887,10 +887,10 @@ GameObject:
   - component: {fileID: 5146971128123175376}
   - component: {fileID: -6096541320617429772}
   - component: {fileID: 6065455661739431681}
-  - component: {fileID: 1214909414649720791}
+  - component: {fileID: -4808537210756320632}
   m_Layer: 0
   m_Name: Fish
-  m_TagString: Untagged
+  m_TagString: BattleObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1275,7 +1275,7 @@ MonoBehaviour:
   skill1Point: {fileID: 7054043022648123885}
   skill2Point: {fileID: 7054043022648123885}
   specialPoint: {fileID: 7054043022648123885}
---- !u!114 &1214909414649720791
+--- !u!114 &-4808537210756320632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1284,6 +1284,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8941205293409301154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65ef6cefbfdee1ca480faf40507a9de9, type: 3}
+  m_Script: {fileID: 11500000, guid: 19b9ebead5308c3bd9760fe99958f95d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 100
+  minHP: 0
+  maxHP: 100
+  moveSpeed: 5
+  Skill1CoolDown: 5
+  Skill2CoolDown: 8
+  SpecialCoolDown: 10
+  skillPrefab: []

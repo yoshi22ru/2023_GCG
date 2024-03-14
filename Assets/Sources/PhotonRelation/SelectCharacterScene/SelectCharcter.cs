@@ -9,18 +9,19 @@ using Photon.Pun;
 using Photon.Realtime;
 using Resources.Character;
 using Sources.InGame.BattleObject;
+using UnityEngine.Serialization;
 
 public class SelectCharacter : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Button up;
     [SerializeField] private Button down;
-    [SerializeField] private Image chara_sprite;
-    [SerializeField] private Image team_color;
+    [SerializeField] private Image charaSprite;
+    [SerializeField] private Image teamColor;
     [SerializeField] CharaDataBase charaDataBase;
-    CharaData.Ident_Character _Character = CharaData.Ident_Character.Bird;
-    int actor_number;
-    bool decide;
-    BattleObject.Team team;
+    private CharaData.IdentCharacter _character = CharaData.IdentCharacter.Bird;
+    private int _actorNumber;
+    private bool _decide;
+    private BattleObject.Team _team;
 
     private void Start()
     {
@@ -29,7 +30,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         down.onClick.AddListener(ScrollDown);
 
 
-        if (actor_number % 2 == 1)
+        if (_actorNumber % 2 == 1)
         {
             SetTeam(BattleObject.Team.Red);
         }
@@ -39,47 +40,52 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
 
         SetDecision(false);
-        SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min());
+        SetData((CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Min());
     }
 
     private void ScrollUp()
     {
-        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+        if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+        {
             return;
         }
 
-        if ((_Character - 1) <= (CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min())
+        if ((_character - 1) <=
+            (CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Min())
         {
             // underflow
-            SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Max());
+            SetData((CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Max());
         }
         else
         {
-            SetData(_Character - 1);
+            SetData(_character - 1);
         }
     }
+
     private void ScrollDown()
     {
-        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+        if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+        {
             return;
         }
 
-        if ((_Character + 1) >= (CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Max())
+        if ((_character + 1) >=
+            (CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Max())
         {
             // overflow
-            SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min());
+            SetData((CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Min());
         }
         else
         {
-            SetData(_Character + 1);
+            SetData(_character + 1);
         }
     }
 
     public void ChangeTeam()
     {
-        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) return;
+        if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber) return;
 
-        if (team == BattleObject.Team.Blue)
+        if (_team == BattleObject.Team.Blue)
         {
             SetTeam(BattleObject.Team.Red);
         }
@@ -93,80 +99,85 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
     public void TurnDecision()
     {
-        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
+        if (_actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            SetDecision(!decide);
+            SetDecision(!_decide);
         }
     }
 
-    public void OnDecision() {
-        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+    public void OnDecision()
+    {
+        if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+        {
             return;
         }
+
         SetDecision(true);
     }
 
-    public void OffDecision() {
-        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) {
+    public void OffDecision()
+    {
+        if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber)
+        {
             return;
         }
+
         SetDecision(false);
     }
 
     #endregion
 
-    private void SetData(CharaData.Ident_Character ident_Character)
+    private void SetData(CharaData.IdentCharacter identCharacter)
     {
-        if (decide) return;
+        if (_decide) return;
 
-        this._Character = ident_Character;
-        CharaData data = charaDataBase.character_data[(int)ident_Character];
+        this._character = identCharacter;
+        CharaData data = charaDataBase.characterData[(int)identCharacter];
 
-        this.chara_sprite.sprite = data.CharaSprite;
+        this.charaSprite.sprite = data.CharaSprite;
 
-        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
+        if (_actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            VariableManager.character = ident_Character;
-            PhotonNetwork.LocalPlayer.SetCharacter((int)_Character);
+            PhotonNetwork.LocalPlayer.SetCharacter((int)_character);
         }
     }
 
     private void SetTeam(BattleObject.Team team)
     {
-        Debug.Log("num" + actor_number + " is : " + team);
-        this.team = team;
+        this._team = team;
         if (team == BattleObject.Team.Blue)
         {
-            team_color.color = Color.blue;
+            teamColor.color = Color.blue;
         }
         else
         {
-            team_color.color = Color.red;
+            teamColor.color = Color.red;
         }
 
-        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
+        if (_actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            VariableManager.my_team = team;
             PhotonNetwork.LocalPlayer.SetTeam((int)team);
         }
     }
 
     private void SetDecision(bool decision)
     {
-        if (!(decide ^ decision))
+        if (!(_decide ^ decision))
         {
             return;
         }
-        decide = decision;
+
+        _decide = decision;
         if (decision)
         {
-            chara_sprite.color = Color.black;
+            charaSprite.color = Color.black;
         }
         else
         {
-            chara_sprite.color = Color.white;
+            charaSprite.color = Color.white;
         }
-        if (actor_number == PhotonNetwork.LocalPlayer.ActorNumber)
+
+        if (_actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
         {
             PhotonNetwork.LocalPlayer.SetDecision(decision);
         }
@@ -180,13 +191,13 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
         // if update is not rerated this
-        if (targetPlayer.ActorNumber != actor_number) return;
+        if (targetPlayer.ActorNumber != _actorNumber) return;
         // if updated properties are mine
         if (PhotonNetwork.LocalPlayer.ActorNumber == targetPlayer.ActorNumber) return;
 
         if (targetPlayer.TryGetCharacter(out var character))
         {
-            SetData((CharaData.Ident_Character)character);
+            SetData((CharaData.IdentCharacter)character);
         }
 
         if (targetPlayer.TryGetTeam(out var team))
@@ -194,48 +205,44 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
             SetTeam((BattleObject.Team)team);
         }
 
-        if (targetPlayer.TryGetDecision(out var is_decide))
+        if (targetPlayer.TryGetDecision(out var isDecide))
         {
-            SetDecision(is_decide);
+            SetDecision(isDecide);
         }
     }
 
-    public void SetActorNum(int actor_number)
+    public void SetActorNum(int actorNumber)
     {
-        this.actor_number = actor_number;
-        Debug.Log("this actor num is : " + actor_number);
+        this._actorNumber = actorNumber;
+        Debug.Log("this actor num is : " + actorNumber);
     }
 
     public BattleObject.Team GetTeam()
     {
-        return team;
+        return _team;
     }
 
     public bool GetDecision()
     {
-        return decide;
+        return _decide;
     }
 
-    public CharaData.Ident_Character GetCharacter()
+    public CharaData.IdentCharacter GetCharacter()
     {
-        return _Character;
+        return _character;
     }
 
     public int GetActorNum()
     {
-        return actor_number;
+        return _actorNumber;
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if (actor_number != PhotonNetwork.LocalPlayer.ActorNumber) return;
+        if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber) return;
 
-        // File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "actor_number : " + actor_number + "\n");
-        // File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "character : " + _Character + "\n");
-        // File.AppendAllText(@"C:\Users\xiang\Unity\log.txt", "team : " + team + "\n");
-
-        PhotonNetwork.LocalPlayer.SetCharacter((int)_Character);
-        PhotonNetwork.LocalPlayer.SetTeam((int)team);
-        PhotonNetwork.LocalPlayer.SetDecision(decide);
+        PhotonNetwork.LocalPlayer.SetCharacter((int)_character);
+        PhotonNetwork.LocalPlayer.SetTeam((int)_team);
+        PhotonNetwork.LocalPlayer.SetDecision(_decide);
     }
 }

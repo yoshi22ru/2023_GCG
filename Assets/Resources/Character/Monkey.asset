@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88727919601584d9f1e10feb1507db, type: 3}
   m_Name: Monkey
   m_EditorClassIdentifier: 
-  chara_name: Monkey
-  chara_image: {fileID: 21300000, guid: d5eeea9f6505ed949981b85ff77174e9, type: 3}
-  charactor_prefab: {fileID: 4876803712735204516, guid: 0f11d121e86c87e4e8c1d1edf69cff8f, type: 3}
+  charaName: 4
+  charaImage: {fileID: 21300000, guid: d5eeea9f6505ed949981b85ff77174e9, type: 3}
+  characterPrefab: {fileID: 4876803712735204516, guid: 0f11d121e86c87e4e8c1d1edf69cff8f, type: 3}

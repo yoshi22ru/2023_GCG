@@ -8,6 +8,6 @@ namespace Resources.Character
     [CreateAssetMenu(fileName = nameof(CharaDataBase), menuName = "ScriptableObjects/CreateCharaDataBase")]
     public class CharaDataBase : ScriptableObject
     {
-        public List<CharaData> character_data = new List<CharaData>();
+        public List<CharaData> characterData = new List<CharaData>();
     }
 }

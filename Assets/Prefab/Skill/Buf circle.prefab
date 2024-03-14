@@ -9797,7 +9797,7 @@ GameObject:
   - component: {fileID: 7150896670372662753}
   m_Layer: 0
   m_Name: Buf circle
-  m_TagString: Untagged
+  m_TagString: BattleObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14735,10 +14735,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team: 0
   skillSpeed: 0
-  leftTime: 0
-  skill1Damage: 0
-  skill2Damage: 0
-  specialDamage: 0
+  leftTime: 5
+  skillDamage: 10
   healValue: 0
   bufAttack: 0
   bufSpeed: 0

@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = nameof(CharaData), menuName = "ScriptableObjects/CreateCharaData")]
 public class CharaData : ScriptableObject
 {
     [SerializeField]
-    private string chara_name;
+    private IdentCharacter charaName;
+     [SerializeField]
+    private Sprite charaImage;
     [SerializeField]
-    private Sprite chara_image;
-    [SerializeField]
-    private GameObject charactor_prefab;
+    private GameObject characterPrefab;
 
-    public string CharaName {get => chara_name;}
-    public Sprite CharaSprite {get => chara_image;}
-    public GameObject CharactorPrefab {get => charactor_prefab;}
+    public IdentCharacter CharaName {get => charaName;}
+    public Sprite CharaSprite {get => charaImage;}
+    public GameObject CharacterPrefab {get => characterPrefab;}
 
-    public enum Ident_Character {
+    public enum IdentCharacter {
         Bird,
         Deer,
         Fish,

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88727919601584d9f1e10feb1507db, type: 3}
   m_Name: Deer
   m_EditorClassIdentifier: 
-  chara_name: Deer
-  chara_image: {fileID: 21300000, guid: 6120a89a148c6e9438d82404d07558db, type: 3}
-  charactor_prefab: {fileID: 4068790814402866381, guid: 4aa6fd0de707540439eae9a5922dd400, type: 3}
+  charaName: 1
+  charaImage: {fileID: 21300000, guid: 6120a89a148c6e9438d82404d07558db, type: 3}
+  characterPrefab: {fileID: 4068790814402866381, guid: 4aa6fd0de707540439eae9a5922dd400, type: 3}

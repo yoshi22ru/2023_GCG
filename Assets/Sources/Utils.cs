@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Sources.InGame.BattleObject;
 using UnityEngine;
 
 namespace Sources
@@ -14,6 +15,12 @@ namespace Sources
                 .Where(animationClip => animationClip.name == clipName)
                 .Select(clip => clip.length)
                 .FirstOrDefault();
+        }
+
+        public static string FormatBattleObjectInformation(GameObject gameObject, BattleObject battleObject)
+        {
+            return $"\t{gameObject.name}\n" +
+                   $"\t{battleObject.GetTeam()}\n";
         }
     }
 }

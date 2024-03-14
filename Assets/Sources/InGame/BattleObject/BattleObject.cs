@@ -13,18 +13,15 @@ namespace Sources.InGame.BattleObject
         #region variables
 
         [SerializeField] Team team;
-        ObjectType objectType;
-        protected GameManager manager;
+        ObjectType _objectType;
 
         #endregion
 
-        [PunRPC]
         protected virtual void OnHitMyTeamObject(BattleObject battleObject)
         {
-
+            Debug.Log("VAR");
         }
 
-        [PunRPC]
         protected virtual void OnHitEnemyTeamObject(BattleObject battleObject)
         {
 
@@ -37,7 +34,7 @@ namespace Sources.InGame.BattleObject
             return team;
         }
 
-        protected void SetTeam(Team team)
+        public void SetTeam(Team team)
         {
             this.team = team;
         }
@@ -53,18 +50,21 @@ namespace Sources.InGame.BattleObject
             this.HP = HP;
         }
         */
-        public void setManager(GameManager gameManager)
-        {
-            this.manager = gameManager;
-        }
 
 
         #endregion
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!other.CompareTag("BattleObject")) return;
+            
             if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject))
             {
+                Debug.Log("Try Get Component is success\n" +
+                          $"ThisName : {name}\n" +
+                          $"ObjectName : {other.name}\n" +
+                          $"OtherTeam : {battleObject.team}\n" +
+                          $"MyTeam : {team}");
                 if (this.team == battleObject.team)
                 {
                     OnHitMyTeamObject(battleObject);
@@ -73,6 +73,11 @@ namespace Sources.InGame.BattleObject
                 {
                     OnHitEnemyTeamObject(battleObject);
                 }
+            }
+            else
+            {
+                Debug.Log("Try Get Component is failure\n" +
+                          $"ObjectName : {other.name}");
             }
         }
 

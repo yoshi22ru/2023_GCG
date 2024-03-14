@@ -5,25 +5,25 @@ namespace Sources.InGame.BattleObject.Skill
 {
     public class SkillManager : BattleObject
     {
-        public float skillSpeed;
-        public float leftTime;
+        public float skillSpeed=5f;
+        public float leftTime=5f;
         private float _currentTime;
-        [SerializeField] int skillDamage;
-        [SerializeField] int healValue;
-        [SerializeField] float bufAttack;
-        [SerializeField] float bufSpeed;
+        [SerializeField] int skillDamage=5;
+        [SerializeField] int healValue=5;
+        [SerializeField] float bufAttack=5f;
+        [SerializeField] float bufSpeed=5f;
 
         public SkillType type;
+        private Rigidbody _rb;
 
         public enum SkillType
         {
-            damage,
-            heal,
-            bufAttack,
-            bufSpeed,
+            Damage,
+            Heal,
+            BufAttack,
+            BufSpeed,
         }
 
-        Rigidbody rb;
 
         public int GetHeal
         {
@@ -74,18 +74,9 @@ namespace Sources.InGame.BattleObject.Skill
         // Start is called before the first frame update
         void Start()
         {
-            rb = GetComponent<Rigidbody>();
-            rb.velocity = transform.forward * skillSpeed;
-        }
-
-        void FixedUpdate()
-        {
-            _currentTime += Time.deltaTime;
-            if (_currentTime > leftTime)
-            {
-                Destroy(gameObject);
-                _currentTime = 0;
-            }
+            _rb = GetComponent<Rigidbody>();
+            _rb.velocity = transform.forward * skillSpeed;
+            Destroy(gameObject, leftTime);
         }
     }
 }

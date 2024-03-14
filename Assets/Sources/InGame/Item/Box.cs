@@ -25,7 +25,7 @@ public class Box : MonoBehaviour
     {
         if(collision.gameObject.TryGetComponent<SkillManager>(out var skill))
         {
-            if (skill.type is SkillManager.SkillType.damage)
+            if (skill.type is SkillManager.SkillType.Damage)
             {
                 ParticleSystem newParticle = Instantiate(particle);
                 newParticle.transform.position = this.transform.position;

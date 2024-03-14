@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88727919601584d9f1e10feb1507db, type: 3}
   m_Name: Mouse
   m_EditorClassIdentifier: 
-  chara_name: Mouse
-  chara_image: {fileID: 21300000, guid: 2b95863d30920bc4c9a63c69a7c32357, type: 3}
-  charactor_prefab: {fileID: 7550194517339994131, guid: dbfcc8e28ba573d4eb01b0f2798a7baf, type: 3}
+  charaName: 5
+  charaImage: {fileID: 21300000, guid: 2b95863d30920bc4c9a63c69a7c32357, type: 3}
+  characterPrefab: {fileID: 7550194517339994131, guid: dbfcc8e28ba573d4eb01b0f2798a7baf, type: 3}

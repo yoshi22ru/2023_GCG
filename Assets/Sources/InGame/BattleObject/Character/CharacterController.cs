@@ -2,53 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+
+namespace Sources.InGame.BattleObject.Character
 {
-    private CharacterStatus characterStatus; // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒe[ƒ^ƒX
-    private void Start()
+
+
+    public class CharacterController : MonoBehaviour
     {
-        // ƒLƒƒƒ‰ƒNƒ^[‚ÌƒXƒe[ƒ^ƒX‚ğæ“¾‚Ü‚½‚Í‰Šú‰»
-        characterStatus = GetComponent<CharacterStatus>();
-    }
+        private CharacterStatus characterStatus; // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½X
 
-    private void FixedUpdate()
-    {
-        if (characterStatus.IsDead)
+        private void Start()
         {
-            // ƒLƒƒƒ‰ƒNƒ^[‚ª€–S‚µ‚Ä‚¢‚éê‡‚Íˆ—‚ğI—¹
-            return;
+            // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ÌƒXï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½æ“¾ï¿½Ü‚ï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½
+            characterStatus = GetComponent<CharacterStatus>();
         }
 
-        // ƒL[“ü—Í‚ÉŠî‚Ã‚¢‚Äó‘Ô‘JˆÚ‚ğ§Œä
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        private void FixedUpdate()
         {
-            // WASDƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éŠÔ‚ÍRunó‘Ô‚É‘JˆÚ
-            characterStatus.UpdateStatus();
-            //SetState(Character.Character_State.Run);
-        }
-        else if (Input.GetKeyDown(KeyCode.E))
-        {
-            // EƒL[‚ğ‰Ÿ‚µ‚½ê‡ASkill1‚ğ”­“®
-            characterStatus.UseSkill1();
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            // QƒL[‚ğ‰Ÿ‚µ‚½ê‡ASkill2‚ğ”­“®
-            characterStatus.UseSkill2();
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            // RƒL[‚ğ‰Ÿ‚µ‚½ê‡ASpecial‚ğ”­“®
-            characterStatus.UseSpecial();
-        }
-        else
-        {
-            // ‰½‚à“ü—Í‚³‚ê‚Ä‚¢‚È‚¢ê‡‚ÍIdleó‘Ô‚É‘JˆÚ
-            characterStatus.UpdateStatus();
-            //SetState(Character.Character_State.Idle);
-        }
+            if (characterStatus.IsDead)
+            {
+                // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ê‡ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
+                return;
+            }
 
-        // ƒLƒƒƒ‰ƒNƒ^[‚Ì€–S”»’è‚ğs‚¤
-        characterStatus.CheckDeath();
+            // ï¿½Lï¿½[ï¿½ï¿½ï¿½Í‚ÉŠï¿½Ã‚ï¿½ï¿½Äï¿½Ô‘Jï¿½Ú‚ğ§Œï¿½
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) ||
+                Input.GetKey(KeyCode.D))
+            {
+                // WASDï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ô‚ï¿½Runï¿½ï¿½Ô‚É‘Jï¿½ï¿½
+                characterStatus.UpdateStatus();
+                //SetState(Character.Character_State.Run);
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                // Eï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ASkill1ï¿½ğ”­“ï¿½
+                characterStatus.UseSkill1();
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                // Qï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ASkill2ï¿½ğ”­“ï¿½
+                characterStatus.UseSkill2();
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                // Rï¿½Lï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ASpecialï¿½ğ”­“ï¿½
+                characterStatus.UseSpecial();
+            }
+            else
+            {
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½Idleï¿½ï¿½Ô‚É‘Jï¿½ï¿½
+                characterStatus.UpdateStatus();
+                //SetState(Character.Character_State.Idle);
+            }
+
+            // ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Nï¿½^ï¿½[ï¿½Ìï¿½ï¿½Sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
+            characterStatus.CheckDeath();
+        }
     }
 }

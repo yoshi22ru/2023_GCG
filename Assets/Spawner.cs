@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Sources.InGame.BattleObject.Character;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 

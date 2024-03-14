@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88727919601584d9f1e10feb1507db, type: 3}
   m_Name: Gecho
   m_EditorClassIdentifier: 
-  chara_name: Gecko
-  chara_image: {fileID: 21300000, guid: 3877ed1d03fb4b54388a0d0b0088682d, type: 3}
-  charactor_prefab: {fileID: 6286164418673159766, guid: 5cd487d47c55d9842a5ad1266c2efca2, type: 3}
+  charaName: 3
+  charaImage: {fileID: 21300000, guid: 3877ed1d03fb4b54388a0d0b0088682d, type: 3}
+  characterPrefab: {fileID: 6286164418673159766, guid: 5cd487d47c55d9842a5ad1266c2efca2, type: 3}

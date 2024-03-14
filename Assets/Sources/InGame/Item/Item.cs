@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sources.InGame.BattleObject;
+using Sources.InGame.BattleObject.Character;
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour

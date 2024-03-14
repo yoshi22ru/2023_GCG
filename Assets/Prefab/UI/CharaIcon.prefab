@@ -443,8 +443,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   up: {fileID: 8665852513834042036}
   down: {fileID: 5189123851345024470}
-  chara_sprite: {fileID: 3822148557058092746}
-  team_color: {fileID: 7412297352867037315}
+  charaSprite: {fileID: 3822148557058092746}
+  teamColor: {fileID: 7412297352867037315}
   charaDataBase: {fileID: 11400000, guid: 129d2dbd825665048991f3d815f5b501, type: 2}
 --- !u!114 &3607662751671859186
 MonoBehaviour:

@@ -23,17 +23,13 @@ namespace Sources.PhotonRelation.MenuScene
 
         public void ReturnPanel()
         {
-            try
-            {
-                var tmp = _panelInfos.Pop();
-                _nowPanel.Dispose();
-                _nowPanel = tmp;
-            }
-            catch (InvalidOperationException e)
-            {
-                // If stack is empty don`t do something
-            }
+            if (_panelInfos.Count == 0) return;
+            
+            var tmp = _panelInfos.Pop();
+            _nowPanel.Dispose();
+            _nowPanel = tmp;
         }
+
         public void ShiftPanel(MenuPanelDB.IdentPanel identPanel)
         {
             if (identPanel == _nowPanel.IdentPanel) return;
@@ -72,7 +68,6 @@ namespace Sources.PhotonRelation.MenuScene
         [PunRPC]
         private void RPCLoadScene(int stageNum)
         {
-            Debug.Log("LoadScene");
             switch (stageNum)
             {
                 case 1:

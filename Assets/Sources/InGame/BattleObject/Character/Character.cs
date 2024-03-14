@@ -10,18 +10,23 @@ namespace Sources.InGame.BattleObject.Character
 {
 
     public class Character : BattleObject
-    // , IPunObservable
     {
+        private int _currentBuff;
         private MoveClass _moveClass;
         private Vector3 _moveVector;
         public Animator animator;
-        protected Character_State currentState;
-        protected CharacterStatus characterStatus;
-        protected float time;
+
+        protected CharacterState CurrentState
+        {
+            private set;
+            get;
+        }
+        protected CharacterStatus CharacterStatus;
+        private BuffManager _buffManager;
         [SerializeField] protected Transform myTransform;
         protected Vector3 p1, p2, v1, v2;
-        protected half elapsed_time;
-        protected const float InterpolationPeriod = 0.25f;
+        private half _elapsedTime;
+        private const float InterpolationPeriod = 0.25f;
 
         #region skill variables
 
@@ -32,10 +37,6 @@ namespace Sources.InGame.BattleObject.Character
         [SerializeField] Transform skill2Point;
         [SerializeField] Transform specialPoint;
         
-        // [SerializeField] AudioClip skill1SE;
-        // [SerializeField] AudioClip skill2SE;
-        // [SerializeField] AudioClip specialSE;
-        // private AudioSource _audioSourceCache;
 
         #region Getter
 
@@ -68,27 +69,6 @@ namespace Sources.InGame.BattleObject.Character
         {
             get { return specialPoint; }
         }
-
-        // protected AudioClip Skill1SE
-        // {
-        //     get { return skill1SE; }
-        // }
-        //
-        // protected AudioClip Skill2SE
-        // {
-        //     get { return skill2SE; }
-        // }
-        //
-        // protected AudioClip SpecialSE
-        // {
-        //     get { return specialSE; }
-        // }
-        //
-        // protected AudioSource AudioSourceCache
-        // {
-        //     get { return _audioSourceCache; }
-        // }
-        
         #endregion
         
         #endregion
@@ -124,7 +104,7 @@ namespace Sources.InGame.BattleObject.Character
 
         #endregion
 
-        protected enum Character_State
+        protected enum CharacterState
         {
             None,
             Idle,
@@ -138,19 +118,18 @@ namespace Sources.InGame.BattleObject.Character
 
         private void Awake()
         {
-            characterStatus = GetComponent<CharacterStatus>();
+            CharacterStatus = GetComponent<CharacterStatus>();
             InitAnim();
             var rbody = GetComponent<Rigidbody>();
-            SetState(Character_State.Idle);
-            setManager(GameManager.manager);
-            _moveClass = new MoveClass(myTransform, rbody, characterStatus);
+            SetState(CharacterState.Idle);
+            _moveClass = new MoveClass(myTransform, rbody, CharacterStatus);
         }
 
         private void Start()
         {
-            // _audioSourceCache = GetComponent<AudioSource>();
-
-
+            SetTeam(VariableManager.GetTeamByActorNumber(photonView.OwnerActorNr));
+            Debug.Log("Called Init BattleObject\n" +
+                      $"{Utils.FormatBattleObjectInformation(gameObject, this)}");
             if (photonView.IsMine)
             {
                 Debug.Log(this.name + " : " + photonView.IsMine);
@@ -159,29 +138,23 @@ namespace Sources.InGame.BattleObject.Character
             }
         }
 
-        [PunRPC]
-        public void Initialize(Team team)
-        {
-            SetTeam(team);
-            manager.AddPlayer(this, characterStatus, PhotonNetwork.LocalPlayer.ActorNumber, team);
-        }
-
         protected override void OnHitMyTeamObject(BattleObject battleObject)
         {
+            Debug.Log(nameof(OnHitMyTeamObject));
             SkillManager skillManager = battleObject as SkillManager;
             if (skillManager == null) return;
 
-            if (skillManager.type == SkillManager.SkillType.heal)
+            if (skillManager.type == SkillManager.SkillType.Heal)
             {
-                characterStatus.SetHP(skillManager.GetHeal + characterStatus.CurrentHP);
+                CharacterStatus.SetHP(skillManager.GetHeal + CharacterStatus.CurrentHP);
             }
-            else if (skillManager.type == SkillManager.SkillType.bufSpeed)
+            else if (skillManager.type == SkillManager.SkillType.BufSpeed)
             {
-                characterStatus.SetMoveSpeed(skillManager.GetBufSpeed + characterStatus.MoveSpeed);
+                CharacterStatus.SetMoveSpeed(skillManager.GetBufSpeed + CharacterStatus.MoveSpeed);
             }
-            else if (skillManager.type == SkillManager.SkillType.bufAttack)
+            else if (skillManager.type == SkillManager.SkillType.BufAttack)
             {
-                GameObject[] skill = characterStatus.GetSkillPrefab;
+                GameObject[] skill = CharacterStatus.GetSkillPrefab;
                 for (int i = 0; i < skill.Length; i++)
                 {
                     skillManager = skill[i].gameObject.GetComponent<SkillManager>();
@@ -192,15 +165,20 @@ namespace Sources.InGame.BattleObject.Character
 
         protected override void OnHitEnemyTeamObject(BattleObject battleObject)
         {
-            SkillManager skillManager = battleObject as SkillManager;
+            Debug.Log(nameof(OnHitEnemyTeamObject));
+            var skillManager = battleObject as SkillManager;
             if (skillManager == null) return;
 
-            if (skillManager.type == SkillManager.SkillType.damage)
+            if (skillManager.type == SkillManager.SkillType.Damage)
             {
-                characterStatus.SetHP(characterStatus.CurrentHP - skillManager.GetSkillDamage);
+                Debug.Log("Damage Hit\n" +
+                          Utils.FormatBattleObjectInformation(gameObject, this) +
+                          $"Value : {skillManager.GetSkillDamage}\n" +
+                          $"");
+                CharacterStatus.SetHP(CharacterStatus.CurrentHP - skillManager.GetSkillDamage);
             }
 
-            SetState(Character_State.Damage);
+            SetState(CharacterState.Damage);
         }
 
 
@@ -217,37 +195,35 @@ namespace Sources.InGame.BattleObject.Character
             {
                 p1 = p2;
                 p2 = myTransform.position;
-                elapsed_time = (half)Time.deltaTime;
+                _elapsedTime = (half)Time.deltaTime;
             }
             else
             {
-                elapsed_time += (half)Time.deltaTime;
-                if (elapsed_time < InterpolationPeriod)
+                _elapsedTime += (half)Time.deltaTime;
+                if (_elapsedTime < InterpolationPeriod)
                 {
                     myTransform.position =
-                        HermiteSpline.Interpolate(p1, p2, v1, v2, elapsed_time / InterpolationPeriod);
+                        HermiteSpline.Interpolate(p1, p2, v1, v2, _elapsedTime / InterpolationPeriod);
                 }
                 else
                 {
-                    myTransform.position = Vector3.LerpUnclamped(p1, p2, elapsed_time / InterpolationPeriod);
+                    myTransform.position = Vector3.LerpUnclamped(p1, p2, _elapsedTime / InterpolationPeriod);
                 }
 
                 return;
             }
 
-            if (characterStatus.IsDead)
+            if (CharacterStatus.IsDead)
             {
-                time += Time.deltaTime;
-
-                if (currentState != Character_State.Dead)
+                if (CurrentState != CharacterState.Dead)
                 {
-                    SetState(Character_State.Dead);
+                    SetState(CharacterState.Dead);
                 }
 
-                characterStatus.SetHP(characterStatus.MaxHP);
+                CharacterStatus.SetHP(CharacterStatus.MaxHP);
             }
 
-            if (characterStatus.IsDead == false && CountDown.instance.isCountFinish == true)
+            if (CharacterStatus.IsDead == false && CountDown.instance.isCountFinish == true)
             {
                 // FIXME
                 // else if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.K))
@@ -257,9 +233,9 @@ namespace Sources.InGame.BattleObject.Character
             }
         }
 
-        protected void SetState(Character_State newState)
+        protected void SetState(CharacterState newState)
         {
-            currentState = newState;
+            CurrentState = newState;
 
             animator.ResetTrigger(_idleId);
             animator.ResetTrigger(_runId);
@@ -271,31 +247,31 @@ namespace Sources.InGame.BattleObject.Character
 
             switch (newState)
             {
-                case Character_State.Idle:
+                case CharacterState.Idle:
                     animator.SetTrigger(_idleId);
                     break;
-                case Character_State.Run:
+                case CharacterState.Run:
                     animator.SetTrigger(_runId);
                     break;
-                case Character_State.Damage:
+                case CharacterState.Damage:
                     animator.SetTrigger(_damageId);
                     break;
-                case Character_State.Dead:
+                case CharacterState.Dead:
                     animator.SetTrigger(_deadId);
                     break;
-                case Character_State.Skill1:
+                case CharacterState.Skill1:
                     animator.SetTrigger(_skill1Id);
                     break;
-                case Character_State.Skill2:
+                case CharacterState.Skill2:
                     animator.SetTrigger(_skill2Id);
                     break;
-                case Character_State.Special:
+                case CharacterState.Special:
                     animator.SetTrigger(_specialId);
                     break;
             }
         }
 
-        private async void DelaySetState(Character_State state, float length)
+        private async void DelaySetState(CharacterState state, float length)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(length));
 
@@ -403,16 +379,16 @@ namespace Sources.InGame.BattleObject.Character
             if (!photonView.IsMine) return;
             var value = context.ReadValue<Vector2>();
 
-            Debug.Log(nameof(OnMove) + " is already set on callback");
+            // Debug.Log(nameof(OnMove) + " is already set on callback");
 
             // FIXME
             if (value == Vector2.zero)
             {
-                SetState(Character_State.Idle);
+                SetState(CharacterState.Idle);
             }
             else
             {
-                SetState(Character_State.Run);
+                SetState(CharacterState.Run);
             }
 
             _moveClass.Move(value);
@@ -422,41 +398,42 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSkill1(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
-            Debug.Log(nameof(OnSkill1) + " is already set on callback");
+            // Debug.Log(nameof(OnSkill1) + " is already set on callback");
 
-            if (!characterStatus.UseSkill1()) return;
+            if (!CharacterStatus.UseSkill1()) return;
 
             // FIXME
 
             Skill1();
-            DelaySetState(Character_State.Idle, _skill1Len);
+            DelaySetState(CharacterState.Idle, _skill1Len);
         }
 
         public void OnSkill2(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
-            Debug.Log(nameof(OnSkill2) + " is already set on callback");
+            // Debug.Log(nameof(OnSkill2) + " is already set on callback");
 
-            if (!characterStatus.UseSkill2()) return;
+            if (!CharacterStatus.UseSkill2()) return;
 
             // FIXME
 
             Skill2();
-            DelaySetState(Character_State.Idle, _skill2Len);
+            DelaySetState(CharacterState.Idle, _skill2Len);
 
         }
 
         public void OnSpecial(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
-            Debug.Log(nameof(OnSpecial) + " is already set on callback");
+            // Debug.Log(nameof(OnSpecial) + " is already set on callback");
 
-            if (!characterStatus.UseSpecial()) return;
+            if (CurrentState != CharacterState.Idle) return; 
+            if (!CharacterStatus.UseSpecial()) return;
 
             // FIXME
 
             Special();
-            DelaySetState(Character_State.Idle, _specialLen);
+            DelaySetState(CharacterState.Idle, _specialLen);
         }
 
         #endregion
