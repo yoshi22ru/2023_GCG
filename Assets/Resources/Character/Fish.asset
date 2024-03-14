@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca88727919601584d9f1e10feb1507db, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  chara_name: Fish
-  chara_image: {fileID: 21300000, guid: 9a1ceaec8b725154eaec5cd153cef957, type: 3}
-  charactor_prefab: {fileID: 8941205293409301154, guid: a8935035e7435fb488f4e39f3ceeb768, type: 3}
+  charaName: 2
+  charaImage: {fileID: 21300000, guid: 9a1ceaec8b725154eaec5cd153cef957, type: 3}
+  characterPrefab: {fileID: 8941205293409301154, guid: a8935035e7435fb488f4e39f3ceeb768, type: 3}

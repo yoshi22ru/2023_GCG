@@ -18,7 +18,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     [SerializeField] private Image charaSprite;
     [SerializeField] private Image teamColor;
     [SerializeField] CharaDataBase charaDataBase;
-    private CharaData.Ident_Character _character = CharaData.Ident_Character.Bird;
+    private CharaData.IdentCharacter _character = CharaData.IdentCharacter.Bird;
     private int _actorNumber;
     private bool _decide;
     private BattleObject.Team _team;
@@ -40,7 +40,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
 
         SetDecision(false);
-        SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min());
+        SetData((CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Min());
     }
 
     private void ScrollUp()
@@ -51,10 +51,10 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
 
         if ((_character - 1) <=
-            (CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min())
+            (CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Min())
         {
             // underflow
-            SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Max());
+            SetData((CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Max());
         }
         else
         {
@@ -70,10 +70,10 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
 
         if ((_character + 1) >=
-            (CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Max())
+            (CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Max())
         {
             // overflow
-            SetData((CharaData.Ident_Character)Enum.GetValues(typeof(CharaData.Ident_Character)).Cast<int>().Min());
+            SetData((CharaData.IdentCharacter)Enum.GetValues(typeof(CharaData.IdentCharacter)).Cast<int>().Min());
         }
         else
         {
@@ -127,12 +127,12 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
     #endregion
 
-    private void SetData(CharaData.Ident_Character identCharacter)
+    private void SetData(CharaData.IdentCharacter identCharacter)
     {
         if (_decide) return;
 
         this._character = identCharacter;
-        CharaData data = charaDataBase.character_data[(int)identCharacter];
+        CharaData data = charaDataBase.characterData[(int)identCharacter];
 
         this.charaSprite.sprite = data.CharaSprite;
 
@@ -197,7 +197,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
         if (targetPlayer.TryGetCharacter(out var character))
         {
-            SetData((CharaData.Ident_Character)character);
+            SetData((CharaData.IdentCharacter)character);
         }
 
         if (targetPlayer.TryGetTeam(out var team))
@@ -227,7 +227,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         return _decide;
     }
 
-    public CharaData.Ident_Character GetCharacter()
+    public CharaData.IdentCharacter GetCharacter()
     {
         return _character;
     }

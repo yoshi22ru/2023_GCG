@@ -12,10 +12,10 @@ public class VariableManager : MonoBehaviourPunCallbacks
 
     public struct PlayerSelection {
         public readonly BattleObject.Team Team;
-        public CharaData.Ident_Character Character;
+        public CharaData.IdentCharacter Character;
         public readonly int ActorNumber;
 
-        public PlayerSelection(BattleObject.Team team,CharaData.Ident_Character identCharacter, int actorNumber) {
+        public PlayerSelection(BattleObject.Team team,CharaData.IdentCharacter identCharacter, int actorNumber) {
             this.Team = team;
             this.Character = identCharacter;
             this.ActorNumber = actorNumber;
@@ -34,7 +34,7 @@ public class VariableManager : MonoBehaviourPunCallbacks
         return 0;
     }
 
-    public static CharaData.Ident_Character GetCharacterByActorNum(int actorNumber)
+    public static CharaData.IdentCharacter GetCharacterByActorNum(int actorNumber)
     {
         return PlayerSelections.FirstOrDefault(raw => raw.ActorNumber == actorNumber).Character; 
     }

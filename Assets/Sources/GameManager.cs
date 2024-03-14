@@ -39,15 +39,15 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         current_state = BattleState.BeforeStart;
         CharaData chara =
-         charaDataBase.character_data[(int)VariableManager.GetCharacterByActorNum(PhotonNetwork.LocalPlayer.ActorNumber)];
+         charaDataBase.characterData[(int)VariableManager.GetCharacterByActorNum(PhotonNetwork.LocalPlayer.ActorNumber)];
 
         GameObject obj;
         if (VariableManager.GetTeamByActorNumber(PhotonNetwork.LocalPlayer.ActorNumber) == BattleObject.Team.Blue) {
-            obj = PhotonNetwork.Instantiate(chara.CharaName,
+            obj = PhotonNetwork.Instantiate(chara.CharaName.ToString(),
              blue_spawn_pos[VariableManager.GetIndex(VariableManager.GetTeamByActorNumber(PhotonNetwork.LocalPlayer.ActorNumber), PhotonNetwork.LocalPlayer.ActorNumber)].position,
              Quaternion.Euler(0.0f, -90.0f, 0.0f));
         } else {
-            obj = PhotonNetwork.Instantiate(chara.CharaName,
+            obj = PhotonNetwork.Instantiate(chara.CharaName.ToString(),
              red_spawn_pos[VariableManager.GetIndex(VariableManager.GetTeamByActorNumber(PhotonNetwork.LocalPlayer.ActorNumber), PhotonNetwork.LocalPlayer.ActorNumber)].position,
              Quaternion.Euler(0.0f, 90.0f, 0.0f));
         }
