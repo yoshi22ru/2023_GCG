@@ -13,12 +13,12 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         base.Awake();
         audioSource = GetComponent<AudioSource>();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
         //audioSource.volume = volumeSlider;
-        DontDestroyOnLoad(gameObject);
     }
     public void PlaySE(AudioType type)
     {
