@@ -13,7 +13,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
         protected override void Skill1()
         {
             CharacterStatus.UseSkill1();
-            SetState(CharacterState.Skill1);
+            SetStateAndResetIdle(CharacterState.Skill1);
             photonView.RPC(nameof(Skill1Sync), RpcTarget.All);
         }
 
@@ -28,7 +28,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
         protected override void Skill2()
         {
             CharacterStatus.UseSkill2();
-            SetState(CharacterState.Skill2);
+            SetStateAndResetIdle(CharacterState.Skill2);
             photonView.RPC(nameof(Skill2Sync), RpcTarget.All);
         }
 
@@ -43,7 +43,7 @@ namespace Sources.InGame.BattleObject.Character.Concrete
         protected override void Special()
         {
             CharacterStatus.UseSpecial();
-            SetState(CharacterState.Special);
+            SetStateAndResetIdle(CharacterState.Special);
             photonView.RPC(nameof(SpecialSync), RpcTarget.All);
         }
 

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
 using Sources.InGame.BattleObject.Skill;
@@ -15,6 +17,7 @@ namespace Sources.InGame.BattleObject.Character
         private MoveClass _moveClass;
         private Vector3 _moveVector;
         public Animator animator;
+        private CancellationTokenSource _toIdleToken;
 
         protected CharacterState CurrentState
         {
@@ -84,29 +87,12 @@ namespace Sources.InGame.BattleObject.Character
         private const string ASkill2 = "Skill2";
         private const string ASpecial = "Special";
 
-        // Animation Hash IDs
-        private int _idleId;
-        private int _runId;
-        private int _damageId;
-        private int _skill1Id;
-        private int _skill2Id;
-        private int _deadId;
-        private int _specialId;
-
-        // Length of Animations
-        private float _idleLen;
-        private float _runLen;
-        private float _damageLen;
-        private float _skill1Len;
-        private float _skill2Len;
-        private float _specialLen;
-        private float _deadLen;
+        private Dictionary<CharacterState, AnimationInfo> _animationInfos;
 
         #endregion
 
         protected enum CharacterState
         {
-            None,
             Idle,
             Run,
             Damage,
@@ -119,6 +105,7 @@ namespace Sources.InGame.BattleObject.Character
         private void Awake()
         {
             CharacterStatus = GetComponent<CharacterStatus>();
+            _toIdleToken = new CancellationTokenSource();
             InitAnim();
             var rbody = GetComponent<Rigidbody>();
             SetState(CharacterState.Idle);
@@ -171,104 +158,95 @@ namespace Sources.InGame.BattleObject.Character
 
             if (skillManager.type == SkillManager.SkillType.Damage)
             {
-                Debug.Log("Damage Hit\n" +
-                          Utils.FormatBattleObjectInformation(gameObject, this) +
-                          $"Value : {skillManager.GetSkillDamage}\n" +
-                          $"");
-                CharacterStatus.SetHP(CharacterStatus.CurrentHP - skillManager.GetSkillDamage);
+                Damage(skillManager);
             }
-
-            SetState(CharacterState.Damage);
         }
 
-
-
-        private void FixedUpdate()
+        protected void Damage(SkillManager skillManager)
         {
-            if (GameManager.manager.current_state != GameManager.BattleState.Battle)
-            {
-                return;
-            }
-
-
-            if (photonView.IsMine)
-            {
-                p1 = p2;
-                p2 = myTransform.position;
-                _elapsedTime = (half)Time.deltaTime;
-            }
-            else
-            {
-                _elapsedTime += (half)Time.deltaTime;
-                if (_elapsedTime < InterpolationPeriod)
-                {
-                    myTransform.position =
-                        HermiteSpline.Interpolate(p1, p2, v1, v2, _elapsedTime / InterpolationPeriod);
-                }
-                else
-                {
-                    myTransform.position = Vector3.LerpUnclamped(p1, p2, _elapsedTime / InterpolationPeriod);
-                }
-
-                return;
-            }
-
-            if (CharacterStatus.IsDead)
-            {
-                if (CurrentState != CharacterState.Dead)
-                {
-                    SetState(CharacterState.Dead);
-                }
-
-                CharacterStatus.SetHP(CharacterStatus.MaxHP);
-            }
-
-            if (CharacterStatus.IsDead == false && CountDown.instance.isCountFinish == true)
-            {
-                // FIXME
-                // else if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.K))
-                // {
-                //     characterStatus.SetIsDead(true);
-                // }
-            }
+            Debug.Log("Damage Hit\n" +
+                      Utils.FormatBattleObjectInformation(gameObject, this) +
+                      $"Value : {skillManager.GetSkillDamage}\n");
+            CharacterStatus.SetHP(CharacterStatus.CurrentHP - skillManager.GetSkillDamage);
+            SetStateAndResetIdle(CharacterState.Damage);
         }
+
+
+        // private void FixedUpdate()
+        // {
+        //     if (photonView.IsMine)
+        //     {
+        //         p1 = p2;
+        //         p2 = myTransform.position;
+        //         _elapsedTime = (half)Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         _elapsedTime += (half)Time.deltaTime;
+        //         if (_elapsedTime < InterpolationPeriod)
+        //         {
+        //             myTransform.position =
+        //                 HermiteSpline.Interpolate(p1, p2, v1, v2, _elapsedTime / InterpolationPeriod);
+        //         }
+        //         else
+        //         {
+        //             myTransform.position = Vector3.LerpUnclamped(p1, p2, _elapsedTime / InterpolationPeriod);
+        //         }
+        //
+        //         return;
+        //     }
+        //
+        //     if (CharacterStatus.IsDead)
+        //     {
+        //         if (CurrentState != CharacterState.Dead)
+        //         {
+        //             SetState(CharacterState.Dead);
+        //         }
+        //
+        //         CharacterStatus.SetHP(CharacterStatus.MaxHP);
+        //     }
+        //
+        //     if (CharacterStatus.IsDead == false && CountDown.instance.isCountFinish == true)
+        //     {
+        //         // FIXME
+        //         // else if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.K))
+        //         // {
+        //         //     characterStatus.SetIsDead(true);
+        //         // }
+        //     }
+        // }
 
         protected void SetState(CharacterState newState)
         {
+            animator.ResetTrigger(_animationInfos[CurrentState].Id);
+
             CurrentState = newState;
 
-            animator.ResetTrigger(_idleId);
-            animator.ResetTrigger(_runId);
-            animator.ResetTrigger(_damageId);
-            animator.ResetTrigger(_deadId);
-            animator.ResetTrigger(_skill1Id);
-            animator.ResetTrigger(_skill2Id);
-            animator.ResetTrigger(_specialId);
-
-            switch (newState)
-            {
-                case CharacterState.Idle:
-                    animator.SetTrigger(_idleId);
-                    break;
-                case CharacterState.Run:
-                    animator.SetTrigger(_runId);
-                    break;
-                case CharacterState.Damage:
-                    animator.SetTrigger(_damageId);
-                    break;
-                case CharacterState.Dead:
-                    animator.SetTrigger(_deadId);
-                    break;
-                case CharacterState.Skill1:
-                    animator.SetTrigger(_skill1Id);
-                    break;
-                case CharacterState.Skill2:
-                    animator.SetTrigger(_skill2Id);
-                    break;
-                case CharacterState.Special:
-                    animator.SetTrigger(_specialId);
-                    break;
-            }
+            animator.SetTrigger(_animationInfos[newState].Id);
+            // switch (newState)
+            // {
+            //     case CharacterState.Idle:
+            //         animator.SetTrigger(_idleId);
+            //         break;
+            //     case CharacterState.Run:
+            //         animator.SetTrigger(_runId);
+            //         break;
+            //     case CharacterState.Damage:
+            //         animator.SetTrigger(_damageId);
+            //         break;
+            //     case CharacterState.Dead:
+            //         animator.SetTrigger(_deadId);
+            //         break;
+            //     case CharacterState.Skill1:
+            //         animator.SetTrigger(_skill1Id);
+            //         break;
+            //     case CharacterState.Skill2:
+            //         animator.SetTrigger(_skill2Id);
+            //         break;
+            //     case CharacterState.Special:
+            //         animator.SetTrigger(_specialId);
+            //         break;
+            // }
         }
 
         private async void DelaySetState(CharacterState state, float length)
@@ -276,6 +254,15 @@ namespace Sources.InGame.BattleObject.Character
             await UniTask.Delay(TimeSpan.FromSeconds(length));
 
             SetState(state);
+        }
+
+        protected async void SetStateAndResetIdle(CharacterState state)
+        {
+            SetState(state);
+            _toIdleToken.Cancel();
+            var token = _toIdleToken.Token;
+            await UniTask.Delay(TimeSpan.FromSeconds(_animationInfos[state].Length), cancellationToken:token).SuppressCancellationThrow();
+            SetState(CharacterState.Idle);
         }
 
         protected virtual void Skill1()
@@ -354,22 +341,16 @@ namespace Sources.InGame.BattleObject.Character
         private void InitAnim()
         {
             animator = GetComponent<Animator>();
-
-            _idleId = Animator.StringToHash(AIdle);
-            _runId = Animator.StringToHash(ARun);
-            _damageId = Animator.StringToHash(ADamage);
-            _deadId = Animator.StringToHash(ADead);
-            _skill1Id = Animator.StringToHash(ASkill1);
-            _skill2Id = Animator.StringToHash(ASkill2);
-            _specialId = Animator.StringToHash(ASpecial);
-
-            _idleLen = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, AIdle);
-            _runLen = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, ARun);
-            _damageLen = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, ADamage);
-            _deadLen = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, ADead);
-            _skill1Len = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, ASkill1);
-            _skill2Len = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, ASkill2);
-            _specialLen = Utils.GetAnimationClipLength(animator.runtimeAnimatorController.animationClips, ASpecial);
+            _animationInfos = new Dictionary<CharacterState, AnimationInfo>()
+            {
+                {CharacterState.Idle, new AnimationInfo(AIdle, animator)},
+                {CharacterState.Run, new AnimationInfo(ARun, animator)},
+                {CharacterState.Damage, new AnimationInfo(ADamage, animator)},
+                {CharacterState.Dead, new AnimationInfo(ADead, animator)},
+                {CharacterState.Skill1, new AnimationInfo(ASkill1, animator)},
+                {CharacterState.Skill2, new AnimationInfo(ASkill2, animator)},
+                {CharacterState.Special, new AnimationInfo(ASpecial, animator)},
+            };
         }
 
         #region InputCallback
@@ -402,10 +383,7 @@ namespace Sources.InGame.BattleObject.Character
 
             if (!CharacterStatus.UseSkill1()) return;
 
-            // FIXME
-
             Skill1();
-            DelaySetState(CharacterState.Idle, _skill1Len);
         }
 
         public void OnSkill2(InputAction.CallbackContext context)
@@ -415,11 +393,7 @@ namespace Sources.InGame.BattleObject.Character
 
             if (!CharacterStatus.UseSkill2()) return;
 
-            // FIXME
-
             Skill2();
-            DelaySetState(CharacterState.Idle, _skill2Len);
-
         }
 
         public void OnSpecial(InputAction.CallbackContext context)
@@ -430,10 +404,7 @@ namespace Sources.InGame.BattleObject.Character
             if (CurrentState != CharacterState.Idle) return; 
             if (!CharacterStatus.UseSpecial()) return;
 
-            // FIXME
-
             Special();
-            DelaySetState(CharacterState.Idle, _specialLen);
         }
 
         #endregion
