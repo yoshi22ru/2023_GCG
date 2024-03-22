@@ -56,7 +56,6 @@ namespace Sources.InGame.BattleObject.Character
             }
 
             // �L�����N�^�[�̎��S������s��
-            characterStatus.CheckDeath();
         }
     }
 }

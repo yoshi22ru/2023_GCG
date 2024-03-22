@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.InGame.BattleObject.Character
 {
-    public struct AnimationInfo
+    public class AnimationInfo
     {
         public int Id { get; private set; }
         public float Length { get; private set; }

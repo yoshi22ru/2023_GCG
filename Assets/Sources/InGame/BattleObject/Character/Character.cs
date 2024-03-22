@@ -128,7 +128,6 @@ namespace Sources.InGame.BattleObject.Character
 
         protected override void OnHitMyTeamObject(BattleObject battleObject)
         {
-            Debug.Log(nameof(OnHitMyTeamObject));
             SkillManager skillManager = battleObject as SkillManager;
             if (skillManager == null) return;
 
@@ -153,7 +152,6 @@ namespace Sources.InGame.BattleObject.Character
 
         protected override void OnHitEnemyTeamObject(BattleObject battleObject)
         {
-            Debug.Log(nameof(OnHitEnemyTeamObject));
             var skillManager = battleObject as SkillManager;
             if (skillManager == null) return;
 
@@ -170,6 +168,15 @@ namespace Sources.InGame.BattleObject.Character
                       $"Value : {skillManager.GetSkillDamage}\n");
             CharacterStatus.SetHP(CharacterStatus.CurrentHP - skillManager.GetSkillDamage);
             SetStateAndResetIdle(CharacterState.Damage);
+        }
+
+        private async void OnDead()
+        {
+            gameObject.SetActive(false);
+            await UniTask.Delay(TimeSpan.FromSeconds(GameManager.RespawnTime));
+            
+            GameManager.manager.ReSetPosition(this);
+            gameObject.SetActive(true);
         }
 
 
@@ -224,30 +231,6 @@ namespace Sources.InGame.BattleObject.Character
             CurrentState = newState;
 
             animator.SetTrigger(_animationInfos[newState].Id);
-            // switch (newState)
-            // {
-            //     case CharacterState.Idle:
-            //         animator.SetTrigger(_idleId);
-            //         break;
-            //     case CharacterState.Run:
-            //         animator.SetTrigger(_runId);
-            //         break;
-            //     case CharacterState.Damage:
-            //         animator.SetTrigger(_damageId);
-            //         break;
-            //     case CharacterState.Dead:
-            //         animator.SetTrigger(_deadId);
-            //         break;
-            //     case CharacterState.Skill1:
-            //         animator.SetTrigger(_skill1Id);
-            //         break;
-            //     case CharacterState.Skill2:
-            //         animator.SetTrigger(_skill2Id);
-            //         break;
-            //     case CharacterState.Special:
-            //         animator.SetTrigger(_specialId);
-            //         break;
-            // }
         }
 
         protected async void SetStateAndResetIdle(CharacterState state)
@@ -266,41 +249,14 @@ namespace Sources.InGame.BattleObject.Character
 
         protected virtual void Skill1()
         {
-            // characterStatus.UseSkill1();
-            // SetState(Character_State.Skill1);
-            // var buf = Instantiate(skill1, skill1Point.position, transform.rotation);
-            // if (is_child_1)
-            // {
-            //     buf.transform.parent = myTransform;
-            // }
-            //
-            // _audioSourceCache.PlayOneShot(skill1SE);
         }
 
         protected virtual void Skill2()
         {
-            // characterStatus.UseSkill2();
-            // SetState(Character_State.Skill2);
-            // var buf = Instantiate(skill2, skill2Point.position, transform.rotation);
-            // if (is_child_2)
-            // {
-            //     buf.transform.parent = myTransform;
-            // }
-            //
-            // _audioSourceCache.PlayOneShot(skill2SE);
         }
 
         protected virtual void Special()
         {
-            // characterStatus.UseSpecial();
-            // SetState(Character_State.Special);
-            // var buf = Instantiate(special, specialPoint.position, transform.rotation);
-            // if (is_child_Special)
-            // {
-            //     buf.transform.parent = myTransform;
-            // }
-            //
-            // _audioSourceCache.PlayOneShot(specialSE);
         }
 
         // FIXME
@@ -350,6 +306,11 @@ namespace Sources.InGame.BattleObject.Character
                 {CharacterState.Skill2, new AnimationInfo(ASkill2, animator)},
                 {CharacterState.Special, new AnimationInfo(ASpecial, animator)},
             };
+        }
+
+        private void InitReactiveEvent()
+        {
+            
         }
 
         #region InputCallback

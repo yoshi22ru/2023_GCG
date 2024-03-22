@@ -10,7 +10,6 @@ namespace Sources.InGame.BattleObject.Character
 {
     public class CharacterStatus : MonoBehaviour
     {
-        [SerializeField] private int currentHP = 100; // ���݂�HP
         [SerializeField] private int minHP = 0; // �ŏ���HP
         [SerializeField] private int maxHP = 100; // �ő��HP
         [SerializeField] private float moveSpeed = 5f; // �L�����N�^�[�̈ړ����x
@@ -21,12 +20,13 @@ namespace Sources.InGame.BattleObject.Character
         private BuffManager _buffManager;
 
         private bool isDamageTaken = false; // �_���[�W���󂯂����ǂ���
-        private bool isDead = false; // ���S����
 
         private float skill1CooldownTimer = 0f; // Skill1�̃N�[���_�E���^�C�}�[
         private float skill2CooldownTimer = 0f; // Skill2�̃N�[���_�E���^�C�}�[
         private float specialCooldownTimer = 0f; // Special�̃N�[���_�E���^�C�}�[
 
+        private HitPoint _hitPoint;
+        
         public GameObject[] GetSkillPrefab
         {
             get { return skillPrefab; }
@@ -39,7 +39,7 @@ namespace Sources.InGame.BattleObject.Character
 
         public int CurrentHP
         {
-            get { return currentHP; }
+            get { return _hitPoint.Hp.CurrentValue; }
         }
 
         public int MaxHP
@@ -54,7 +54,7 @@ namespace Sources.InGame.BattleObject.Character
 
         public bool IsDead
         {
-            get { return isDead; }
+            get { return _hitPoint.IsDead.CurrentValue; }
         }
 
         public float MoveSpeed
@@ -62,19 +62,9 @@ namespace Sources.InGame.BattleObject.Character
             get { return moveSpeed; }
         }
 
-        public void SetIsDead(bool life)
+        public void SetHP(int value)
         {
-            isDead = life;
-        }
-
-        public void SetHP(int hp)
-        {
-            if (hp > 0)
-                currentHP = hp;
-            else if (hp >= maxHP)
-                currentHP = maxHP;
-            else if (hp <= 0)
-                currentHP = 0;
+            _hitPoint.Damage(value);
         }
 
         public void SetMoveSpeed(float speed)
@@ -86,18 +76,18 @@ namespace Sources.InGame.BattleObject.Character
         private void Start()
         {
             _buffManager = new BuffManager();
+            _hitPoint = new HitPoint(maxHP);
         }
 
         // �L�����N�^�[�̏�Ԃ��X�V����
         private void Update()
         {
             UpdateStatus();
-            CheckDeath();
         }
 
         public void UpdateStatus()
         {
-            if (isDead)
+            if (IsDead)
                 return;
 
             // Skill1�̃N�[���_�E���^�C�}�[���X�V
@@ -171,14 +161,6 @@ namespace Sources.InGame.BattleObject.Character
         }
 
         // �L�����N�^�[�̎��S������s��
-        public void CheckDeath()
-        {
-            if (currentHP <= minHP)
-            {
-                isDead = true;
-                currentHP = minHP;
-            }
-        }
 
         public float GetSkill1Cool()
         {
