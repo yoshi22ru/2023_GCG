@@ -18,6 +18,7 @@ namespace Sources.InGame.BattleObject.Character
         private Vector3 _moveVector;
         public Animator animator;
         private CancellationTokenSource _toIdleToken;
+        private CancellationToken _token;
 
         protected CharacterState CurrentState
         {
@@ -249,19 +250,17 @@ namespace Sources.InGame.BattleObject.Character
             // }
         }
 
-        private async void DelaySetState(CharacterState state, float length)
-        {
-            await UniTask.Delay(TimeSpan.FromSeconds(length));
-
-            SetState(state);
-        }
-
         protected async void SetStateAndResetIdle(CharacterState state)
         {
             SetState(state);
-            _toIdleToken.Cancel();
-            var token = _toIdleToken.Token;
-            await UniTask.Delay(TimeSpan.FromSeconds(_animationInfos[state].Length), cancellationToken:token).SuppressCancellationThrow();
+            if (_token.CanBeCanceled)
+            {
+                _toIdleToken.Cancel();
+                _toIdleToken = new CancellationTokenSource();
+            }
+
+            _token = _toIdleToken.Token;
+            await UniTask.Delay(TimeSpan.FromSeconds(_animationInfos[state].Length), cancellationToken: _token).SuppressCancellationThrow();
             SetState(CharacterState.Idle);
         }
 
