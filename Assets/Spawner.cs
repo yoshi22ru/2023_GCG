@@ -28,7 +28,6 @@ public class Spawner : MonoBehaviour
             {
                 character.SetActive(false);
                 character.transform.position = pos;
-                characterStatus.SetIsDead(false);
                 time = 0;
             }
         }

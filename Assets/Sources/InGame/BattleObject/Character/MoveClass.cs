@@ -9,13 +9,13 @@ public class MoveClass
 {
     private CharacterStatus characterStatus;
     private Vector3 moving, latestPos;
-    Rigidbody rb;
-    private Transform _myTrans;
+    private readonly Rigidbody _rb;
+    private readonly Transform _myTrans;
 
     public MoveClass(Transform transform, Rigidbody rb, CharacterStatus characterStatus)
     {
         this._myTrans = transform;
-        this.rb = rb;
+        this._rb = rb;
         this.characterStatus = characterStatus;
     }
 
@@ -28,7 +28,7 @@ public class MoveClass
         Vector3 moveForward = cameraForward * inputVector2.y + Camera.main.transform.right * inputVector2.x;
 
         // �ړ������ɃX�s�[�h���|����B
-        rb.velocity = moveForward * characterStatus.MoveSpeed * 1.5f;
+        _rb.velocity = moveForward * characterStatus.MoveSpeed * 1.5f;
 
         // �L�����N�^�[�̌�����i�s������
         if (moveForward != Vector3.zero && CountDown.instance.isCountFinish == true)

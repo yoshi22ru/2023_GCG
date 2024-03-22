@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     List<Castle> catsles;
     public BattleState current_state;
     // index is actor number
-    List<PlayerInformation> characters;
     [SerializeField] private CharaDataBase charaDataBase;
     [SerializeField] List<Transform> red_spawn_pos;
     [SerializeField] List<Transform> blue_spawn_pos;
@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] CoolTimeView coolTimeView;
     float current_time;
     public static GameManager manager;
+    
+    public const float RespawnTime = 5.0f;
 
     #endregion
 
@@ -70,7 +72,28 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (current_time <= 0.0f) {
             current_state = BattleState.Ended;
 
-            // TODO!
+            // TODO! end game
+        }
+    }
+
+    public void ReSetPosition(Character character)
+    {
+        switch (character.GetTeam())
+        {
+            case BattleObject.Team.Blue:
+                character.gameObject.transform.position =
+                    blue_spawn_pos[
+                        VariableManager.GetIndex(
+                            VariableManager.GetTeamByActorNumber(character.photonView.OwnerActorNr),
+                            character.photonView.OwnerActorNr)].position;
+                break;
+            case BattleObject.Team.Red:
+                character.gameObject.transform.position =
+                    red_spawn_pos[
+                        VariableManager.GetIndex(
+                            VariableManager.GetTeamByActorNumber(character.photonView.OwnerActorNr),
+                            character.photonView.OwnerActorNr)].position;
+                break;
         }
     }
 
@@ -82,25 +105,4 @@ public class GameManager : MonoBehaviourPunCallbacks
         Ended,
     }
 
-    public struct PlayerInformation {
-        public Character character;
-        public CharacterStatus status;
-        public int actor_number;
-        public BattleObject.Team team;
-        public PlayerInformation(Character character, CharacterStatus characterStatus,
-         int actorNumber, BattleObject.Team team) {
-            this.character = character;
-            this.status = characterStatus;
-            this.actor_number = actorNumber;
-            this.team = team;
-        }
-    }
-
-    public void AddPlayer(Character character, CharacterStatus characterStatus,
-         int actor_number, BattleObject.Team team) {
-        characters.Add(new PlayerInformation(
-            character, characterStatus,
-            actor_number, team
-        ));
-    }
 }

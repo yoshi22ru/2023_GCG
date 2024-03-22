@@ -19,12 +19,10 @@ namespace Sources.InGame.BattleObject
 
         protected virtual void OnHitMyTeamObject(BattleObject battleObject)
         {
-            Debug.Log("VAR");
         }
 
         protected virtual void OnHitEnemyTeamObject(BattleObject battleObject)
         {
-
         }
 
         #region accessor
