@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using R3;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -52,9 +53,14 @@ namespace Sources.InGame.BattleObject.Character
             get { return minHP; }
         }
 
-        public bool IsDead
+        public ReadOnlyReactiveProperty<bool> IsDead
         {
-            get { return _hitPoint.IsDead.CurrentValue; }
+            get { return _hitPoint.IsDead; }
+        }
+
+        public void Revival()
+        {
+            _hitPoint.Revival();
         }
 
         public float MoveSpeed
@@ -62,7 +68,7 @@ namespace Sources.InGame.BattleObject.Character
             get { return moveSpeed; }
         }
 
-        public void SetHP(int value)
+        public void Damage(int value)
         {
             _hitPoint.Damage(value);
         }
@@ -73,10 +79,10 @@ namespace Sources.InGame.BattleObject.Character
                 moveSpeed = speed;
         }
 
-        private void Start()
+        private void Awake()
         {
             _buffManager = new BuffManager();
-            _hitPoint = new HitPoint(maxHP);
+            _hitPoint = new HitPoint(maxHP);            
         }
 
         // �L�����N�^�[�̏�Ԃ��X�V����
@@ -87,7 +93,7 @@ namespace Sources.InGame.BattleObject.Character
 
         public void UpdateStatus()
         {
-            if (IsDead)
+            if (IsDead.CurrentValue)
                 return;
 
             // Skill1�̃N�[���_�E���^�C�}�[���X�V

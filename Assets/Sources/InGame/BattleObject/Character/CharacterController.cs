@@ -19,7 +19,7 @@ namespace Sources.InGame.BattleObject.Character
 
         private void FixedUpdate()
         {
-            if (characterStatus.IsDead)
+            if (characterStatus.IsDead.CurrentValue)
             {
                 // �L�����N�^�[�����S���Ă���ꍇ�͏������I��
                 return;

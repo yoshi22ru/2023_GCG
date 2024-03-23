@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using R3;
 using Sources.InGame.BattleObject.Skill;
 using Unity.Mathematics;
 using UnityEngine;
@@ -124,6 +125,10 @@ namespace Sources.InGame.BattleObject.Character
                 CameraManager.instance.myCharacter = this.gameObject;
                 CameraManager.instance.Initialize();
             }
+
+            CharacterStatus.IsDead
+                .Where(x => x == true)
+                .Subscribe(_ => OnDead());
         }
 
         protected override void OnHitMyTeamObject(BattleObject battleObject)
@@ -133,7 +138,7 @@ namespace Sources.InGame.BattleObject.Character
 
             if (skillManager.type == SkillManager.SkillType.Heal)
             {
-                CharacterStatus.SetHP(skillManager.GetHeal + CharacterStatus.CurrentHP);
+                CharacterStatus.Damage(skillManager.GetHeal + CharacterStatus.CurrentHP);
             }
             else if (skillManager.type == SkillManager.SkillType.BufSpeed)
             {
@@ -166,16 +171,18 @@ namespace Sources.InGame.BattleObject.Character
             Debug.Log("Damage Hit\n" +
                       Utils.FormatBattleObjectInformation(gameObject, this) +
                       $"Value : {skillManager.GetSkillDamage}\n");
-            CharacterStatus.SetHP(CharacterStatus.CurrentHP - skillManager.GetSkillDamage);
+            CharacterStatus.Damage(skillManager.GetSkillDamage);
             SetStateAndResetIdle(CharacterState.Damage);
         }
 
         private async void OnDead()
         {
+            Debug.Log("OnDead");
             gameObject.SetActive(false);
             await UniTask.Delay(TimeSpan.FromSeconds(GameManager.RespawnTime));
             
             GameManager.manager.ReSetPosition(this);
+            CharacterStatus.Revival();
             gameObject.SetActive(true);
         }
 

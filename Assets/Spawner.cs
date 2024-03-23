@@ -19,27 +19,27 @@ public class Spawner : MonoBehaviour
         pos = SpawnPosition.instance.spawnPos;
     }
 
-    void FixedUpdate()
-    {
-        if (characterStatus.IsDead)
-        {
-            time += Time.deltaTime;
-            if (time >= 2.0)
-            {
-                character.SetActive(false);
-                character.transform.position = pos;
-                time = 0;
-            }
-        }
-        else
-        {
-            time += Time.deltaTime;
-            if (time >= 10)
-            {
-                character.SetActive(true);
-                time = 0;
-            }
-        }
-    }
+    // void FixedUpdate()
+    // {
+    //     if (characterStatus.IsDead.CurrentValue)
+    //     {
+    //         time += Time.deltaTime;
+    //         if (time >= 2.0)
+    //         {
+    //             character.SetActive(false);
+    //             character.transform.position = pos;
+    //             time = 0;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         time += Time.deltaTime;
+    //         if (time >= 10)
+    //         {
+    //             character.SetActive(true);
+    //             time = 0;
+    //         }
+    //     }
+    // }
 
 }
