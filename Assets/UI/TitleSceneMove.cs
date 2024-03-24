@@ -17,7 +17,7 @@ public class TitleScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             audioSource.PlayOneShot(SE);
             Invoke("ChangeScene", 2f);
@@ -26,6 +26,6 @@ public class TitleScene : MonoBehaviour
 
     void ChangeScene()
     {
-            SceneManager.LoadScene("MenuScene");    //「3」
+            SceneManager.LoadScene("MenuScene2");    //「3」
     }
 }

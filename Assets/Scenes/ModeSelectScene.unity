@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3e1b7e29fee714f95e432524ab217d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myFX: {fileID: 0}
-  HighlightedFX: {fileID: 0}
-  ClickFX: {fileID: 0}
+  myFX: {fileID: 150909933}
+  HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
+  ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
 --- !u!82 &150909933
 AudioSource:
   m_ObjectHideFlags: 0
@@ -577,7 +577,7 @@ RectTransform:
   m_GameObject: {fileID: 438225779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1139540043}

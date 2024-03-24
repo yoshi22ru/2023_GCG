@@ -9,15 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Title.unity
     guid: c0f3aafee50194147a18fc1bfc2740aa
   - enabled: 1
-    path: Assets/Scenes/MenuScene.unity
-    guid: 96824bfe85f0b884d9ef1e46f468ebb1
+    path: Assets/Scenes/MenuScene2.unity
+    guid: f5b403b0e0ed7d442b2fe2ba0035f818
   - enabled: 1
-    path: Assets/Scenes/CharacterSelect.unity
-    guid: c02e54ecc887eff4683de0b3809e03d3
+    path: Assets/Scenes/ModeSelectScene.unity
+    guid: f3644c23f424c4a47adf3ffa73dc23b5
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelectScene.unity
+    guid: fe6fcca0a23adac4ba57348f28d330c1
+  - enabled: 1
+    path: Assets/Scenes/MatchingWaitingScene.unity
+    guid: cb3f660566725c147a6e015c047243d8
   - enabled: 1
     path: Assets/Scenes/Stage1.unity
     guid: 27225392011a5f84b93bac3efd464065
   - enabled: 1
     path: Assets/Scenes/Stage2.unity
     guid: 6c3712d5b630f514db651779967d6124
+  - enabled: 0
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: c02e54ecc887eff4683de0b3809e03d3
+  - enabled: 0
+    path: Assets/Scenes/MenuScene.unity
+    guid: 96824bfe85f0b884d9ef1e46f468ebb1
   m_configObjects: {}
