@@ -20,7 +20,7 @@ public class TitleScene : MonoBehaviour
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
             audioSource.PlayOneShot(SE);
-            Invoke("ChangeScene", 2f);
+            Invoke("ChangeScene", 1f);
         }
     }
 
