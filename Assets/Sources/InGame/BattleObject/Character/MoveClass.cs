@@ -31,7 +31,7 @@ public class MoveClass
         _rb.velocity = moveForward * characterStatus.MoveSpeed * 1.5f;
 
         // �L�����N�^�[�̌�����i�s������
-        if (moveForward != Vector3.zero && CountDown.instance.isCountFinish == true)
+        if (moveForward != Vector3.zero)
         {
             Quaternion quaternion = Quaternion.LookRotation(moveForward);
             _myTrans.rotation =

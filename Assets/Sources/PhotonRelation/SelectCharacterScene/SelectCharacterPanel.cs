@@ -91,7 +91,7 @@ namespace Sources.PhotonRelation.SelectCharacterScene
                     select.GetActorNum()));
             }
 
-            Debug.Log(message);
+            // Debug.Log(message);
         }
     }
 }

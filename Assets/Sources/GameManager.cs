@@ -1,8 +1,9 @@
 using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using R3;
 using Resources.Character;
 using Sources.InGame.BattleObject;
 using Sources.InGame.BattleObject.Castle;
@@ -13,8 +14,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviourPunCallbacks
 {
     #region variables
+
+    private UserList _readUserList;
     List<Castle> catsles;
-    public BattleState current_state;
+    private ReactiveProperty<BattleState> _currentState;
+    public ReadOnlyReactiveProperty<BattleState> CurrentState => _currentState;
     // index is actor number
     [SerializeField] private CharaDataBase charaDataBase;
     [SerializeField] List<Transform> red_spawn_pos;
@@ -22,10 +26,13 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject cameramanager;
     [SerializeField] float BattleTime;
     [SerializeField] CoolTimeView coolTimeView;
+    [SerializeField] private CountDown CountDown;
     float current_time;
     public static GameManager manager;
     
+    // FIXME
     public const float RespawnTime = 5.0f;
+    private const float CountDownTime = 3.0f;
 
     #endregion
 
@@ -35,11 +42,12 @@ public class GameManager : MonoBehaviourPunCallbacks
         } else {
             Destroy(this);
         }
+        _currentState = new ReactiveProperty<BattleState>(BattleState.BeforeStart);
+        _readUserList = new UserList(PhotonNetwork.PlayerList.Length);
     }
 
-    private void Start()
+    private async void Start()
     {
-        current_state = BattleState.BeforeStart;
         CharaData chara =
          charaDataBase.characterData[(int)VariableManager.GetCharacterByActorNum(PhotonNetwork.LocalPlayer.ActorNumber)];
 
@@ -56,12 +64,21 @@ public class GameManager : MonoBehaviourPunCallbacks
         var tmp = obj.GetComponent<Character>();
         coolTimeView.SetStatus(obj.GetComponent<CharacterStatus>());
         
-        // FIXME
+        
+        await UniTask.WaitUntil(_readUserList.CheckReady);
+        StartCountDown();
+        await UniTask.Delay(TimeSpan.FromSeconds(3));
         StartEvent();
     }
 
-    public void StartEvent() {
-        current_state = BattleState.Battle;
+    private void StartCountDown()
+    {
+        Debug.Log("StartCountDown");
+        CountDown.CountDownToStart(CountDownTime);
+    }
+
+    private void StartEvent() {
+        _currentState.Value = BattleState.Battle;
         current_time = BattleTime;
     }
 
@@ -70,7 +87,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         if (current_time <= 0.0f) {
-            current_state = BattleState.Ended;
+            _currentState.Value = BattleState.Ended;
 
             // TODO! end game
         }
@@ -97,8 +114,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    public void ReadyOk(int actorNumber)
+    {
+        _readUserList.SetReady(actorNumber);
+    }
 
-    public enum BattleState
+
+    public enum BattleState : byte
     {
         BeforeStart,
         Battle,

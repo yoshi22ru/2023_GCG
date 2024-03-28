@@ -127,7 +127,7 @@ namespace Sources.InGame.BattleObject.Character
             }
             else
             {
-                Debug.Log("cool time of skill1" + (skill1CooldownTimer).ToString("F2"));
+                // Debug.Log("cool time of skill1" + (skill1CooldownTimer).ToString("F2"));
                 return false;
             }
         }
@@ -144,7 +144,7 @@ namespace Sources.InGame.BattleObject.Character
             }
             else
             {
-                Debug.Log("cool time of skill2" + (skill2CooldownTimer).ToString("F2"));
+                // Debug.Log("cool time of skill2" + (skill2CooldownTimer).ToString("F2"));
                 return false;
             }
         }
@@ -161,7 +161,7 @@ namespace Sources.InGame.BattleObject.Character
             }
             else
             {
-                Debug.Log("cool time of special" + (specialCooldownTimer).ToString("F2"));
+                // Debug.Log("cool time of special" + (specialCooldownTimer).ToString("F2"));
                 return false;
             }
         }

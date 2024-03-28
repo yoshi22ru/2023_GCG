@@ -127,8 +127,10 @@ namespace Sources.InGame.BattleObject.Character
             }
 
             CharacterStatus.IsDead
-                .Where(x => x == true)
+                .Where(x => x)
                 .Subscribe(_ => OnDead());
+            
+            GameManager.manager.ReadyOk(photonView.OwnerActorNr);
         }
 
         protected override void OnHitMyTeamObject(BattleObject battleObject)

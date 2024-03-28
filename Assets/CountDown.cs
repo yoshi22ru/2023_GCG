@@ -1,53 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
+using Cysharp.Threading.Tasks;
 using TMPro;
 
 public class CountDown : MonoBehaviour
 {
-    public TextMeshProUGUI countDownText;
-    public GameObject startLabel;
+    [SerializeField] TextMeshProUGUI countDownText;
+    [SerializeField] GameObject startLabel;
     [SerializeField] int countMin;
-    [SerializeField] int countMax;
-    public int count;
-    public bool isCountFinish = false;
-    public static CountDown instance;
+    [SerializeField] int countMax = 3;
+    private float _count;
+    private bool _countStarted = false;
 
-    void Start()
-    {
-        if(instance == null)
-        {
-            instance = this;
-            instance = this;
-        }
-        StartCoroutine(TimeCount());
-    }
-
-    // Update is called once per frame
     private void FixedUpdate()
     {
-        if (!isCountFinish)
+        if (!_countStarted) return;
+
+        countDownText.text = ((int)Math.Ceiling(_count)).ToString("D1");
+        _count -= Time.deltaTime;
+
+        if (_count <= 0)
         {
-            count = (countMax - (int)Time.time);
-            countDownText.text = count.ToString("D1");
-            if (count <= countMin)
-            {
-                count = countMin;
-                isCountFinish = true;
-                countDownText.text = "";
-            }
+            _countStarted = false;
         }
     }
 
-    private IEnumerator TimeCount()
+    public async void CountDownToStart(float waitTime)
     {
-        yield return new WaitForSeconds(3f);
+        _countStarted = true;
+        _count = countMax;
+        await UniTask.WaitUntil(() => !_countStarted);
+        countDownText.text = "";
         startLabel.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
         startLabel.SetActive(false);
-
-        GameManager.manager.StartEvent();
     }
 }
