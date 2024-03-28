@@ -317,16 +317,18 @@ namespace Sources.InGame.BattleObject.Character
             };
         }
 
-        private void InitReactiveEvent()
-        {
-            
-        }
-
         #region InputCallback
 
         public void OnMove(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle)
+            {
+                Debug.Log("Not Started\n" +
+                          $"current state {GameManager.manager.CurrentState.CurrentValue}");
+                return;
+            }
+            
             var value = context.ReadValue<Vector2>();
 
             // Debug.Log(nameof(OnMove) + " is already set on callback");
@@ -348,6 +350,8 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSkill1(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle) return;
+
             // Debug.Log(nameof(OnSkill1) + " is already set on callback");
 
             if (!CharacterStatus.UseSkill1()) return;
@@ -358,6 +362,10 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSkill2(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle)
+            {
+                return;
+            }
             // Debug.Log(nameof(OnSkill2) + " is already set on callback");
 
             if (!CharacterStatus.UseSkill2()) return;
@@ -368,6 +376,7 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSpecial(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle) return;
             // Debug.Log(nameof(OnSpecial) + " is already set on callback");
 
             if (CurrentState != CharacterState.Idle) return; 

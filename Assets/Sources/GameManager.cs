@@ -73,11 +73,11 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void StartCountDown()
     {
-        Debug.Log("StartCountDown");
         CountDown.CountDownToStart(CountDownTime);
     }
 
     private void StartEvent() {
+        Debug.Log("StartGame");
         _currentState.Value = BattleState.Battle;
         current_time = BattleTime;
     }
@@ -87,9 +87,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
 
         if (current_time <= 0.0f) {
-            _currentState.Value = BattleState.Ended;
-
             // TODO! end game
+
+            // _currentState.Value = BattleState.Ended;
         }
     }
 
