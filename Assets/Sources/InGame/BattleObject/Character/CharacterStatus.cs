@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using R3;
+using Sources.InGame.BattleObject.Skill;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -52,9 +54,39 @@ namespace Sources.InGame.BattleObject.Character
             get { return minHP; }
         }
 
-        public bool IsDead
+        public ReadOnlyReactiveProperty<bool> IsDead
         {
-            get { return _hitPoint.IsDead.CurrentValue; }
+            get { return _hitPoint.IsDead; }
+        }
+
+        public void SetBuff(BuffType buffType, float value, float length)
+        {
+            _buffManager.SetBuff(buffType, value, length);
+        }
+        
+        public void SetBuff(SkillManager.SkillType buffType, float value, float length)
+        {
+            switch (buffType)
+            {
+                case SkillManager.SkillType.BufAttack:
+                    _buffManager.SetBuff(BuffType.AttackUp, value, length);
+                    break;
+                case SkillManager.SkillType.BufSpeed:
+                    _buffManager.SetBuff(BuffType.MoveSpeedUp, value, length);
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
+
+        public float GetBuff(BuffType buffType)
+        {
+            return _buffManager.GetBuffSum(buffType);
+        }
+
+        public void Revival()
+        {
+            _hitPoint.Revival();
         }
 
         public float MoveSpeed
@@ -62,9 +94,14 @@ namespace Sources.InGame.BattleObject.Character
             get { return moveSpeed; }
         }
 
-        public void SetHP(int value)
+        public void Damage(int value)
         {
             _hitPoint.Damage(value);
+        }
+
+        public void Heal(int value)
+        {
+            _hitPoint.Heal(value);
         }
 
         public void SetMoveSpeed(float speed)
@@ -73,10 +110,10 @@ namespace Sources.InGame.BattleObject.Character
                 moveSpeed = speed;
         }
 
-        private void Start()
+        private void Awake()
         {
             _buffManager = new BuffManager();
-            _hitPoint = new HitPoint(maxHP);
+            _hitPoint = new HitPoint(maxHP);            
         }
 
         // �L�����N�^�[�̏�Ԃ��X�V����
@@ -87,7 +124,7 @@ namespace Sources.InGame.BattleObject.Character
 
         public void UpdateStatus()
         {
-            if (IsDead)
+            if (IsDead.CurrentValue)
                 return;
 
             // Skill1�̃N�[���_�E���^�C�}�[���X�V
@@ -121,7 +158,7 @@ namespace Sources.InGame.BattleObject.Character
             }
             else
             {
-                Debug.Log("cool time of skill1" + (skill1CooldownTimer).ToString("F2"));
+                // Debug.Log("cool time of skill1" + (skill1CooldownTimer).ToString("F2"));
                 return false;
             }
         }
@@ -138,7 +175,7 @@ namespace Sources.InGame.BattleObject.Character
             }
             else
             {
-                Debug.Log("cool time of skill2" + (skill2CooldownTimer).ToString("F2"));
+                // Debug.Log("cool time of skill2" + (skill2CooldownTimer).ToString("F2"));
                 return false;
             }
         }
@@ -155,7 +192,7 @@ namespace Sources.InGame.BattleObject.Character
             }
             else
             {
-                Debug.Log("cool time of special" + (specialCooldownTimer).ToString("F2"));
+                // Debug.Log("cool time of special" + (specialCooldownTimer).ToString("F2"));
                 return false;
             }
         }

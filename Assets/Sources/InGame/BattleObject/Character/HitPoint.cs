@@ -7,7 +7,7 @@ using UnityEngine;
 public class HitPoint : IDisposable
 {
     private readonly ReactiveProperty<int> _hp;
-    private int _maxHp;
+    private readonly int _maxHp;
 
     public ReadOnlyReactiveProperty<int> Hp => _hp;
     public readonly ReadOnlyReactiveProperty<bool> IsDead;
@@ -28,6 +28,8 @@ public class HitPoint : IDisposable
         }
 
         _hp.Value -= value;
+        Debug.Log("Damaged\n" +
+                  $"/t after hp : {_hp.Value}");
     }
 
     public void Heal(int value)
@@ -38,6 +40,11 @@ public class HitPoint : IDisposable
             return;
         }
         _hp.Value += value;
+    }
+
+    public void Revival()
+    {
+        _hp.Value = _maxHp;
     }
 
     public void Dispose()

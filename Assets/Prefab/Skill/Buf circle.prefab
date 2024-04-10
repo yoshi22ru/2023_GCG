@@ -14740,7 +14740,7 @@ MonoBehaviour:
   healValue: 0
   bufAttack: 0
   bufSpeed: 0
-  type: 0
+  type: 2
 --- !u!1 &6258979932512303061
 GameObject:
   m_ObjectHideFlags: 0

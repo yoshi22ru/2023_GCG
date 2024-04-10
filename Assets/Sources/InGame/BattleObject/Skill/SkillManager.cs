@@ -15,6 +15,14 @@ namespace Sources.InGame.BattleObject.Skill
 
         public SkillType type;
         private Rigidbody _rb;
+        
+        // Temporary implementation
+        public const float SPEED_UP_VALUE = 15f;
+        public const float SPEED_UP_LENGTH = 15f;
+
+        public const float ATTACK_UP_VALUE = 15f;
+        public const float ATTACK_UP_LENGTH = 15f;
+        
 
         public enum SkillType
         {

@@ -15,9 +15,9 @@ public class HealItem : Item
     public override void ItemEffect(CharacterStatus character)
     {
         if (healPoint + character.CurrentHP >= character.MaxHP)
-            character.SetHP(character.MaxHP);
+            character.Damage(character.MaxHP);
         else if (character.CurrentHP > 0)
-            character.SetHP(character.CurrentHP + healPoint);
+            character.Damage(character.CurrentHP + healPoint);
         AudioManager.Instance.PlaySE(AudioType.healItem);
         Destroy(gameObject);
     }

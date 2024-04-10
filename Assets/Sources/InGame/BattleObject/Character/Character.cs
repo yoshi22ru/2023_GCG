@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Photon.Pun;
+using R3;
 using Sources.InGame.BattleObject.Skill;
 using Unity.Mathematics;
 using UnityEngine;
@@ -124,6 +124,12 @@ namespace Sources.InGame.BattleObject.Character
                 CameraManager.instance.myCharacter = this.gameObject;
                 CameraManager.instance.Initialize();
             }
+
+            CharacterStatus.IsDead
+                .Where(x => x)
+                .Subscribe(_ => OnDead());
+            
+            GameManager.manager.ReadyOk(photonView.OwnerActorNr);
         }
 
         protected override void OnHitMyTeamObject(BattleObject battleObject)
@@ -133,20 +139,15 @@ namespace Sources.InGame.BattleObject.Character
 
             if (skillManager.type == SkillManager.SkillType.Heal)
             {
-                CharacterStatus.SetHP(skillManager.GetHeal + CharacterStatus.CurrentHP);
+                CharacterStatus.Heal(skillManager.GetHeal);
             }
             else if (skillManager.type == SkillManager.SkillType.BufSpeed)
             {
-                CharacterStatus.SetMoveSpeed(skillManager.GetBufSpeed + CharacterStatus.MoveSpeed);
+                CharacterStatus.SetBuff(skillManager.type, SkillManager.SPEED_UP_VALUE, SkillManager.SPEED_UP_LENGTH);
             }
             else if (skillManager.type == SkillManager.SkillType.BufAttack)
             {
-                GameObject[] skill = CharacterStatus.GetSkillPrefab;
-                for (int i = 0; i < skill.Length; i++)
-                {
-                    skillManager = skill[i].gameObject.GetComponent<SkillManager>();
-                    skillManager.SetSkillDamage(skillManager.GetSkillDamage + 15);
-                }
+                CharacterStatus.SetBuff(skillManager.type, SkillManager.ATTACK_UP_VALUE, SkillManager.ATTACK_UP_LENGTH);
             }
         }
 
@@ -166,16 +167,18 @@ namespace Sources.InGame.BattleObject.Character
             Debug.Log("Damage Hit\n" +
                       Utils.FormatBattleObjectInformation(gameObject, this) +
                       $"Value : {skillManager.GetSkillDamage}\n");
-            CharacterStatus.SetHP(CharacterStatus.CurrentHP - skillManager.GetSkillDamage);
+            CharacterStatus.Damage(skillManager.GetSkillDamage);
             SetStateAndResetIdle(CharacterState.Damage);
         }
 
         private async void OnDead()
         {
+            Debug.Log("OnDead");
             gameObject.SetActive(false);
             await UniTask.Delay(TimeSpan.FromSeconds(GameManager.RespawnTime));
             
             GameManager.manager.ReSetPosition(this);
+            CharacterStatus.Revival();
             gameObject.SetActive(true);
         }
 
@@ -308,16 +311,18 @@ namespace Sources.InGame.BattleObject.Character
             };
         }
 
-        private void InitReactiveEvent()
-        {
-            
-        }
-
         #region InputCallback
 
         public void OnMove(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle)
+            {
+                Debug.Log("Not Started\n" +
+                          $"current state {GameManager.manager.CurrentState.CurrentValue}");
+                return;
+            }
+            
             var value = context.ReadValue<Vector2>();
 
             // Debug.Log(nameof(OnMove) + " is already set on callback");
@@ -339,6 +344,8 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSkill1(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle) return;
+
             // Debug.Log(nameof(OnSkill1) + " is already set on callback");
 
             if (!CharacterStatus.UseSkill1()) return;
@@ -349,6 +356,10 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSkill2(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle)
+            {
+                return;
+            }
             // Debug.Log(nameof(OnSkill2) + " is already set on callback");
 
             if (!CharacterStatus.UseSkill2()) return;
@@ -359,6 +370,7 @@ namespace Sources.InGame.BattleObject.Character
         public void OnSpecial(InputAction.CallbackContext context)
         {
             if (!photonView.IsMine) return;
+            if (GameManager.manager.CurrentState.CurrentValue != GameManager.BattleState.Battle) return;
             // Debug.Log(nameof(OnSpecial) + " is already set on callback");
 
             if (CurrentState != CharacterState.Idle) return; 
