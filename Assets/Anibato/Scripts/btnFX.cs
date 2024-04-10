@@ -18,4 +18,33 @@ public class btnFX : MonoBehaviour
         myFX.PlayOneShot(ClickFX);
     }
 
+    public void SceneToModeSelect()
+    {
+        FadeManager.Instance.LoadScene("ModeSelectScene", 0.3f);
+    }
+
+    public void SceneToTraining()
+    {
+        FadeManager.Instance.LoadScene("TrainingScene", 0.3f);
+    }
+
+    public void SceneToOptionChange()
+    {
+        FadeManager.Instance.LoadScene("OptionChangeScene", 0.3f);
+    }
+
+    public void SceneToCredit()
+    {
+        FadeManager.Instance.LoadScene("CreditScene", 0.3f);
+    }
+
+    public void SceneToCharaSelectFreeMatch()
+    {
+        FadeManager.Instance.LoadScene("CharacterSelectSceneFree", 0.3f);
+    }
+
+    public void SceneToCharaSelectPrivateMatch()
+    {
+        FadeManager.Instance.LoadScene("CharacterSelectScenePrivate", 0.3f);
+    }
 }
