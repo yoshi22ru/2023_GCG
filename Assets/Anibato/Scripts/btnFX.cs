@@ -8,6 +8,7 @@ public class btnFX : MonoBehaviour
     public AudioSource myFX;
     public AudioClip HighlightedFX;
     public AudioClip ClickFX;
+    public GameObject InputPanels;
 
     public void HighlightedSound()
     {
@@ -46,5 +47,25 @@ public class btnFX : MonoBehaviour
     public void SceneToCharaSelectPrivateMatch()
     {
         FadeManager.Instance.LoadScene("CharacterSelectScenePrivate", 0.3f);
+    }
+
+    public void SceneToMatchingWaitFree()
+    {
+        FadeManager.Instance.LoadScene("MatchingWaitingSceneFree", 0.3f);
+    }
+
+    public void SceneToMatchingWaitPrivate()
+    {
+        FadeManager.Instance.LoadScene("MatchingWaitingScenePrivate", 0.3f);
+    }
+
+    public void ActiveInputPanel()
+    {
+        InputPanels.SetActive(true);
+    }
+
+    public void PassiveInputPanel()
+    {
+        InputPanels.SetActive(false);
     }
 }
