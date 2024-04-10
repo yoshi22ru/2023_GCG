@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Photon.Pun;
 using R3;
 using Sources.InGame.BattleObject.Skill;
 using Unity.Mathematics;
@@ -140,20 +139,15 @@ namespace Sources.InGame.BattleObject.Character
 
             if (skillManager.type == SkillManager.SkillType.Heal)
             {
-                CharacterStatus.Damage(skillManager.GetHeal + CharacterStatus.CurrentHP);
+                CharacterStatus.Heal(skillManager.GetHeal);
             }
             else if (skillManager.type == SkillManager.SkillType.BufSpeed)
             {
-                CharacterStatus.SetMoveSpeed(skillManager.GetBufSpeed + CharacterStatus.MoveSpeed);
+                CharacterStatus.SetBuff(skillManager.type, SkillManager.SPEED_UP_VALUE, SkillManager.SPEED_UP_LENGTH);
             }
             else if (skillManager.type == SkillManager.SkillType.BufAttack)
             {
-                GameObject[] skill = CharacterStatus.GetSkillPrefab;
-                for (int i = 0; i < skill.Length; i++)
-                {
-                    skillManager = skill[i].gameObject.GetComponent<SkillManager>();
-                    skillManager.SetSkillDamage(skillManager.GetSkillDamage + 15);
-                }
+                CharacterStatus.SetBuff(skillManager.type, SkillManager.ATTACK_UP_VALUE, SkillManager.ATTACK_UP_LENGTH);
             }
         }
 
