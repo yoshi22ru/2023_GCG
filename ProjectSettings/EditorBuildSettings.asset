@@ -15,11 +15,29 @@ EditorBuildSettings:
     path: Assets/Scenes/ModeSelectScene.unity
     guid: f3644c23f424c4a47adf3ffa73dc23b5
   - enabled: 1
-    path: Assets/Scenes/CharacterSelectScene.unity
+    path: Assets/Scenes/TrainingScene.unity
+    guid: 15ce24df23c311f4299ec06476613ee8
+  - enabled: 1
+    path: Assets/Scenes/OptionChangeScene.unity
+    guid: 20b92034e2b00e043828b36513b684cf
+  - enabled: 1
+    path: Assets/Scenes/CreditScene.unity
+    guid: d6e24a5ca8c1e3249a0a27f926efadf8
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelectSceneFree.unity
     guid: fe6fcca0a23adac4ba57348f28d330c1
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelectScenePrivate.unity
+    guid: 5282bddcac328b64286841525cd097bc
   - enabled: 1
     path: Assets/Scenes/MatchingWaitingScene.unity
     guid: cb3f660566725c147a6e015c047243d8
+  - enabled: 1
+    path: Assets/Scenes/New Stage1.unity
+    guid: 57c67dc7ecb07664dabc241df06be182
+  - enabled: 1
+    path: Assets/Scenes/New Stage2.unity
+    guid: 0eeacf2bc6bbe6d4fa874dbf5a3396be
   - enabled: 1
     path: Assets/Scenes/Stage1.unity
     guid: 27225392011a5f84b93bac3efd464065
