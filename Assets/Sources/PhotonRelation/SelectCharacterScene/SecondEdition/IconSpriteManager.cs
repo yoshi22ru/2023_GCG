@@ -5,12 +5,14 @@ using UnityEngine;
 using static CharaData;
 using UnityEngine.UI;
 using Resources.Character;
+using Sources.SelectCharacterScene.SecondEdition;
 using Utility.SelectCharacterScene.SecondEdition;
 
 public class IconSpriteManager : MonoBehaviour, ICharaSelectCallable
 {
+    [SerializeField] private SelectedCharaData selectedCharaData;
     [SerializeField] private Image selectedImage;
-    [SerializeField] CharaDataBase charaData;
+    [SerializeField] private CharaDataBase charaData;
     private IconView[] _iconViews;
     
     void Start()
@@ -33,7 +35,7 @@ public class IconSpriteManager : MonoBehaviour, ICharaSelectCallable
     public void CharaSelectCall(IconSpriteView view)
     {
         var selected = _iconViews.FirstOrDefault(x => x.View == view);
-        selectedImage.sprite = charaData.GetSprite(selected.IdentCharacter);
+        selectedCharaData.SetCharacter(charaData.GetCharaData(selected.IdentCharacter));
     }
 
     struct IconView

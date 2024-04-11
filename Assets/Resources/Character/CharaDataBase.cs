@@ -26,5 +26,10 @@ namespace Resources.Character
             CharaData.IdentCharacter character = (CharaData.IdentCharacter)index;
             return characterData.FirstOrDefault(x => x.CharaName == character)?.CharaSprite;
         }
+
+        public CharaData GetCharaData(CharaData.IdentCharacter character)
+        {
+            return characterData.FirstOrDefault(x => x.CharaName == character);
+        }
     }
 }
