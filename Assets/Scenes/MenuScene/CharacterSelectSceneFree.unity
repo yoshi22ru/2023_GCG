@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -164,7 +164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 181.9212}
+  m_AnchoredPosition: {x: 50, y: 233}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &84680944
@@ -381,6 +381,7 @@ MonoBehaviour:
   myFX: {fileID: 84680944}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!114 &84680950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,7 +984,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myFX: {fileID: 417567900}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
-  ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  ClickFX: {fileID: 8300000, guid: 9f61b75c5571232489e41ef118548a1a, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!114 &417567899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1029,9 +1031,9 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 417567897}
-          m_TargetAssemblyTypeName: NextScene, Assembly-CSharp
-          m_MethodName: ChangeScenes
+        - m_Target: {fileID: 417567898}
+          m_TargetAssemblyTypeName: btnFX, Assembly-CSharp
+          m_MethodName: SceneToModeSelect
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1412,7 +1414,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: -70}
+  m_AnchoredPosition: {x: 300, y: -18.921204}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &524151805
@@ -1629,6 +1631,7 @@ MonoBehaviour:
   myFX: {fileID: 524151805}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!114 &524151811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,7 +1848,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 800, y: -70}
+  m_AnchoredPosition: {x: 800, y: -18.921204}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &631996933
@@ -2062,6 +2065,7 @@ MonoBehaviour:
   myFX: {fileID: 631996933}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!114 &631996939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,6 +2111,79 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1001 &766300952
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 130190, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_Name
+      value: FadeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474238, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: fadeColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: fadeColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11460108, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
+      propertyPath: fadeColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fd9d58dbfb8f846f58b62a48334a0058, type: 3}
 --- !u!1 &894824703
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550, y: 181.9212}
+  m_AnchoredPosition: {x: 550, y: 233}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1019422605
@@ -2486,6 +2563,7 @@ MonoBehaviour:
   myFX: {fileID: 1019422605}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!1 &1051171033
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,7 +2951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -70}
+  m_AnchoredPosition: {x: 50, y: -18.921204}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1472202967
@@ -3135,6 +3213,7 @@ MonoBehaviour:
   myFX: {fileID: 1472202967}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!1 &1474649545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,7 +3429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550, y: -70}
+  m_AnchoredPosition: {x: 550, y: -18.921204}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1581614186
@@ -3612,6 +3691,7 @@ MonoBehaviour:
   myFX: {fileID: 1581614186}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!1 &1587974951
 GameObject:
   m_ObjectHideFlags: 0
@@ -3653,7 +3733,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300, y: 181.9212}
+  m_AnchoredPosition: {x: 300, y: 233}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1587974953
@@ -3870,6 +3950,7 @@ MonoBehaviour:
   myFX: {fileID: 1587974953}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!114 &1587974959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3956,7 +4037,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 800, y: 181.9212}
+  m_AnchoredPosition: {x: 800, y: 233}
   m_SizeDelta: {x: 232.5208, y: 232.5208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!82 &1798309137
@@ -4173,6 +4254,7 @@ MonoBehaviour:
   myFX: {fileID: 1798309137}
   HighlightedFX: {fileID: 8300000, guid: dee49cf838d8ba441beee8ba01b9b808, type: 3}
   ClickFX: {fileID: 8300000, guid: 4336b71b16aca6b4390ce360479631f2, type: 3}
+  InputPanels: {fileID: 0}
 --- !u!114 &1798309143
 MonoBehaviour:
   m_ObjectHideFlags: 0
