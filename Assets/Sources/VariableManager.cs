@@ -6,7 +6,7 @@ using Sources.InGame.BattleObject;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class VariableManager : MonoBehaviourPunCallbacks
+public class VariableManager : MonoBehaviour
 {
     public static readonly List<PlayerSelection> PlayerSelections = new List<PlayerSelection>();
 
