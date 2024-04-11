@@ -976,6 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e15b75dbfcf7243a5813e61c08d7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedImage: {fileID: 1051171035}
   charaData: {fileID: 11400000, guid: 129d2dbd825665048991f3d815f5b501, type: 2}
 --- !u!1001 &714449703
 PrefabInstance:
