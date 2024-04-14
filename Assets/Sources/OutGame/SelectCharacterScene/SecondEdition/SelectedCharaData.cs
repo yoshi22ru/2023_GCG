@@ -6,7 +6,7 @@ namespace Sources.SelectCharacterScene.SecondEdition
 {
     public class SelectedCharaData: MonoBehaviour
     {
-        public static CharaData.IdentCharacter SelectedCharacter
+        public CharaData.IdentCharacter SelectedCharacter
         {
             get;
             private set;

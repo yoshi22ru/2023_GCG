@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Sources.PhotonRelation.MenuScene
+namespace Sources.OutGame.MenuScene
 {
     public class MenuPanelBase : MonoBehaviourPunCallbacks
     {

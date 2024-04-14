@@ -138,7 +138,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
         if (_actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            PhotonNetwork.LocalPlayer.SetCharacter((int)_character);
+            PhotonNetwork.LocalPlayer.SetCharacter(_character);
         }
     }
 
@@ -241,7 +241,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     {
         if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber) return;
 
-        PhotonNetwork.LocalPlayer.SetCharacter((int)_character);
+        PhotonNetwork.LocalPlayer.SetCharacter(_character);
         PhotonNetwork.LocalPlayer.SetTeam((int)_team);
         PhotonNetwork.LocalPlayer.SetDecision(_decide);
     }

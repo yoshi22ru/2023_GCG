@@ -4,11 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
-using Sources.PhotonRelation.MenuScene;
-using Unity.VisualScripting;
+using Sources.OutGame.MenuScene;
 
 
-namespace Sources.PhotonRelation.SelectCharacterScene
+namespace Sources.OutGame.SelectCharacterScene
 {
     public class SelectCharacterPanel : MenuPanelBase
     {

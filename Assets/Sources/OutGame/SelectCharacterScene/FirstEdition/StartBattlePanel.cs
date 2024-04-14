@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
-using Sources.PhotonRelation.MenuScene;
+using Sources.OutGame.MenuScene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
-namespace Sources.PhotonRelation.SelectCharacterScene
+namespace Sources.OutGame.SelectCharacterScene.FirstEdition
 {
     public class StartBattlePanel : MenuPanelBase
     {

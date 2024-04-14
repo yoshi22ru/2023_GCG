@@ -17,10 +17,6 @@ namespace Utility
     [SerializeField] static bool isOpen = true;
     #endregion
 
-    #region LocalVariables
-
-    #endregion
-
     #region RappedFunction
 
     public static IEnumerator LoadYourAsyncScene(string scene_name) {

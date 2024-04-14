@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-namespace Sources.PhotonRelation.MenuScene
+namespace Sources.OutGame.MenuScene
 {
 
 

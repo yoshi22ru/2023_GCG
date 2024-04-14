@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using ExitGames.Client.Photon;
 using Photon.Realtime;
@@ -18,11 +19,16 @@ public static class PlayerPropertiesExtensions
     private static readonly Hashtable propsToSet = new Hashtable();
 
     #region Getter
-    public static bool TryGetCharacter(this Player player, out int character) {
-        character = (player.CustomProperties[CharacterKey] is int chara) ? chara : -1;
-        if (character == -1) {
+    public static bool TryGetCharacter(this Player player, out CharaData.IdentCharacter character)
+    {
+        var ident = (player.CustomProperties[CharacterKey] is int chara) ? chara : -1;
+        if (!Enum.IsDefined(typeof(CharaData.IdentCharacter), ident))
+        {
+            character = CharaData.IdentCharacter.Bird;
             return false;
         }
+
+        character = (CharaData.IdentCharacter)ident;
         return true;
     }
     public static bool TryGetDecision(this Player player, out bool is_decide) {
@@ -71,8 +77,9 @@ public static class PlayerPropertiesExtensions
     #endregion
 
     #region Setter
-    public static void SetCharacter(this Player player, int chara) {
-        propsToSet[CharacterKey] = chara;
+    public static void SetCharacter(this Player player, CharaData.IdentCharacter character)
+    {
+        propsToSet[CharacterKey] = character;
     }
     public static void SetDecision(this Player player, bool decide) {
         propsToSet[DecisionKey] = decide;

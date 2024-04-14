@@ -19,7 +19,7 @@ public class btnFX : MonoBehaviour
         myFX.PlayOneShot(ClickFX);
     }
 
-    public void SceneToModeSelect()
+    public static void SceneToModeSelect()
     {
         FadeManager.Instance.LoadScene("ModeSelectScene", 0.3f);
     }
@@ -49,7 +49,7 @@ public class btnFX : MonoBehaviour
         FadeManager.Instance.LoadScene("CharacterSelectScenePrivate", 0.3f);
     }
 
-    public void SceneToMatchingWaitFree()
+    public static void SceneToMatchingWaitFree()
     {
         FadeManager.Instance.LoadScene("MatchingWaitingSceneFree", 0.3f);
     }

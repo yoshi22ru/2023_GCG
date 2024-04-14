@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
-namespace Sources.PhotonRelation.MenuScene
+namespace Sources.OutGame.MenuScene
 {
     public class EnterRoomName : MenuPanelBase
     {

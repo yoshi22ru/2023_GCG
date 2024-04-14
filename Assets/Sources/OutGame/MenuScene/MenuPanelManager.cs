@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 
-namespace Sources.PhotonRelation.MenuScene
+namespace Sources.OutGame.MenuScene
 {
     public class MenuPanelManager : MonoBehaviourPunCallbacks
     {

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cysharp.Threading.Tasks;
+using Photon.Pun;
 using UnityEngine;
 using static CharaData;
 using UnityEngine.UI;
@@ -9,7 +11,7 @@ using Sources.SelectCharacterScene.SecondEdition;
 using UnityEngine.SceneManagement;
 using Utility.SelectCharacterScene.SecondEdition;
 
-public class IconSpriteManager : MonoBehaviour, ICharaSelectCallable
+public class IconSpriteManager : MonoBehaviourPunCallbacks, ICharaSelectCallable
 {
     [SerializeField] private Button goToBattleScene;
     [SerializeField] private SelectedCharaData selectedCharaData;
@@ -19,7 +21,7 @@ public class IconSpriteManager : MonoBehaviour, ICharaSelectCallable
     
     void Start()
     {
-        goToBattleScene.onClick.AddListener(GoToBattle);
+        goToBattleScene.onClick.AddListener(GoToMatching);
         var spriteViews = FindObjectsOfType<IconSpriteView>();
         _iconViews = new IconView[spriteViews.Length];
         for (int i = 0; i < spriteViews.Length; i++)
@@ -35,18 +37,36 @@ public class IconSpriteManager : MonoBehaviour, ICharaSelectCallable
         }
     }
 
-    private void GoToBattle()
+    private async void GoToMatching()
     {
         if (!selectedCharaData.IsSelect) return;
-        // FIXME
-        switch (0)
+
+        if (!PhotonNetwork.OfflineMode)
         {
-            case 0:
-                // Matching
-                // Load Scene
-                break;
+            PhotonNetwork.LocalPlayer.SetCharacter(selectedCharaData.SelectedCharacter);
+            
+            PhotonNetwork.GameVersion = "v1.0";
+            PhotonNetwork.ConnectUsingSettings();
+
+            await UniTask.WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
+            
+        }
+        else
+        {
+            // マッチングのシーンとキャラセレクトのシーン別れてるけど最終的に同じになる予定
         }
         
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log(nameof(OnConnectedToMaster));
+        PhotonNetwork.JoinRandomOrCreateRoom();
+    }
+
+    public override void OnJoinedRoom()
+    {
+        btnFX.SceneToMatchingWaitFree();
     }
 
     public void CharaSelectCall(IconSpriteView view)
