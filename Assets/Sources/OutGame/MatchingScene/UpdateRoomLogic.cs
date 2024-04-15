@@ -40,6 +40,7 @@ namespace Sources.OutGame.MatchingScene
                 var actorNumber = player.ActorNumber - 1;
                 views[actorNumber].CharacterIcon.sprite = _charaDataBase.GetSprite(character);
                 views[actorNumber].PlayersCharacterName.text = Enum.GetName(typeof(CharaData.IdentCharacter), character);
+                views[actorNumber].PlayerName.text = player.NickName;
             }
             else
             {

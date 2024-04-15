@@ -330,8 +330,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ownerNumber: 0
-  playersCharacterName: {fileID: 5926818454890911363}
-  playerNumber: {fileID: 2070670328736488424}
+  playersCharacterName: {fileID: 2070670328736488424}
+  playerName: {fileID: 5926818454890911363}
   characterIcon: {fileID: 5171477613551281452}
 --- !u!1 &8376651817268939030
 GameObject:

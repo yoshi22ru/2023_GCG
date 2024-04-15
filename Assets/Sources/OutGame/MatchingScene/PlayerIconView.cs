@@ -7,13 +7,13 @@ namespace Sources.OutGame.MatchingScene
     public class PlayerIconView: MonoBehaviour
     {
         public int OwnerNumber => ownerNumber;
-        public Text PlayerNumber => playerNumber;
+        public Text PlayerName => playerName;
         public Image CharacterIcon => characterIcon;
         public Text PlayersCharacterName => playersCharacterName;
         
         [SerializeField] private int ownerNumber;
         [SerializeField] private Text playersCharacterName;
-        [SerializeField] private Text playerNumber;
+        [FormerlySerializedAs("playerNumber")] [SerializeField] private Text playerName;
         [SerializeField] private Image characterIcon;
 
         public void SetOwnerNumber(int number)
