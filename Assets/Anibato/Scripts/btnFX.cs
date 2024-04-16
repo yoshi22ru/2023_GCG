@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Sources.Sync;
 using UnityEngine.UI;
 
 public class btnFX : MonoBehaviour
@@ -19,7 +20,7 @@ public class btnFX : MonoBehaviour
         myFX.PlayOneShot(ClickFX);
     }
 
-    public void SceneToModeSelect()
+    public static void SceneToModeSelect()
     {
         FadeManager.Instance.LoadScene("ModeSelectScene", 0.3f);
     }
@@ -41,15 +42,17 @@ public class btnFX : MonoBehaviour
 
     public void SceneToCharaSelectFreeMatch()
     {
+        VariableManager.RoomOption = RoomOption.Public;
         FadeManager.Instance.LoadScene("CharacterSelectSceneFree", 0.3f);
     }
 
     public void SceneToCharaSelectPrivateMatch()
     {
-        FadeManager.Instance.LoadScene("CharacterSelectScenePrivate", 0.3f);
+        VariableManager.RoomOption = RoomOption.PrivateHost;
+        FadeManager.Instance.LoadScene("CharacterSelectSceneFree", 0.3f);
     }
 
-    public void SceneToMatchingWaitFree()
+    public static void SceneToMatchingWaitFree()
     {
         FadeManager.Instance.LoadScene("MatchingWaitingSceneFree", 0.3f);
     }
@@ -57,6 +60,11 @@ public class btnFX : MonoBehaviour
     public void SceneToMatchingWaitPrivate()
     {
         FadeManager.Instance.LoadScene("MatchingWaitingScenePrivate", 0.3f);
+    }
+
+    public static void SceneToBattleScene()
+    {
+        FadeManager.Instance.LoadScene("Stage1", 0.3f);
     }
 
     public void ActiveInputPanel()
