@@ -21,7 +21,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     private CharaData.IdentCharacter _character = CharaData.IdentCharacter.Bird;
     private int _actorNumber;
     private bool _decide;
-    private BattleObject.Team _team;
+    private Team _team;
 
     private void Start()
     {
@@ -32,11 +32,11 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
         if (_actorNumber % 2 == 1)
         {
-            SetTeam(BattleObject.Team.Red);
+            SetTeam(Team.Red);
         }
         else
         {
-            SetTeam(BattleObject.Team.Blue);
+            SetTeam(Team.Blue);
         }
 
         SetDecision(false);
@@ -85,13 +85,13 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
     {
         if (_actorNumber != PhotonNetwork.LocalPlayer.ActorNumber) return;
 
-        if (_team == BattleObject.Team.Blue)
+        if (_team == Team.Blue)
         {
-            SetTeam(BattleObject.Team.Red);
+            SetTeam(Team.Red);
         }
         else
         {
-            SetTeam(BattleObject.Team.Blue);
+            SetTeam(Team.Blue);
         }
     }
 
@@ -142,10 +142,10 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         }
     }
 
-    private void SetTeam(BattleObject.Team team)
+    private void SetTeam(Team team)
     {
         this._team = team;
-        if (team == BattleObject.Team.Blue)
+        if (team == Team.Blue)
         {
             teamColor.color = Color.blue;
         }
@@ -202,7 +202,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
 
         if (targetPlayer.TryGetTeam(out var team))
         {
-            SetTeam((BattleObject.Team)team);
+            SetTeam((Team)team);
         }
 
         if (targetPlayer.TryGetDecision(out var isDecide))
@@ -217,7 +217,7 @@ public class SelectCharacter : MonoBehaviourPunCallbacks
         Debug.Log("this actor num is : " + actorNumber);
     }
 
-    public BattleObject.Team GetTeam()
+    public Team GetTeam()
     {
         return _team;
     }

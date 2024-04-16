@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Cysharp.Threading.Tasks;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using static CharaData;
 using UnityEngine.UI;
 using Resources.Character;
 using Sources.SelectCharacterScene.SecondEdition;
+using Sources.Sync;
 using UnityEngine.SceneManagement;
 using Utility.SelectCharacterScene.SecondEdition;
 
@@ -15,7 +17,6 @@ public class IconSpriteManager : MonoBehaviourPunCallbacks, ICharaSelectCallable
 {
     [SerializeField] private Button goToBattleScene;
     [SerializeField] private SelectedCharaData selectedCharaData;
-    [SerializeField] private Image selectedImage;
     [SerializeField] private CharaDataBase charaData;
     private IconView[] _iconViews;
     
@@ -41,27 +42,24 @@ public class IconSpriteManager : MonoBehaviourPunCallbacks, ICharaSelectCallable
     {
         if (!selectedCharaData.IsSelect) return;
 
-        if (!PhotonNetwork.OfflineMode)
-        {
-            PhotonNetwork.LocalPlayer.SetCharacter(selectedCharaData.SelectedCharacter);
-            
-            PhotonNetwork.GameVersion = "v1.0";
-            PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.LocalPlayer.SetCharacter(selectedCharaData.SelectedCharacter);
 
-            await UniTask.WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
-            
-        }
-        else
-        {
-            // マッチングのシーンとキャラセレクトのシーン別れてるけど最終的に同じになる予定
-        }
-        
+        PhotonNetwork.GameVersion = "v1.0";
+        PhotonNetwork.ConnectUsingSettings();
+
+        // うまくいかない
+        // await UniTask.WaitUntil(() => PhotonNetwork.IsConnectedAndReady);
+        // PhotonNetwork.JoinRandomOrCreateRoom();
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log(nameof(OnConnectedToMaster));
-        PhotonNetwork.JoinRandomOrCreateRoom();
+        var option = new RoomOptions();
+        option.MaxPlayers = 4;
+        option.IsOpen = VariableManager.RoomOption == RoomOption.Public;
+        
+        PhotonNetwork.JoinRandomOrCreateRoom(roomOptions:option);
     }
 
     public override void OnJoinedRoom()

@@ -21,7 +21,6 @@ namespace Sources.OutGame.MatchingScene
         public void Update()
         {
             var playerList = PhotonNetwork.PlayerList;
-            Debug.Log(playerList.Length);
             
             foreach (var player in playerList)
             {
@@ -32,12 +31,11 @@ namespace Sources.OutGame.MatchingScene
         public void UpdateOne(Player player)
         {
             var views = _entity.Views;
-            Debug.Log(player.CustomProperties);
-            views[player.ActorNumber].PlayersCharacterName.text = player.NickName;
+            var actorNumber = player.ActorNumber - 1;
+            views[actorNumber].PlayersCharacterName.text = player.NickName;
 
             if (player.TryGetCharacter(out var character))
             {
-                var actorNumber = player.ActorNumber - 1;
                 views[actorNumber].CharacterIcon.sprite = _charaDataBase.GetSprite(character);
                 views[actorNumber].PlayersCharacterName.text = Enum.GetName(typeof(CharaData.IdentCharacter), character);
                 views[actorNumber].PlayerName.text = player.NickName;

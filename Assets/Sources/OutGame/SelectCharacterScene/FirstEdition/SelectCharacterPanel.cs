@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Sources.InGame.BattleObject;
 using Sources.OutGame.MenuScene;
 
 
@@ -62,7 +63,7 @@ namespace Sources.OutGame.SelectCharacterScene
 
             for (int i = 0; i < selections.Count; ++i)
             {
-                if (selections[i].GetTeam() == InGame.BattleObject.BattleObject.Team.Blue)
+                if (selections[i].GetTeam() == Team.Blue)
                 {
                     ++count;
                 }
