@@ -11,7 +11,6 @@ public class UserList
 
     public UserList(int number)
     {
-        Debug.Log($"List construct arg : {number}");
         _ready = new bool[number];
     }
 
