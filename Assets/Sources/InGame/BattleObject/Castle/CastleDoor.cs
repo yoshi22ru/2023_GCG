@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using R3;
 using Sources.InGame.BattleObject.Skill;
 using UnityEngine;
 
@@ -7,18 +8,25 @@ namespace Sources.InGame.BattleObject.Castle
 {
     public class CastleDoor : BattleObject
     {
-        [SerializeField] private int HP = 100;
         [SerializeField] private int maxHP = 100;
-        [SerializeField] private int minHP = 0;
         [SerializeField] private ParticleSystem particle;
 
         private Renderer render;
         private float timer = 0;
         private bool onTimer = false;
 
-        private void Start()
+        public HitPoint HitPoint
+        {
+            get;
+            private set;
+        }
+
+        private void Awake()
         {
             render = GetComponent<Renderer>();
+            HitPoint = new HitPoint(maxHP);
+            HitPoint.IsDead.Where(x => x)
+                .Subscribe(_ => Destroy(gameObject));
         }
 
         private void Update()
@@ -32,9 +40,6 @@ namespace Sources.InGame.BattleObject.Castle
                 timer = 0;
                 onTimer = false;
             }
-
-            if (HP <= 0)
-                Destroy(gameObject);
         }
 
         protected override void OnHitEnemyTeamObject(BattleObject battleObject)
@@ -52,23 +57,13 @@ namespace Sources.InGame.BattleObject.Castle
                 return;
             if (skillManager.type == SkillManager.SkillType.Damage)
             {
-                SetHP(HP - skillManager.GetSkillDamage);
+                HitPoint.Damage(skillManager.GetSkillDamage);
             }
         }
 
         protected override void OnHitMyTeamObject(BattleObject battleObject)
         {
 
-        }
-
-        private void SetHP(int hp)
-        {
-            if (hp >= maxHP)
-                HP = maxHP;
-            else if (hp <= minHP)
-                HP = 0;
-            else if (hp > 0)
-                HP = hp;
         }
     }
 }

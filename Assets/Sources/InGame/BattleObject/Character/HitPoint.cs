@@ -6,16 +6,15 @@ using UnityEngine;
 
 public class HitPoint : IDisposable
 {
-    private readonly ReactiveProperty<int> _hp;
+    public readonly ReactiveProperty<int> Hp;
     private readonly int _maxHp;
 
-    public ReadOnlyReactiveProperty<int> Hp => _hp;
     public readonly ReadOnlyReactiveProperty<bool> IsDead;
 
     public HitPoint(int maxHp)
     {
         _maxHp = maxHp;
-        _hp = new ReactiveProperty<int>(maxHp);
+        Hp = new ReactiveProperty<int>(maxHp);
         IsDead = Hp.Select(x => x <= 0).ToReadOnlyReactiveProperty();
     }
 
@@ -26,10 +25,14 @@ public class HitPoint : IDisposable
             Debug.LogError("Invalid value");
             return;
         }
-
-        _hp.Value -= value;
+        if (value > Hp.Value)
+        {
+            Hp.Value = 0;
+            return;
+        }
+        Hp.Value -= value;
         Debug.Log("Damaged\n" +
-                  $"/t after hp : {_hp.Value}");
+                  $"\t after hp : {Hp.Value}");
     }
 
     public void Heal(int value)
@@ -39,17 +42,22 @@ public class HitPoint : IDisposable
             Debug.LogError("Invalid value");
             return;
         }
-        _hp.Value += value;
+        Hp.Value += value;
     }
 
     public void Revival()
     {
-        _hp.Value = _maxHp;
+        Hp.Value = _maxHp;
+    }
+
+    public float FillAmount()
+    {
+        return (float)Hp.Value / _maxHp;
     }
 
     public void Dispose()
     {
-        _hp.Dispose();
+        Hp.Dispose();
         Hp.Dispose();
         IsDead.Dispose();
     }

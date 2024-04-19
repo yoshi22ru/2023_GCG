@@ -24435,7 +24435,7 @@ MonoBehaviour:
   team: 0
   skillSpeed: 5
   leftTime: 5
-  skillDamage: 5
+  skillDamage: 100
   healValue: 5
   bufAttack: 5
   bufSpeed: 5

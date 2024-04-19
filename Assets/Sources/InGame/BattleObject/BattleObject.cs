@@ -58,11 +58,11 @@ namespace Sources.InGame.BattleObject
             
             if (other.gameObject.TryGetComponent<BattleObject>(out var battleObject))
             {
-                Debug.Log("Try Get Component is success\n" +
-                          $"ThisName : {name}\n" +
-                          $"ObjectName : {other.name}\n" +
-                          $"OtherTeam : {battleObject.team}\n" +
-                          $"MyTeam : {team}");
+                // Debug.Log("Try Get Component is success\n" +
+                //           $"ThisName : {name}\n" +
+                //           $"ObjectName : {other.name}\n" +
+                //           $"OtherTeam : {battleObject.team}\n" +
+                //           $"MyTeam : {team}");
                 if (this.team == battleObject.team)
                 {
                     OnHitMyTeamObject(battleObject);
